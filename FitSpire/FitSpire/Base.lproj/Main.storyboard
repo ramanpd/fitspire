@@ -19,9 +19,9 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cAX-4V-PsT">
-                                <rect key="frame" x="94" y="284" width="187" height="30"/>
+                                <rect key="frame" x="113" y="284" width="150" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Login with Facebook Cunt!!"/>
+                                <state key="normal" title="Login with Facebook!!"/>
                                 <connections>
                                     <action selector="btnFBLoginPressed:" destination="BYZ-38-t0r" eventType="primaryActionTriggered" id="sz2-to-8CV"/>
                                 </connections>
@@ -36,7 +36,7 @@
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bsM-iP-LzE">
                                 <rect key="frame" x="94" y="322" width="187" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Log out, piece of shiit!!"/>
+                                <state key="normal" title="Log out, Yayyyy!!"/>
                                 <connections>
                                     <action selector="logOutBtnPressed:" destination="BYZ-38-t0r" eventType="primaryActionTriggered" id="k72-j0-U1W"/>
                                 </connections>

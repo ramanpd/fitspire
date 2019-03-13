@@ -46,6 +46,9 @@ class ViewController: UIViewController {
 //            
 //            self.navigationController?.pushViewController(secondViewController, animated: true)
             self.getFBUserData()
+//            var userID = user["id"] as NSString
+//            FBSDKProfilePicture
+//            var facebookProfileUrl = "http://graph.facebook.com/\(userID)/picture?type=large"
             print("Fuck you")
         }
         
