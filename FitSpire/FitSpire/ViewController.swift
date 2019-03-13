@@ -21,7 +21,7 @@ class ViewController: UIViewController {
         super.didReceiveMemoryWarning()
     }
     
-    @IBAction func btnFBLoginPressed(_ sender: AnyObject) {
+    @IBAction func btnFBLoginPressed(_ sender: UIButton) {
         let fbLoginManager : FBSDKLoginManager = FBSDKLoginManager()
         fbLoginManager.logIn(withReadPermissions: ["email"], from: self) { (result, error) in
             if (error == nil){
@@ -36,6 +36,21 @@ class ViewController: UIViewController {
             }
         }
     }
+//    func btnFBLoginPressed(_ sender: AnyObject) {
+//        let fbLoginManager : FBSDKLoginManager = FBSDKLoginManager()
+//        fbLoginManager.logIn(withReadPermissions: ["email"], from: self) { (result, error) in
+//            if (error == nil){
+//                let fbloginresult : FBSDKLoginManagerLoginResult = result!
+//                if fbloginresult.grantedPermissions != nil {
+//                    if(fbloginresult.grantedPermissions.contains("email"))
+//                    {
+//                        self.getFBUserData()
+//                        fbLoginManager.logOut()
+//                    }
+//                }
+//            }
+//        }
+//    }
     
     func getFBUserData(){
         if((FBSDKAccessToken.current()) != nil){
