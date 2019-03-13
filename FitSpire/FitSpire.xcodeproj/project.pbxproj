@@ -14,6 +14,10 @@
 		CE368D2C2237775900478771 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE368D2A2237775900478771 /* Main.storyboard */; };
 		CE368D2E2237775900478771 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE368D2D2237775900478771 /* Assets.xcassets */; };
 		CE368D312237775900478771 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE368D2F2237775900478771 /* LaunchScreen.storyboard */; };
+		CECA74732238DE5300949205 /* MainMenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECA74722238DE5300949205 /* MainMenuVC.swift */; };
+		CECA74752238DE6E00949205 /* WalkingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECA74742238DE6E00949205 /* WalkingVC.swift */; };
+		CECA74772238DE7D00949205 /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECA74762238DE7D00949205 /* ProfileVC.swift */; };
+		CECA74792238E11400949205 /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECA74782238E11300949205 /* SettingsVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +31,10 @@
 		CE368D2D2237775900478771 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CE368D302237775900478771 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CE368D322237775900478771 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CECA74722238DE5300949205 /* MainMenuVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuVC.swift; sourceTree = "<group>"; };
+		CECA74742238DE6E00949205 /* WalkingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalkingVC.swift; sourceTree = "<group>"; };
+		CECA74762238DE7D00949205 /* ProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
+		CECA74782238E11300949205 /* SettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +78,10 @@
 				CE368D2F2237775900478771 /* LaunchScreen.storyboard */,
 				CE368D322237775900478771 /* Info.plist */,
 				0880BF8D2238BC570044F194 /* FitSpire-Bridging-Header.h */,
+				CECA74722238DE5300949205 /* MainMenuVC.swift */,
+				CECA74742238DE6E00949205 /* WalkingVC.swift */,
+				CECA74762238DE7D00949205 /* ProfileVC.swift */,
+				CECA74782238E11300949205 /* SettingsVC.swift */,
 			);
 			path = FitSpire;
 			sourceTree = "<group>";
@@ -146,8 +158,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CECA74772238DE7D00949205 /* ProfileVC.swift in Sources */,
+				CECA74752238DE6E00949205 /* WalkingVC.swift in Sources */,
 				CE368D292237775900478771 /* ViewController.swift in Sources */,
 				CE368D272237775900478771 /* AppDelegate.swift in Sources */,
+				CECA74732238DE5300949205 /* MainMenuVC.swift in Sources */,
+				CECA74792238E11400949205 /* SettingsVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
