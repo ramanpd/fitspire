@@ -19,11 +19,26 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cAX-4V-PsT">
-                                <rect key="frame" x="66" y="226" width="187" height="30"/>
+                                <rect key="frame" x="94" y="284" width="187" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Login with Facebook Cunt!!"/>
                                 <connections>
                                     <action selector="btnFBLoginPressed:" destination="BYZ-38-t0r" eventType="primaryActionTriggered" id="sz2-to-8CV"/>
+                                </connections>
+                            </button>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="Lololol" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="ff3-s8-wIS" userLabel="textView">
+                                <rect key="frame" x="67" y="368" width="240" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bsM-iP-LzE">
+                                <rect key="frame" x="94" y="322" width="187" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Log out, piece of shiit!!"/>
+                                <connections>
+                                    <action selector="logOutBtnPressed:" destination="BYZ-38-t0r" eventType="primaryActionTriggered" id="k72-j0-U1W"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -37,7 +52,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-562.39999999999998" y="792.95352323838085"/>
+            <point key="canvasLocation" x="-959.20000000000005" y="814.54272863568224"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="HOE-37-m5i">
