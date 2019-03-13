@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0880BF8B2238BB740044F194 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0880BF892238BB730044F194 /* FBSDKCoreKit.framework */; };
+		0880BF8C2238BB740044F194 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0880BF8A2238BB740044F194 /* FBSDKLoginKit.framework */; };
 		CE368D272237775900478771 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE368D262237775900478771 /* AppDelegate.swift */; };
 		CE368D292237775900478771 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE368D282237775900478771 /* ViewController.swift */; };
 		CE368D2C2237775900478771 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE368D2A2237775900478771 /* Main.storyboard */; };
@@ -15,6 +17,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0880BF892238BB730044F194 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
+		0880BF8A2238BB740044F194 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
+		0880BF8D2238BC570044F194 /* FitSpire-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FitSpire-Bridging-Header.h"; sourceTree = "<group>"; };
 		CE368D232237775900478771 /* FitSpire.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FitSpire.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE368D262237775900478771 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CE368D282237775900478771 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -29,6 +34,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0880BF8C2238BB740044F194 /* FBSDKLoginKit.framework in Frameworks */,
+				0880BF8B2238BB740044F194 /* FBSDKCoreKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -54,12 +61,15 @@
 		CE368D252237775900478771 /* FitSpire */ = {
 			isa = PBXGroup;
 			children = (
+				0880BF892238BB730044F194 /* FBSDKCoreKit.framework */,
+				0880BF8A2238BB740044F194 /* FBSDKLoginKit.framework */,
 				CE368D262237775900478771 /* AppDelegate.swift */,
 				CE368D282237775900478771 /* ViewController.swift */,
 				CE368D2A2237775900478771 /* Main.storyboard */,
 				CE368D2D2237775900478771 /* Assets.xcassets */,
 				CE368D2F2237775900478771 /* LaunchScreen.storyboard */,
 				CE368D322237775900478771 /* Info.plist */,
+				0880BF8D2238BC570044F194 /* FitSpire-Bridging-Header.h */,
 			);
 			path = FitSpire;
 			sourceTree = "<group>";
@@ -96,6 +106,7 @@
 				TargetAttributes = {
 					CE368D222237775900478771 = {
 						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1010;
 					};
 				};
 			};
@@ -282,7 +293,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/FitSpire",
+				);
 				INFOPLIST_FILE = FitSpire/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -290,6 +306,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = tests.FitSpire;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "FitSpire/FitSpire-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -299,7 +317,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/FitSpire",
+				);
 				INFOPLIST_FILE = FitSpire/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -307,6 +330,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = tests.FitSpire;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "FitSpire/FitSpire-Bridging-Header.h";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
