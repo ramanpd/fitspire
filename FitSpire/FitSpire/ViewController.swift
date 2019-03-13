@@ -24,21 +24,48 @@ class ViewController: UIViewController {
     }
     
     @IBAction func btnFBLoginPressed(_ sender: UIButton) {
-        let fbLoginManager : FBSDKLoginManager = FBSDKLoginManager()
-        fbLoginManager.logIn(withReadPermissions: ["email"], from: self) { (result, error) in
-            if (error == nil){
-                let fbloginresult : FBSDKLoginManagerLoginResult = result!
-                if fbloginresult.grantedPermissions != nil {
-                    if(fbloginresult.grantedPermissions.contains("email"))
-                    {
-                        self.getFBUserData()
-                        fbLoginManager.logOut()
+        if(FBSDKAccessToken.current() == nil)
+        {
+            let fbLoginManager : FBSDKLoginManager = FBSDKLoginManager()
+            fbLoginManager.logIn(withReadPermissions: ["email"], from: self) { (result, error) in
+                if (error == nil){
+                    let fbloginresult : FBSDKLoginManagerLoginResult = result!
+                    if fbloginresult.grantedPermissions != nil {
+                        if(fbloginresult.grantedPermissions.contains("email"))
+                        {
+                            self.getFBUserData()
+                            //fbLoginManager.logOut()
+                        }
                     }
                 }
             }
         }
+        else
+        {
+//            let secondViewController = self.storyboard?.instantiateViewController(withIdentifier:"secondViewController") as! SecondViewController
+//            
+//            self.navigationController?.pushViewController(secondViewController, animated: true)
+            self.getFBUserData()
+//            var userID = user["id"] as NSString
+//            FBSDKProfilePicture
+//            var facebookProfileUrl = "http://graph.facebook.com/\(userID)/picture?type=large"
+            print("Fuck you")
+        }
+        
     }
-//    func btnFBLoginPressed(_ sender: AnyObject) {
+    @IBAction func logOutBtnPressed(_ sender: UIButton) {
+        print("fsfsdfsdfsdfsdfdsfsd")
+        let fbLoginManager : FBSDKLoginManager = FBSDKLoginManager()
+        if(FBSDKAccessToken.current() != nil)
+        {
+            fbLoginManager.logOut()
+            print("Logout success")
+        }
+        else{
+            print("logout failure")
+        }
+    }
+    //    func btnFBLoginPressed(_ sender: AnyObject) {
 //        let fbLoginManager : FBSDKLoginManager = FBSDKLoginManager()
 //        fbLoginManager.logIn(withReadPermissions: ["email"], from: self) { (result, error) in
 //            if (error == nil){
