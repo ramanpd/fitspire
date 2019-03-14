@@ -190,7 +190,7 @@
                                             </button>
                                         </barButtonItem>
                                         <barButtonItem key="rightBarButtonItem" style="plain" id="gdq-A4-tFr">
-                                            <button key="customView" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="XbL-AS-Rh7">
+                                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="XbL-AS-Rh7">
                                                 <rect key="frame" x="331" y="8" width="28" height="28"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <state key="normal" image="info"/>
@@ -200,11 +200,11 @@
                                 </items>
                             </navigationBar>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6eY-kz-28T">
-                                <rect key="frame" x="0.0" y="80" width="165" height="88"/>
+                                <rect key="frame" x="17" y="80" width="341" height="304"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Name" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ulo-K2-zCS">
-                                <rect key="frame" x="186" y="80" width="97" height="30"/>
+                                <rect key="frame" x="17" y="404" width="341" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -214,6 +214,10 @@
                         <color key="backgroundColor" red="0.46202266219999999" green="0.83828371759999998" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="rsl-tA-uiK"/>
                     </view>
+                    <connections>
+                        <outlet property="nameTextField" destination="Ulo-K2-zCS" id="F1t-cP-0aZ"/>
+                        <outlet property="profilePicImageView" destination="6eY-kz-28T" id="3qS-u7-oGM"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IbZ-cp-4QK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -288,6 +292,6 @@
         <image name="walking-1" width="480" height="480"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="dZA-4l-NCN"/>
+        <segue reference="4i1-Pj-Kdx"/>
     </inferredMetricsTieBreakers>
 </document>
