@@ -41,6 +41,11 @@ class WalkingVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource 
         self.DistanceChoice.dataSource = self
     
         // Do any additional setup after loading the view.
+        
+        //James Crown
+        //Try draw a circle
+        
+        
     }
     
     // MARK: - Actions

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0846E1EE223A5C2C00AB490E /* TestingBoard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0846E1ED223A5C2B00AB490E /* TestingBoard.storyboard */; };
+		0846E1F0223A5C7700AB490E /* ProgressionCircleVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0846E1EF223A5C7600AB490E /* ProgressionCircleVC.swift */; };
 		0880BF8B2238BB740044F194 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0880BF892238BB730044F194 /* FBSDKCoreKit.framework */; };
 		0880BF8C2238BB740044F194 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0880BF8A2238BB740044F194 /* FBSDKLoginKit.framework */; };
 		0880BF942238EE850044F194 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0880BF932238EE850044F194 /* SecondViewController.swift */; };
@@ -22,6 +24,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0846E1ED223A5C2B00AB490E /* TestingBoard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TestingBoard.storyboard; sourceTree = "<group>"; };
+		0846E1EF223A5C7600AB490E /* ProgressionCircleVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressionCircleVC.swift; sourceTree = "<group>"; };
 		0880BF892238BB730044F194 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
 		0880BF8A2238BB740044F194 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
 		0880BF8D2238BC570044F194 /* FitSpire-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FitSpire-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -71,6 +75,7 @@
 		CE368D252237775900478771 /* FitSpire */ = {
 			isa = PBXGroup;
 			children = (
+				0846E1ED223A5C2B00AB490E /* TestingBoard.storyboard */,
 				0880BF892238BB730044F194 /* FBSDKCoreKit.framework */,
 				0880BF8A2238BB740044F194 /* FBSDKLoginKit.framework */,
 				CE368D262237775900478771 /* AppDelegate.swift */,
@@ -85,6 +90,7 @@
 				CECA74742238DE6E00949205 /* WalkingVC.swift */,
 				CECA74762238DE7D00949205 /* ProfileVC.swift */,
 				CECA74782238E11300949205 /* SettingsVC.swift */,
+				0846E1EF223A5C7600AB490E /* ProgressionCircleVC.swift */,
 			);
 			path = FitSpire;
 			sourceTree = "<group>";
@@ -148,6 +154,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0846E1EE223A5C2C00AB490E /* TestingBoard.storyboard in Resources */,
 				CE368D312237775900478771 /* LaunchScreen.storyboard in Resources */,
 				CE368D2E2237775900478771 /* Assets.xcassets in Resources */,
 				CE368D2C2237775900478771 /* Main.storyboard in Resources */,
@@ -166,6 +173,7 @@
 				CECA74752238DE6E00949205 /* WalkingVC.swift in Sources */,
 				CE368D292237775900478771 /* ViewController.swift in Sources */,
 				CE368D272237775900478771 /* AppDelegate.swift in Sources */,
+				0846E1F0223A5C7700AB490E /* ProgressionCircleVC.swift in Sources */,
 				CECA74732238DE5300949205 /* MainMenuVC.swift in Sources */,
 				CECA74792238E11400949205 /* SettingsVC.swift in Sources */,
 			);
