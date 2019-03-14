@@ -46,7 +46,7 @@ class WalkingVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource 
     // MARK: - Actions
     @IBAction func onPress(_ sender: UIButton) {
         if(CMPedometer.isStepCountingAvailable() ){
-            //DistanceChoice.removeFromSuperview()
+            DistanceChoice.removeFromSuperview()
             //can't really test this without an actual iPhone so commenting it for now
             beginCounting()
         }else{
@@ -69,7 +69,7 @@ class WalkingVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource 
             guard let pedometerData = pedometerData, error == nil else { return }
             
             DispatchQueue.main.async {
-                self?.StepCounter.text = "Goal: " + String(self?.distanceSelection ?? 1*1000 - pedometerData.numberOfSteps.intValue)
+                self?.StepCounter.text = String("Goal: " + /*String(self?.distanceSelection ?? 1*1000 -*/ pedometerData.numberOfSteps.stringValue)
                 //requires slef? and ?? 1 to safely unwrap from Int? to int...
                 //Not really aware of what any of that means personally
             }
