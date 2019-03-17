@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		0846E1EE223A5C2C00AB490E /* TestingBoard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0846E1ED223A5C2B00AB490E /* TestingBoard.storyboard */; };
 		0846E1F0223A5C7700AB490E /* ProgressionCircleVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0846E1EF223A5C7600AB490E /* ProgressionCircleVC.swift */; };
+		0846E1FA223E96A200AB490E /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0846E1F7223E95BB00AB490E /* Charts.framework */; };
+		0846E1FB223E96A200AB490E /* Charts.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0846E1F7223E95BB00AB490E /* Charts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0880BF8B2238BB740044F194 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0880BF892238BB730044F194 /* FBSDKCoreKit.framework */; };
 		0880BF8C2238BB740044F194 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0880BF8A2238BB740044F194 /* FBSDKLoginKit.framework */; };
 		0880BF942238EE850044F194 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0880BF932238EE850044F194 /* SecondViewController.swift */; };
@@ -23,9 +25,48 @@
 		CECA74792238E11400949205 /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECA74782238E11300949205 /* SettingsVC.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		0846E1F6223E95BB00AB490E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0846E1F1223E95B900AB490E /* Charts.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 65AD9E95D9ED4DC0BD73A743;
+			remoteInfo = Charts;
+		};
+		0846E1F8223E95BB00AB490E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0846E1F1223E95B900AB490E /* Charts.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 1CBBC58C6CE1EBEE9852CE41;
+			remoteInfo = ChartsTests;
+		};
+		0846E1FC223E96A200AB490E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0846E1F1223E95B900AB490E /* Charts.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = A58A4ED274A941CA248EA921;
+			remoteInfo = Charts;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		0846E1FE223E96A300AB490E /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				0846E1FB223E96A200AB490E /* Charts.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		0846E1ED223A5C2B00AB490E /* TestingBoard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TestingBoard.storyboard; sourceTree = "<group>"; };
 		0846E1EF223A5C7600AB490E /* ProgressionCircleVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressionCircleVC.swift; sourceTree = "<group>"; };
+		0846E1F1223E95B900AB490E /* Charts.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Charts.xcodeproj; path = "../../../../Downloads/Charts-master/Charts.xcodeproj"; sourceTree = "<group>"; };
 		0880BF892238BB730044F194 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
 		0880BF8A2238BB740044F194 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
 		0880BF8D2238BC570044F194 /* FitSpire-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FitSpire-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -48,6 +89,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0846E1FA223E96A200AB490E /* Charts.framework in Frameworks */,
 				0880BF8C2238BB740044F194 /* FBSDKLoginKit.framework in Frameworks */,
 				0880BF8B2238BB740044F194 /* FBSDKCoreKit.framework in Frameworks */,
 			);
@@ -56,6 +98,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0846E1F2223E95B900AB490E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				0846E1F7223E95BB00AB490E /* Charts.framework */,
+				0846E1F9223E95BB00AB490E /* ChartsTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		CE368D1A2237775900478771 = {
 			isa = PBXGroup;
 			children = (
@@ -75,6 +126,7 @@
 		CE368D252237775900478771 /* FitSpire */ = {
 			isa = PBXGroup;
 			children = (
+				0846E1F1223E95B900AB490E /* Charts.xcodeproj */,
 				0846E1ED223A5C2B00AB490E /* TestingBoard.storyboard */,
 				0880BF892238BB730044F194 /* FBSDKCoreKit.framework */,
 				0880BF8A2238BB740044F194 /* FBSDKLoginKit.framework */,
@@ -105,10 +157,12 @@
 				CE368D1F2237775900478771 /* Sources */,
 				CE368D202237775900478771 /* Frameworks */,
 				CE368D212237775900478771 /* Resources */,
+				0846E1FE223E96A300AB490E /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				0846E1FD223E96A200AB490E /* PBXTargetDependency */,
 			);
 			name = FitSpire;
 			productName = FitSpire;
@@ -142,12 +196,35 @@
 			mainGroup = CE368D1A2237775900478771;
 			productRefGroup = CE368D242237775900478771 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 0846E1F2223E95B900AB490E /* Products */;
+					ProjectRef = 0846E1F1223E95B900AB490E /* Charts.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				CE368D222237775900478771 /* FitSpire */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		0846E1F7223E95BB00AB490E /* Charts.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Charts.framework;
+			remoteRef = 0846E1F6223E95BB00AB490E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		0846E1F9223E95BB00AB490E /* ChartsTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = ChartsTests.xctest;
+			remoteRef = 0846E1F8223E95BB00AB490E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		CE368D212237775900478771 /* Resources */ = {
@@ -180,6 +257,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		0846E1FD223E96A200AB490E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Charts;
+			targetProxy = 0846E1FC223E96A200AB490E /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		CE368D2A2237775900478771 /* Main.storyboard */ = {
@@ -320,6 +405,7 @@
 		CE368D362237775900478771 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -345,6 +431,7 @@
 		CE368D372237775900478771 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;

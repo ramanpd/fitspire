@@ -80,6 +80,7 @@ class ViewController: UIViewController {
             print("Logout success")
             logInBtn.isHidden = false
             logOutBtn.isHidden = true
+            continueBtn.isHidden = false
         }
         else{
             print("logout failure")
