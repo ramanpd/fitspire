@@ -13,6 +13,7 @@ class ProfileVC: UIViewController {
     
     //MARK: Properties
     
+    @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var nameTextField: UITextField!
     
     @IBOutlet weak var profilePicImageView: UIImageView!
@@ -22,7 +23,7 @@ class ProfileVC: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        let loginManager : FBSDKLoginManager = FBSDKLoginManager()
+        scrollView.contentSize = CGSize(width: self.view.frame.width, height: self.view.frame.height+100)
         self.getFBUserData()
         
     }
@@ -43,6 +44,11 @@ class ProfileVC: UIViewController {
                     let url = NSURL(string: "https://graph.facebook.com/\(profileId!)/picture?type=large&return_ssl_resources=1")
                     self.profilePicImageView.image = UIImage(data: NSData(contentsOf: url! as URL)! as Data)
                     print(self.dict)
+                    self.profilePicImageView.layer.borderWidth=1.0
+                    self.profilePicImageView.layer.masksToBounds = false
+                    self.profilePicImageView.layer.borderColor = UIColor.white.cgColor
+                    self.profilePicImageView.layer.cornerRadius = self.profilePicImageView.frame.size.height/2
+                    self.profilePicImageView.clipsToBounds = true
                 }
             })
         }
