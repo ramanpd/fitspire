@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+// ViewController.swift
 //  FitSpire
 //
 //  Created by Connor Clancy on 12/03/2019.
@@ -11,12 +11,32 @@
 import UIKit
 import FBSDKLoginKit
 
+
 class ViewController: UIViewController {
     
     var dict : [String : AnyObject]!
     
+    //MARKS: Properties
+    @IBOutlet weak var continueBtn: UIButton!
+    
+    @IBOutlet weak var logInBtn: UIButton!
+    
+    @IBOutlet weak var logOutBtn: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        if(FBSDKAccessToken.current() == nil)
+        {
+            logInBtn.isHidden = false
+            continueBtn.isHidden = true
+            logOutBtn.isHidden = true
+        }
+        else
+        {
+            logInBtn.isHidden = true
+            logOutBtn.isHidden = false
+            continueBtn.isHidden = false
+        }
     }
     
     override func didReceiveMemoryWarning() {
@@ -49,17 +69,17 @@ class ViewController: UIViewController {
 //            var userID = user["id"] as NSString
 //            FBSDKProfilePicture
 //            var facebookProfileUrl = "http://graph.facebook.com/\(userID)/picture?type=large"
-            print("Fuck you")
         }
         
     }
     @IBAction func logOutBtnPressed(_ sender: UIButton) {
-        print("fsfsdfsdfsdfsdfdsfsd")
         let fbLoginManager : FBSDKLoginManager = FBSDKLoginManager()
         if(FBSDKAccessToken.current() != nil)
         {
             fbLoginManager.logOut()
             print("Logout success")
+            logInBtn.isHidden = false
+            logOutBtn.isHidden = true
         }
         else{
             print("logout failure")

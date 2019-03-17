@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cAX-4V-PsT">
-                                <rect key="frame" x="113" y="284" width="150" height="30"/>
+                                <rect key="frame" x="89" y="295" width="197" height="39"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Login with Facebook!!"/>
                                 <connections>
@@ -27,29 +27,39 @@
                                     <segue destination="erx-x6-DMp" kind="show" id="5YU-bM-7fT"/>
                                 </connections>
                             </button>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="Lololol" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="ff3-s8-wIS" userLabel="textView">
-                                <rect key="frame" x="67" y="368" width="240" height="128"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Icon" translatesAutoresizingMaskIntoConstraints="NO" id="xbL-aN-qFj">
+                                <rect key="frame" x="87" y="87" width="200" height="200"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m80-7b-fSy">
+                                <rect key="frame" x="89" y="342" width="197" height="36"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Continue"/>
+                                <connections>
+                                    <segue destination="erx-x6-DMp" kind="show" id="sHB-Ys-dOc"/>
+                                </connections>
+                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bsM-iP-LzE">
-                                <rect key="frame" x="94" y="322" width="187" height="30"/>
+                                <rect key="frame" x="89" y="386" width="197" height="38"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Log out, Yayyyy!!"/>
+                                <state key="normal" title="Log out"/>
                                 <connections>
                                     <action selector="logOutBtnPressed:" destination="BYZ-38-t0r" eventType="primaryActionTriggered" id="k72-j0-U1W"/>
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.46202266219999999" green="0.83828371759999998" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <toolbarItems>
                         <barButtonItem title="Item" id="AbL-N8-t9A"/>
                     </toolbarItems>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="continueBtn" destination="m80-7b-fSy" id="wGk-LH-dLF"/>
+                        <outlet property="logInBtn" destination="cAX-4V-PsT" id="0M8-Dv-iTr"/>
+                        <outlet property="logOutBtn" destination="bsM-iP-LzE" id="y2l-H9-43M"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -126,6 +136,7 @@
                         <color key="backgroundColor" red="0.46202266219999999" green="0.83828371759999998" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="8zn-H7-sG1"/>
                     </view>
+                    <navigationItem key="navigationItem" id="Cjq-bS-afF"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jtR-zJ-bB7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -311,6 +322,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Icon" width="512" height="512"/>
         <image name="account" width="26" height="26"/>
         <image name="arrow_left" width="28" height="16"/>
         <image name="info" width="28" height="28"/>
@@ -318,6 +330,6 @@
         <image name="walking-1" width="480" height="480"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="4i1-Pj-Kdx"/>
+        <segue reference="5YU-bM-7fT"/>
     </inferredMetricsTieBreakers>
 </document>
