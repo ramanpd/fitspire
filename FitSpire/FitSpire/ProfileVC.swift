@@ -19,7 +19,7 @@ class ProfileVC: UIViewController {
     @IBOutlet weak var barChartView: BarChartView!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var nameTextField: UITextField!
-    
+    @IBOutlet weak var pieChartView: PieChartView!
     @IBOutlet weak var profilePicImageView: UIImageView!
     
 
@@ -36,6 +36,37 @@ class ProfileVC: UIViewController {
         // Do any additional setup after loading the view.
         scrollView.contentSize = CGSize(width: self.view.frame.width, height: self.view.frame.height+100)
         self.getFBUserData()
+        let exercises = ["Walking", "Running", "Push-ups", "Sit-ups"]
+        let numberOfGamesPlayedInEachCategory = [20.0, 4.0, 6.0, 3.0]
+        
+        setChart(dataPoints: exercises, values: numberOfGamesPlayedInEachCategory )
+        
+    }
+    func setChart(dataPoints: [String], values: [Double]) {
+        
+        var dataEntries: [ChartDataEntry] = []
+        
+        for i in 0..<dataPoints.count {
+            let dataEntry = PieChartDataEntry(value: Double(i), label: dataPoints[i], data:  dataPoints[i] as AnyObject)
+            dataEntries.append(dataEntry)
+        }
+        
+        let pieChartDataSet = PieChartDataSet(entries: dataEntries, label: "Units Sold")
+        let pieChartData = PieChartData(dataSet: pieChartDataSet)
+        pieChartView.data = pieChartData
+        
+        var colors: [UIColor] = []
+        
+        for i in 0..<dataPoints.count {
+            let red = Double(arc4random_uniform(256))
+            let green = Double(arc4random_uniform(256))
+            let blue = Double(arc4random_uniform(256))
+            
+            let color = UIColor(red: CGFloat(red/255), green: CGFloat(green/255), blue: CGFloat(blue/255), alpha: 1)
+            colors.append(color)
+        }
+        
+        pieChartDataSet.colors = colors
         
     }
     func setBarChart(dataPoints: [String], values: [Int])
