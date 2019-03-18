@@ -30,6 +30,8 @@ class ProfileVC: UIViewController {
 
         months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
         let noOfGamesPlayedMonthwise = [30,1,24,53,66,77,4,3,2,1,6,8]
+        barChartView.xAxis.valueFormatter = IndexAxisValueFormatter(values:months)
+        barChartView.xAxis.granularity = 1
         setBarChart(dataPoints: months, values: noOfGamesPlayedMonthwise)
         // Do any additional setup after loading the view.
         scrollView.contentSize = CGSize(width: self.view.frame.width, height: self.view.frame.height+100)
