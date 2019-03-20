@@ -215,7 +215,7 @@
                                 </items>
                             </navigationBar>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tvl-Tg-q5F">
-                                <rect key="frame" x="-3" y="60" width="381" height="607"/>
+                                <rect key="frame" x="-3" y="60" width="381" height="1200"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6eY-kz-28T" colorLabel="IBBuiltInLabel-Yellow">
@@ -274,7 +274,12 @@
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hry-c2-6DX" customClass="BarChartView" customModule="Charts">
-                                        <rect key="frame" x="23" y="338" width="333" height="220"/>
+                                        <rect key="frame" x="22" y="354" width="160" height="160"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </view>
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Z1m-cN-Aiq" customClass="PieChartView" customModule="Charts">
+                                        <rect key="frame" x="190" y="432" width="176" height="160"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </view>
@@ -287,6 +292,7 @@
                     <connections>
                         <outlet property="barChartView" destination="hry-c2-6DX" id="SWF-2Q-pEm"/>
                         <outlet property="nameTextField" destination="Ulo-K2-zCS" id="F1t-cP-0aZ"/>
+                        <outlet property="pieChartView" destination="Z1m-cN-Aiq" id="8CQ-0G-729"/>
                         <outlet property="profilePicImageView" destination="6eY-kz-28T" id="3qS-u7-oGM"/>
                         <outlet property="scrollView" destination="tvl-Tg-q5F" id="3hm-vG-mTm"/>
                     </connections>
