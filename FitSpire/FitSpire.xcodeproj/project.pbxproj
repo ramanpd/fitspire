@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		0846E1EE223A5C2C00AB490E /* TestingBoard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0846E1ED223A5C2B00AB490E /* TestingBoard.storyboard */; };
-		0846E1F0223A5C7700AB490E /* ProgressionCircleVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0846E1EF223A5C7600AB490E /* ProgressionCircleVC.swift */; };
 		0846E1FA223E96A200AB490E /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0846E1F7223E95BB00AB490E /* Charts.framework */; };
 		0846E1FB223E96A200AB490E /* Charts.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0846E1F7223E95BB00AB490E /* Charts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0880BF8B2238BB740044F194 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0880BF892238BB730044F194 /* FBSDKCoreKit.framework */; };
@@ -65,7 +64,6 @@
 
 /* Begin PBXFileReference section */
 		0846E1ED223A5C2B00AB490E /* TestingBoard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TestingBoard.storyboard; sourceTree = "<group>"; };
-		0846E1EF223A5C7600AB490E /* ProgressionCircleVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressionCircleVC.swift; sourceTree = "<group>"; };
 		0846E1F1223E95B900AB490E /* Charts.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Charts.xcodeproj; path = "../../../../Downloads/Charts-master/Charts.xcodeproj"; sourceTree = "<group>"; };
 		0880BF892238BB730044F194 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
 		0880BF8A2238BB740044F194 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
@@ -127,14 +125,14 @@
 			isa = PBXGroup;
 			children = (
 				0846E1F1223E95B900AB490E /* Charts.xcodeproj */,
-				0846E1ED223A5C2B00AB490E /* TestingBoard.storyboard */,
 				0880BF892238BB730044F194 /* FBSDKCoreKit.framework */,
 				0880BF8A2238BB740044F194 /* FBSDKLoginKit.framework */,
 				CE368D262237775900478771 /* AppDelegate.swift */,
 				CE368D282237775900478771 /* ViewController.swift */,
+				0846E1ED223A5C2B00AB490E /* TestingBoard.storyboard */,
 				CE368D2A2237775900478771 /* Main.storyboard */,
-				CE368D2D2237775900478771 /* Assets.xcassets */,
 				CE368D2F2237775900478771 /* LaunchScreen.storyboard */,
+				CE368D2D2237775900478771 /* Assets.xcassets */,
 				CE368D322237775900478771 /* Info.plist */,
 				0880BF8D2238BC570044F194 /* FitSpire-Bridging-Header.h */,
 				0880BF932238EE850044F194 /* SecondViewController.swift */,
@@ -142,7 +140,6 @@
 				CECA74742238DE6E00949205 /* WalkingVC.swift */,
 				CECA74762238DE7D00949205 /* ProfileVC.swift */,
 				CECA74782238E11300949205 /* SettingsVC.swift */,
-				0846E1EF223A5C7600AB490E /* ProgressionCircleVC.swift */,
 			);
 			path = FitSpire;
 			sourceTree = "<group>";
@@ -250,7 +247,6 @@
 				CECA74752238DE6E00949205 /* WalkingVC.swift in Sources */,
 				CE368D292237775900478771 /* ViewController.swift in Sources */,
 				CE368D272237775900478771 /* AppDelegate.swift in Sources */,
-				0846E1F0223A5C7700AB490E /* ProgressionCircleVC.swift in Sources */,
 				CECA74732238DE5300949205 /* MainMenuVC.swift in Sources */,
 				CECA74792238E11400949205 /* SettingsVC.swift in Sources */,
 			);
@@ -337,7 +333,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -392,7 +388,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
