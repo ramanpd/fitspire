@@ -82,12 +82,9 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x8w-Bn-f2h">
-                                <rect key="frame" x="157" y="371" width="60" height="36"/>
+                                <rect key="frame" x="157" y="371" width="60" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Pushups"/>
-                                <connections>
-                                    <segue destination="CQq-Pz-mGI" kind="show" id="3zZ-D8-A6T"/>
-                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4gZ-IH-cXt">
                                 <rect key="frame" x="256" y="280" width="44" height="30"/>
@@ -179,30 +176,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fbY-wc-ImI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="11" y="1588"/>
-        </scene>
-        <!--Push UpsVC-->
-        <scene sceneID="9AD-IB-E2O">
-            <objects>
-                <viewController id="CQq-Pz-mGI" customClass="PushUpsVC" customModule="FitSpire" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="9yY-T4-jI3">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rpg-sV-iXN">
-                                <rect key="frame" x="77" y="186" width="221" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <viewLayoutGuide key="safeArea" id="ILL-R0-bJP"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Yna-rd-qRn" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="887.20000000000005" y="1587.256371814093"/>
         </scene>
         <!--ProfileVC-->
         <scene sceneID="aLs-O5-QMb">
@@ -355,7 +328,7 @@
                                 </items>
                             </navigationBar>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Select Goal" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Iv8-B9-iPT">
-                                <rect key="frame" x="65" y="133" width="250" height="90"/>
+                                <rect key="frame" x="65" y="98" width="250" height="125"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="29"/>
                                 <nil key="textColor"/>
@@ -365,24 +338,22 @@
                                 <rect key="frame" x="80" y="231" width="220" height="126"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             </pickerView>
-                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" fixedFrame="YES" progress="0.29999999999999999" translatesAutoresizingMaskIntoConstraints="NO" id="hFy-oB-YUX">
-                                <rect key="frame" x="115" y="581" width="150" height="3"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <color key="progressTintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                <color key="trackTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </progressView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dsz-0R-sGE">
-                                <rect key="frame" x="167" y="469" width="47" height="51"/>
+                                <rect key="frame" x="167" y="457" width="47" height="51"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="32"/>
                                 <state key="normal" title="GO"/>
                                 <connections>
                                     <action selector="onPress:" destination="Uz0-Da-Qz2" eventType="touchUpInside" id="3RO-mU-Cjh"/>
-                                    <segue destination="346-c0-b7g" kind="show" id="df2-Ap-dtH"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vVH-39-m3V">
+                                <rect key="frame" x="155" y="317" width="70" height="40"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.46202266219999999" green="0.83828371759999998" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="YvZ-CK-dat"/>
@@ -390,20 +361,13 @@
                     <connections>
                         <outlet property="DistanceChoice" destination="YQd-dZ-6uM" id="WHP-aG-G8O"/>
                         <outlet property="GoButton" destination="Dsz-0R-sGE" id="ZlB-Q1-KOB"/>
-                        <outlet property="StepCounter" destination="Iv8-B9-iPT" id="yp7-uH-J40"/>
+                        <outlet property="MeterCounter" destination="Iv8-B9-iPT" id="SFG-xL-JEu"/>
+                        <outlet property="PercentLabel" destination="vVH-39-m3V" id="xkR-nZ-Gnb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AzP-qe-rza" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="0.80000000000000004" y="100.29985007496252"/>
-        </scene>
-        <!--TestingBoard-->
-        <scene sceneID="zyT-ML-TUR">
-            <objects>
-                <viewControllerPlaceholder storyboardName="TestingBoard" id="346-c0-b7g" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="fkx-7P-XYe" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1034" y="35"/>
         </scene>
     </scenes>
     <resources>
@@ -415,6 +379,6 @@
         <image name="walking-1" width="480" height="480"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="vkR-Wn-99A"/>
+        <segue reference="dZA-4l-NCN"/>
     </inferredMetricsTieBreakers>
 </document>
