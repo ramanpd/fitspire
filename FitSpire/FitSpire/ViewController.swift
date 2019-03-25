@@ -11,7 +11,6 @@
 import UIKit
 import FBSDKLoginKit
 
-
 class ViewController: UIViewController {
     
     var dict : [String : AnyObject]!
