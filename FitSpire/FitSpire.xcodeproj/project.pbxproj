@@ -7,6 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		08369DBF22487AC500CE793F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 08369DBD22487AC500CE793F /* GoogleService-Info.plist */; };
+		0840E1EE224884D40029DA1F /* FirebaseCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0840E1E5224884CE0029DA1F /* FirebaseCore.framework */; };
+		0840E1EF224884D40029DA1F /* FirebaseCoreDiagnostics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0840E1E7224884CF0029DA1F /* FirebaseCoreDiagnostics.framework */; };
+		0840E1F0224884D40029DA1F /* GoogleAppMeasurement.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0840E1E8224884D20029DA1F /* GoogleAppMeasurement.framework */; };
+		0840E1F1224884D40029DA1F /* FirebaseAnalytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0840E1E9224884D20029DA1F /* FirebaseAnalytics.framework */; };
+		0840E1F2224884D40029DA1F /* nanopb.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0840E1EA224884D30029DA1F /* nanopb.framework */; };
+		0840E1F3224884D40029DA1F /* GoogleUtilities.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0840E1EB224884D30029DA1F /* GoogleUtilities.framework */; };
+		0840E1F4224884D40029DA1F /* FIRAnalyticsConnector.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0840E1EC224884D30029DA1F /* FIRAnalyticsConnector.framework */; };
+		0840E1F5224884D40029DA1F /* FirebaseInstanceID.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0840E1ED224884D40029DA1F /* FirebaseInstanceID.framework */; };
 		0846E1EE223A5C2C00AB490E /* TestingBoard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0846E1ED223A5C2B00AB490E /* TestingBoard.storyboard */; };
 		0846E1F0223A5C7700AB490E /* ProgressionCircleVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0846E1EF223A5C7600AB490E /* ProgressionCircleVC.swift */; };
 		0846E1FA223E96A200AB490E /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0846E1F7223E95BB00AB490E /* Charts.framework */; };
@@ -65,6 +74,15 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		08369DBD22487AC500CE793F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		0840E1E5224884CE0029DA1F /* FirebaseCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FirebaseCore.framework; sourceTree = "<group>"; };
+		0840E1E7224884CF0029DA1F /* FirebaseCoreDiagnostics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FirebaseCoreDiagnostics.framework; sourceTree = "<group>"; };
+		0840E1E8224884D20029DA1F /* GoogleAppMeasurement.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleAppMeasurement.framework; sourceTree = "<group>"; };
+		0840E1E9224884D20029DA1F /* FirebaseAnalytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FirebaseAnalytics.framework; sourceTree = "<group>"; };
+		0840E1EA224884D30029DA1F /* nanopb.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = nanopb.framework; sourceTree = "<group>"; };
+		0840E1EB224884D30029DA1F /* GoogleUtilities.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleUtilities.framework; sourceTree = "<group>"; };
+		0840E1EC224884D30029DA1F /* FIRAnalyticsConnector.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FIRAnalyticsConnector.framework; sourceTree = "<group>"; };
+		0840E1ED224884D40029DA1F /* FirebaseInstanceID.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FirebaseInstanceID.framework; sourceTree = "<group>"; };
 		0846E1ED223A5C2B00AB490E /* TestingBoard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TestingBoard.storyboard; sourceTree = "<group>"; };
 		0846E1EF223A5C7600AB490E /* ProgressionCircleVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressionCircleVC.swift; sourceTree = "<group>"; };
 		0846E1F1223E95B900AB490E /* Charts.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Charts.xcodeproj; path = "../../../../Downloads/Charts-master/Charts.xcodeproj"; sourceTree = "<group>"; };
@@ -91,7 +109,15 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0840E1F3224884D40029DA1F /* GoogleUtilities.framework in Frameworks */,
+				0840E1EE224884D40029DA1F /* FirebaseCore.framework in Frameworks */,
 				0846E1FA223E96A200AB490E /* Charts.framework in Frameworks */,
+				0840E1F4224884D40029DA1F /* FIRAnalyticsConnector.framework in Frameworks */,
+				0840E1F5224884D40029DA1F /* FirebaseInstanceID.framework in Frameworks */,
+				0840E1F2224884D40029DA1F /* nanopb.framework in Frameworks */,
+				0840E1F0224884D40029DA1F /* GoogleAppMeasurement.framework in Frameworks */,
+				0840E1EF224884D40029DA1F /* FirebaseCoreDiagnostics.framework in Frameworks */,
+				0840E1F1224884D40029DA1F /* FirebaseAnalytics.framework in Frameworks */,
 				0880BF8C2238BB740044F194 /* FBSDKLoginKit.framework in Frameworks */,
 				0880BF8B2238BB740044F194 /* FBSDKCoreKit.framework in Frameworks */,
 			);
@@ -128,6 +154,15 @@
 		CE368D252237775900478771 /* FitSpire */ = {
 			isa = PBXGroup;
 			children = (
+				0840E1EC224884D30029DA1F /* FIRAnalyticsConnector.framework */,
+				0840E1E9224884D20029DA1F /* FirebaseAnalytics.framework */,
+				0840E1E5224884CE0029DA1F /* FirebaseCore.framework */,
+				0840E1E7224884CF0029DA1F /* FirebaseCoreDiagnostics.framework */,
+				0840E1ED224884D40029DA1F /* FirebaseInstanceID.framework */,
+				0840E1E8224884D20029DA1F /* GoogleAppMeasurement.framework */,
+				0840E1EB224884D30029DA1F /* GoogleUtilities.framework */,
+				0840E1EA224884D30029DA1F /* nanopb.framework */,
+				08369DBD22487AC500CE793F /* GoogleService-Info.plist */,
 				0846E1F1223E95B900AB490E /* Charts.xcodeproj */,
 				0846E1ED223A5C2B00AB490E /* TestingBoard.storyboard */,
 				0880BF892238BB730044F194 /* FBSDKCoreKit.framework */,
@@ -236,6 +271,7 @@
 			files = (
 				0846E1EE223A5C2C00AB490E /* TestingBoard.storyboard in Resources */,
 				CE368D312237775900478771 /* LaunchScreen.storyboard in Resources */,
+				08369DBF22487AC500CE793F /* GoogleService-Info.plist in Resources */,
 				CE368D2E2237775900478771 /* Assets.xcassets in Resources */,
 				CE368D2C2237775900478771 /* Main.storyboard in Resources */,
 			);
