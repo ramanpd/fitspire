@@ -10,10 +10,17 @@
 
 import UIKit
 import FBSDKLoginKit
+import FirebaseCore
+import FirebaseAnalytics
+import FirebaseInstanceID
+import FirebaseDatabase
+import Firebase
+
 
 class ViewController: UIViewController {
     
     var dict : [String : AnyObject]!
+    var ref: DatabaseReference!
     
     //MARKS: Properties
     @IBOutlet weak var continueBtn: UIButton!
@@ -24,6 +31,10 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        ref = Database.database().reference()
+        // ref.child("fitspire-5ca2d/name").setValue("aman")
+        
+
         if(FBSDKAccessToken.current() == nil)
         {
             logInBtn.isHidden = false
@@ -36,6 +47,7 @@ class ViewController: UIViewController {
             logOutBtn.isHidden = false
             continueBtn.isHidden = false
         }
+        
     }
     
     override func didReceiveMemoryWarning() {
