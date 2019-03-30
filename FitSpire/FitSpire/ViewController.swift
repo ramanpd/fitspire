@@ -10,11 +10,12 @@
 
 import UIKit
 import FBSDKLoginKit
-
+import FirebaseDatabase
 
 class ViewController: UIViewController {
     
     var dict : [String : AnyObject]!
+    var ref: DatabaseReference!
     
     //MARKS: Properties
     @IBOutlet weak var continueBtn: UIButton!
@@ -25,6 +26,10 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("---------------------HELLO")
+        ref = Database.database().reference()
+        ref.child("fitspire-a5dc1/facebookID").setValue(String(FBSDKLoginManager))
+        print("----------------------NAH")
         if(FBSDKAccessToken.current() == nil)
         {
             logInBtn.isHidden = false
