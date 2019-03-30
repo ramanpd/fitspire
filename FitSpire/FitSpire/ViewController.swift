@@ -28,7 +28,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         print("---------------------HELLO")
         ref = Database.database().reference()
-        ref.child("fitspire-a5dc1/facebookID").setValue(String(FBSDKLoginManager))
+        ref.child("fitspire-a5dc1/facebookID").setValue("hello")
         print("----------------------NAH")
         if(FBSDKAccessToken.current() == nil)
         {
