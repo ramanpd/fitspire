@@ -10,11 +10,12 @@
 
 import UIKit
 import FBSDKLoginKit
-
+import FirebaseDatabase
 
 class ViewController: UIViewController {
     
     var dict : [String : AnyObject]!
+    var ref: DatabaseReference!
     
     //MARKS: Properties
     @IBOutlet weak var continueBtn: UIButton!
@@ -25,6 +26,9 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("-------- Database Command-------------")
+        ref = Database.database().reference()
+        
         if(FBSDKAccessToken.current() == nil)
         {
             logInBtn.isHidden = false
@@ -36,6 +40,12 @@ class ViewController: UIViewController {
             logInBtn.isHidden = true
             logOutBtn.isHidden = false
             continueBtn.isHidden = false
+            self.getFBUserData()
+            self.ref.child("fitspire-a5dc1/User/").setValue("dasdasd")
+            let facebookID = self.dict?["id"]
+            self.ref.child("fitspire-a5dc1/users/\(String(describing: facebookID))/username/").setValue(self.dict?["name"])
+            self.ref.child("fitspire-a5dc1/users/\(String(describing: facebookID))/profilePicture/").setValue(self.dict?["profile"])
+            print("---------------- Databse Command End --------------------")
         }
     }
     
