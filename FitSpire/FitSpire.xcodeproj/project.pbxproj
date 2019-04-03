@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		08293AEB22548F3E00F279A3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 08293AEA22548F3D00F279A3 /* Assets.xcassets */; };
+		08293AED22549CED00F279A3 /* GameModeSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08293AEC22549CED00F279A3 /* GameModeSelection.swift */; };
 		0846E1EE223A5C2C00AB490E /* TestingBoard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0846E1ED223A5C2B00AB490E /* TestingBoard.storyboard */; };
 		0846E1FA223E96A200AB490E /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0846E1F7223E95BB00AB490E /* Charts.framework */; };
 		0846E1FB223E96A200AB490E /* Charts.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0846E1F7223E95BB00AB490E /* Charts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -76,6 +77,7 @@
 
 /* Begin PBXFileReference section */
 		08293AEA22548F3D00F279A3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		08293AEC22549CED00F279A3 /* GameModeSelection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameModeSelection.swift; sourceTree = "<group>"; };
 		0846E1ED223A5C2B00AB490E /* TestingBoard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TestingBoard.storyboard; sourceTree = "<group>"; };
 		0846E1F1223E95B900AB490E /* Charts.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Charts.xcodeproj; path = "../../../../Downloads/Charts-master/Charts.xcodeproj"; sourceTree = "<group>"; };
 		0880BF892238BB730044F194 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
@@ -181,6 +183,7 @@
 				CE368D282237775900478771 /* ViewController.swift */,
 				0846E1ED223A5C2B00AB490E /* TestingBoard.storyboard */,
 				CE368D2A2237775900478771 /* Main.storyboard */,
+				08293AEC22549CED00F279A3 /* GameModeSelection.swift */,
 				CE368D2F2237775900478771 /* LaunchScreen.storyboard */,
 				CE368D322237775900478771 /* Info.plist */,
 				0880BF8D2238BC570044F194 /* FitSpire-Bridging-Header.h */,
@@ -300,6 +303,7 @@
 				CE368D272237775900478771 /* AppDelegate.swift in Sources */,
 				CECA74732238DE5300949205 /* MainMenuVC.swift in Sources */,
 				CEEEA4F9225383F20058588A /* SitupVC.swift in Sources */,
+				08293AED22549CED00F279A3 /* GameModeSelection.swift in Sources */,
 				CECA74792238E11400949205 /* SettingsVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
