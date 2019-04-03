@@ -33,6 +33,7 @@
 		CECA74752238DE6E00949205 /* WalkingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECA74742238DE6E00949205 /* WalkingVC.swift */; };
 		CECA74772238DE7D00949205 /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECA74762238DE7D00949205 /* ProfileVC.swift */; };
 		CECA74792238E11400949205 /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECA74782238E11300949205 /* SettingsVC.swift */; };
+		CEEEA4F9225383F20058588A /* SitupVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEEA4F8225383F20058588A /* SitupVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -104,6 +105,7 @@
 		CECA74742238DE6E00949205 /* WalkingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalkingVC.swift; sourceTree = "<group>"; };
 		CECA74762238DE7D00949205 /* ProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
 		CECA74782238E11300949205 /* SettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
+		CEEEA4F8225383F20058588A /* SitupVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SitupVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -185,6 +187,7 @@
 				0880BF932238EE850044F194 /* SecondViewController.swift */,
 				CECA74722238DE5300949205 /* MainMenuVC.swift */,
 				CECA74742238DE6E00949205 /* WalkingVC.swift */,
+				CEEEA4F8225383F20058588A /* SitupVC.swift */,
 				CECA74762238DE7D00949205 /* ProfileVC.swift */,
 				CECA74782238E11300949205 /* SettingsVC.swift */,
 			);
@@ -296,6 +299,7 @@
 				CE368D292237775900478771 /* ViewController.swift in Sources */,
 				CE368D272237775900478771 /* AppDelegate.swift in Sources */,
 				CECA74732238DE5300949205 /* MainMenuVC.swift in Sources */,
+				CEEEA4F9225383F20058588A /* SitupVC.swift in Sources */,
 				CECA74792238E11400949205 /* SettingsVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
