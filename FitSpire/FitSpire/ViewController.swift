@@ -16,6 +16,8 @@ class ViewController: UIViewController {
     
     var dict : [String : AnyObject]!
     var ref: DatabaseReference!
+    var profileName: AnyObject?
+    var profileID: AnyObject?
     
     //MARKS: Properties
     @IBOutlet weak var continueBtn: UIButton!
@@ -26,14 +28,17 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("-------- Database Command-------------")
+       
         ref = Database.database().reference()
-        
+        NotificationCenter.default.addObserver(self,selector: #selector(self.changeStatusOnTermination),name: NSNotification.Name(rawValue: "applicationWillTerminate"),object: nil)
+        NotificationCenter.default.addObserver(self,selector: #selector(self.changeStatusOnBecomingActive),name: NSNotification.Name(rawValue: "applicationDidBecomeActive"),object: nil)
+        NotificationCenter.default.addObserver(self,selector:#selector(self.changeStatusOnEnteringBackground),name:NSNotification.Name(rawValue:"applicationDidEnterBackground"),object: nil)
         if(FBSDKAccessToken.current() == nil)
         {
             logInBtn.isHidden = false
             continueBtn.isHidden = true
             logOutBtn.isHidden = true
+            
         }
         else
         {
@@ -41,14 +46,22 @@ class ViewController: UIViewController {
             logOutBtn.isHidden = false
             continueBtn.isHidden = false
             self.getFBUserData()
-            self.ref.child("fitspire-a5dc1/User/").setValue("dasdasd")
-            let facebookID = self.dict?["id"]
-            self.ref.child("fitspire-a5dc1/users/\(String(describing: facebookID))/username/").setValue(self.dict?["name"])
-            self.ref.child("fitspire-a5dc1/users/\(String(describing: facebookID))/profilePicture/").setValue(self.dict?["profile"])
-            print("---------------- Databse Command End --------------------")
+            print(dict)
+            
         }
     }
-    
+    @objc private func changeStatusOnTermination(notification: NSNotification){
+        //do stuff using the userInfo property of the notification object
+        self.ref.child("fitspire-a5dc1/users/\(profileID!)/status").setValue(false)
+    }
+    @objc private func changeStatusOnEnteringBackground(notification: NSNotification){
+        //do stuff using the userInfo property of the notification object
+        self.ref.child("fitspire-a5dc1/users/\(profileID!)/status").setValue(false)
+    }
+    @objc private func changeStatusOnBecomingActive(notification: NSNotification){
+        //do stuff using the userInfo property of the notification object
+        self.ref.child("fitspire-a5dc1/users/\(profileID!)/status").setValue(true)
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
@@ -96,6 +109,41 @@ class ViewController: UIViewController {
             print("logout failure")
         }
     }
+    
+    func updateDatabase(facebookID:AnyObject, facebookUsername:AnyObject)
+    {
+         print("-------- Database Command-------------")
+        //self.ref.child("fitspire-a5dc1/User/").setValue("James is an asshole!!")
+        print("checking id")
+        //self.ref.child("users").child(facebookID).setValue(["name":self.dict?["name"]])
+        //self.ref.child("users").child(facebookID).setValue(["name":self.dict?["name"]])
+        self.ref.child("fitspire-a5dc1/users/\(facebookID)/username").setValue(facebookUsername)
+        self.ref.child("fitspire-a5dc1/users/\(facebookID)/status").setValue(true)
+        //self.ref.child("fitspire-a5dc1/users/\(String(describing: facebookID))/profilePicture/").setValue(self.dict?["profile"])
+        print("---------------- Databse Command End --------------------")
+    }
+    
+    func getFBUserData(){
+        if((FBSDKAccessToken.current()) != nil){
+            
+            FBSDKGraphRequest(graphPath: "me", parameters: ["fields": "id, name, first_name, last_name, picture.type(large), email"]).start(completionHandler: { (connection, result, error) -> Void in
+                if (error == nil){
+                    self.dict = result as? [String : AnyObject]
+                    //print(result!)
+                    
+                    
+                    self.profileName = self.dict?["name"]
+                    self.profileID=self.dict?["id"]
+                    print("holahola")
+                    print(self.profileName!)
+                    print(self.profileID!)
+                    self.updateDatabase(facebookID: self.profileID!, facebookUsername:self.profileName!)
+                    //var profilePicture = self.dict?["picture"]
+                    //var pictureURL = profilePicture?["url"]
+                }
+            })
+        }
+    }
     //    func btnFBLoginPressed(_ sender: AnyObject) {
 //        let fbLoginManager : FBSDKLoginManager = FBSDKLoginManager()
 //        fbLoginManager.logIn(withReadPermissions: ["email"], from: self) { (result, error) in
@@ -112,17 +160,18 @@ class ViewController: UIViewController {
 //        }
 //    }
     
-    func getFBUserData(){
-        if((FBSDKAccessToken.current()) != nil){
-            FBSDKGraphRequest(graphPath: "me", parameters: ["fields": "id, name, first_name, last_name, picture.type(large), email"]).start(completionHandler: { (connection, result, error) -> Void in
-                if (error == nil){
-                    self.dict = result as! [String : AnyObject]
-                    print(result!)
-                    print(self.dict)
-                }
-            })
-        }
-    }
+//    func getFBUserData(){
+//        if((FBSDKAccessToken.current()) != nil){
+//            FBSDKGraphRequest(graphPath: "me", parameters: ["fields": "id, name, first_name, last_name, picture.type(large), email"]).start(completionHandler: { (connection, result, error) -> Void in
+//                if (error == nil){
+//                    self.dict = result as! [String : AnyObject]
+//                    print(result!)
+//                    print(self.dict)
+//                }
+//            })
+//        }
+//    }
+
 }
 
 //class ViewController: UIViewController{
