@@ -52,15 +52,15 @@ class ViewController: UIViewController {
     }
     @objc private func changeStatusOnTermination(notification: NSNotification){
         //do stuff using the userInfo property of the notification object
-        self.ref.child("fitspire-a5dc1/users/\(profileID!)/status").setValue(false)
+        self.ref.child("users/\(profileID!)/status").setValue(false)
     }
     @objc private func changeStatusOnEnteringBackground(notification: NSNotification){
         //do stuff using the userInfo property of the notification object
-        self.ref.child("fitspire-a5dc1/users/\(profileID!)/status").setValue(false)
+        self.ref.child("users/\(profileID!)/status").setValue(false)
     }
     @objc private func changeStatusOnBecomingActive(notification: NSNotification){
         //do stuff using the userInfo property of the notification object
-        self.ref.child("fitspire-a5dc1/users/\(profileID!)/status").setValue(true)
+        self.ref.child("users/\(profileID!)/status").setValue(true)
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -117,8 +117,8 @@ class ViewController: UIViewController {
         print("checking id")
         //self.ref.child("users").child(facebookID).setValue(["name":self.dict?["name"]])
         //self.ref.child("users").child(facebookID).setValue(["name":self.dict?["name"]])
-        self.ref.child("fitspire-a5dc1/users/\(facebookID)/username").setValue(facebookUsername)
-        self.ref.child("fitspire-a5dc1/users/\(facebookID)/status").setValue(true)
+        self.ref.child("users/\(facebookID)/username").setValue(facebookUsername)
+        self.ref.child("users/\(facebookID)/status").setValue(true)
         //self.ref.child("fitspire-a5dc1/users/\(String(describing: facebookID))/profilePicture/").setValue(self.dict?["profile"])
         print("---------------- Databse Command End --------------------")
     }

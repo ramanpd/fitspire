@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		08293AEB22548F3E00F279A3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 08293AEA22548F3D00F279A3 /* Assets.xcassets */; };
 		0846E1EE223A5C2C00AB490E /* TestingBoard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0846E1ED223A5C2B00AB490E /* TestingBoard.storyboard */; };
 		0846E1FA223E96A200AB490E /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0846E1F7223E95BB00AB490E /* Charts.framework */; };
 		0846E1FB223E96A200AB490E /* Charts.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0846E1F7223E95BB00AB490E /* Charts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -27,7 +28,6 @@
 		CE368D272237775900478771 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE368D262237775900478771 /* AppDelegate.swift */; };
 		CE368D292237775900478771 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE368D282237775900478771 /* ViewController.swift */; };
 		CE368D2C2237775900478771 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE368D2A2237775900478771 /* Main.storyboard */; };
-		CE368D2E2237775900478771 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE368D2D2237775900478771 /* Assets.xcassets */; };
 		CE368D312237775900478771 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE368D2F2237775900478771 /* LaunchScreen.storyboard */; };
 		CECA74732238DE5300949205 /* MainMenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECA74722238DE5300949205 /* MainMenuVC.swift */; };
 		CECA74752238DE6E00949205 /* WalkingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECA74742238DE6E00949205 /* WalkingVC.swift */; };
@@ -75,6 +75,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		08293AEA22548F3D00F279A3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0846E1ED223A5C2B00AB490E /* TestingBoard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TestingBoard.storyboard; sourceTree = "<group>"; };
 		0846E1F1223E95B900AB490E /* Charts.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Charts.xcodeproj; path = "../../../../Downloads/Charts-master/Charts.xcodeproj"; sourceTree = "<group>"; };
 		0880BF892238BB730044F194 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
@@ -98,7 +99,6 @@
 		CE368D262237775900478771 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CE368D282237775900478771 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		CE368D2B2237775900478771 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		CE368D2D2237775900478771 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CE368D302237775900478771 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CE368D322237775900478771 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CECA74722238DE5300949205 /* MainMenuVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuVC.swift; sourceTree = "<group>"; };
@@ -160,6 +160,7 @@
 		CE368D252237775900478771 /* FitSpire */ = {
 			isa = PBXGroup;
 			children = (
+				08293AEA22548F3D00F279A3 /* Assets.xcassets */,
 				08F20D53224F9E0D005E8002 /* module.modulemap */,
 				08F20D52224F9D64005E8002 /* Firebase.h */,
 				08F20D45224F9BC2005E8002 /* FIRAnalyticsConnector.framework */,
@@ -181,7 +182,6 @@
 				0846E1ED223A5C2B00AB490E /* TestingBoard.storyboard */,
 				CE368D2A2237775900478771 /* Main.storyboard */,
 				CE368D2F2237775900478771 /* LaunchScreen.storyboard */,
-				CE368D2D2237775900478771 /* Assets.xcassets */,
 				CE368D322237775900478771 /* Info.plist */,
 				0880BF8D2238BC570044F194 /* FitSpire-Bridging-Header.h */,
 				0880BF932238EE850044F194 /* SecondViewController.swift */,
@@ -281,8 +281,8 @@
 				0846E1EE223A5C2C00AB490E /* TestingBoard.storyboard in Resources */,
 				CE368D312237775900478771 /* LaunchScreen.storyboard in Resources */,
 				08F20D3D224F9A77005E8002 /* GoogleService-Info.plist in Resources */,
-				CE368D2E2237775900478771 /* Assets.xcassets in Resources */,
 				CE368D2C2237775900478771 /* Main.storyboard in Resources */,
+				08293AEB22548F3E00F279A3 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
