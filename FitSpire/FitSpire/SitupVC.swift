@@ -9,6 +9,7 @@
 import UIKit
 import CoreMotion
 import AVFoundation
+import AudioToolbox
 
 class SitupVC: UIViewController {
     
@@ -41,7 +42,8 @@ class SitupVC: UIViewController {
             var onScreenCount = 0
             
             let REST_AVERAGE:Double = -0.3258    //15 seconds of rest Average, improved upon later
-            var restAchieved = false
+            var WaitForRest = true
+            var R_BUFFER: [Double] = [0,0,0,0,0,0,0,0,0]
             
             var XY_BUFFER: [Double] = [0.0,0.0,0.0,0.0,0.0,0.0]
             //Needed to track x and y at time of score measurement (AKA 5 iterations previous)
@@ -61,20 +63,23 @@ class SitupVC: UIViewController {
                      */
                     if(iterCount < 9){
                         YZ_BUFFER[iterCount] = y-z
+                        R_BUFFER[iterCount] = (x+y+z)/3
                     }
                         /*
                          "Wind-up" period where average waits to be very close to a predetermined "rest" level to standardise input before detection begins.
                          */
-                    else if(iterCount >= 9 && !restAchieved){
-                        if(self.currentAve(set: YZ_BUFFER) - REST_AVERAGE > 0.01){
+                    else if(WaitForRest){
+                        if(abs(self.currentAve(set: R_BUFFER) - REST_AVERAGE) > 0.05){
                             YZ_BUFFER = self.leftshiftArr(inputArr: YZ_BUFFER, value: y-z)
-                            XY_BUFFER = self.leftshiftArr(inputArr: XY_BUFFER, value: (x+y+1)-(y-z))
+                            XY_BUFFER = self.leftshiftArr(inputArr: XY_BUFFER, value: x+z+1) //(x+y+1)-(y-z)
                             X_BUFFER = self.leftshiftArr(inputArr: X_BUFFER, value: x)
                             Y_BUFFER = self.leftshiftArr(inputArr: Y_BUFFER, value: y)
+                            R_BUFFER = self.leftshiftArr(inputArr: R_BUFFER, value: (x+y+z)/3)
                             valueCount += 1
                         }
                         else{
-                            restAchieved = true
+                            WaitForRest = false
+                            AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
                         }
                     }
                         /*
@@ -101,7 +106,7 @@ class SitupVC: UIViewController {
                         print("Score: \(self.peakScore(range: YZ_BUFFER))\t\tstdDev\(stndev)")
                         if (currentScore > max(setAve + stndev, 0.1) && currentScore < setAve + stndev*3 && currentTime - timeStamp > 2) {
 //                            let x2 = pow(X_BUFFER[0], 2)
-//                            if((x2 < YZ_BUFFER[4] || x2 < Y_BUFFER[0]) && self.currentAve(set: X_BUFFER) < 0.5){
+//                            if((x2 < YZ_BUFFER[4] || x2 < Y_BUFFER[0]) && self.currentAve(set: XZ_BUFFER) < 0.5){
                                 print("Time: \(currentTime)\t\tscore: \(currentScore)")
                                 timeStamp = currentTime
                                 onScreenCount += 1
