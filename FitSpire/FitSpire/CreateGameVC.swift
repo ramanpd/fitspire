@@ -88,9 +88,9 @@ class CreateGameVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSour
     }
     func updateDatabase(facebookID:AnyObject, facebookUsername:AnyObject)
     {
-        let gameID = 1222992
+        let gameID = String(describing: facebookID)+pickerGeneral1[currentSelection]+String(targetSelected)+getTodayString()
         print("abcd")
-        self.ref.child("games").setValue(gameID)
+        //self.ref.child("games/").setValue(gameID)
         self.ref.child("games/\(gameID)/player1ID").setValue(facebookID)
         self.ref.child("games/\(gameID)/player1Score").setValue(0)
         self.ref.child("games/\(gameID)/player2Score").setValue(0)
@@ -99,6 +99,25 @@ class CreateGameVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSour
         self.ref.child("games/\(gameID)/gameType").setValue(pickerGeneral1[currentSelection])
         self.ref.child("games/\(gameID)/target").setValue(targetSelected)
     }
+    func getTodayString() -> String{
+        
+        let date = Date()
+        let calender = Calendar.current
+        let components = calender.dateComponents([.year,.month,.day,.hour,.minute,.second], from: date)
+        
+        let year = components.year
+        let month = components.month
+        let day = components.day
+        let hour = components.hour
+        let minute = components.minute
+        let second = components.second
+        
+        let today_string = String(year!) + "-" + String(month!) + "-" + String(day!) + " " + String(hour!)  + ":" + String(minute!) + ":" +  String(second!)
+        
+        return today_string
+        
+    }
+
 //
 //    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
 //        if(pickerView == gameTarget)
