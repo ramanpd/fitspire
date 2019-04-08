@@ -7,16 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		08045FE3225B1CDF00232F76 /* WaitingForOpponentVCViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08045FE2225B1CDF00232F76 /* WaitingForOpponentVCViewController.swift */; };
+		08045FE6225B224800232F76 /* FirebaseInAppMessaging.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08045FE5225B224700232F76 /* FirebaseInAppMessaging.framework */; };
+		08045FEE225B46C500232F76 /* CreateGameVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08045FED225B46C500232F76 /* CreateGameVC.swift */; };
+		08045FF0225B472200232F76 /* FindGameVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08045FEF225B472200232F76 /* FindGameVC.swift */; };
+		08045FF2225B4AEB00232F76 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08045FF1225B4AEB00232F76 /* Game.swift */; };
 		08293AEB22548F3E00F279A3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 08293AEA22548F3D00F279A3 /* Assets.xcassets */; };
 		08293AED22549CED00F279A3 /* GameModeSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08293AEC22549CED00F279A3 /* GameModeSelection.swift */; };
 		08293AEF2254A17300F279A3 /* ChallengerListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08293AEE2254A17300F279A3 /* ChallengerListVC.swift */; };
 		08293AF22254A72400F279A3 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08293AF12254A72400F279A3 /* User.swift */; };
-		0846E1EE223A5C2C00AB490E /* TestingBoard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0846E1ED223A5C2B00AB490E /* TestingBoard.storyboard */; };
 		0846E1FA223E96A200AB490E /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0846E1F7223E95BB00AB490E /* Charts.framework */; };
 		0846E1FB223E96A200AB490E /* Charts.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0846E1F7223E95BB00AB490E /* Charts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0880BF8B2238BB740044F194 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0880BF892238BB730044F194 /* FBSDKCoreKit.framework */; };
 		0880BF8C2238BB740044F194 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0880BF8A2238BB740044F194 /* FBSDKLoginKit.framework */; };
-		0880BF942238EE850044F194 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0880BF932238EE850044F194 /* SecondViewController.swift */; };
 		08F20D3D224F9A77005E8002 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 08F20D3B224F9A76005E8002 /* GoogleService-Info.plist */; };
 		08F20D40224F9B9B005E8002 /* FirebaseDatabase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08F20D3E224F9B9A005E8002 /* FirebaseDatabase.framework */; };
 		08F20D41224F9B9B005E8002 /* leveldb-library.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08F20D3F224F9B9B005E8002 /* leveldb-library.framework */; };
@@ -78,16 +81,19 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		08045FE2225B1CDF00232F76 /* WaitingForOpponentVCViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaitingForOpponentVCViewController.swift; sourceTree = "<group>"; };
+		08045FE5225B224700232F76 /* FirebaseInAppMessaging.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FirebaseInAppMessaging.framework; sourceTree = "<group>"; };
+		08045FED225B46C500232F76 /* CreateGameVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateGameVC.swift; sourceTree = "<group>"; };
+		08045FEF225B472200232F76 /* FindGameVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindGameVC.swift; sourceTree = "<group>"; };
+		08045FF1225B4AEB00232F76 /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
 		08293AEA22548F3D00F279A3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		08293AEC22549CED00F279A3 /* GameModeSelection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameModeSelection.swift; sourceTree = "<group>"; };
 		08293AEE2254A17300F279A3 /* ChallengerListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengerListVC.swift; sourceTree = "<group>"; };
 		08293AF12254A72400F279A3 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		0846E1ED223A5C2B00AB490E /* TestingBoard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TestingBoard.storyboard; sourceTree = "<group>"; };
 		0846E1F1223E95B900AB490E /* Charts.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Charts.xcodeproj; path = "../../../../Downloads/Charts-master/Charts.xcodeproj"; sourceTree = "<group>"; };
 		0880BF892238BB730044F194 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
 		0880BF8A2238BB740044F194 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
 		0880BF8D2238BC570044F194 /* FitSpire-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FitSpire-Bridging-Header.h"; sourceTree = "<group>"; };
-		0880BF932238EE850044F194 /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
 		08F20D3B224F9A76005E8002 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		08F20D3E224F9B9A005E8002 /* FirebaseDatabase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FirebaseDatabase.framework; sourceTree = "<group>"; };
 		08F20D3F224F9B9B005E8002 /* leveldb-library.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = "leveldb-library.framework"; sourceTree = "<group>"; };
@@ -131,6 +137,7 @@
 				08F20D50224F9BC4005E8002 /* FirebaseCore.framework in Frameworks */,
 				0880BF8B2238BB740044F194 /* FBSDKCoreKit.framework in Frameworks */,
 				08F20D4C224F9BC4005E8002 /* GoogleUtilities.framework in Frameworks */,
+				08045FE6225B224800232F76 /* FirebaseInAppMessaging.framework in Frameworks */,
 				08F20D41224F9B9B005E8002 /* leveldb-library.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -142,6 +149,7 @@
 			isa = PBXGroup;
 			children = (
 				08293AF12254A72400F279A3 /* User.swift */,
+				08045FF1225B4AEB00232F76 /* Game.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -191,16 +199,18 @@
 				0846E1F1223E95B900AB490E /* Charts.xcodeproj */,
 				0880BF892238BB730044F194 /* FBSDKCoreKit.framework */,
 				0880BF8A2238BB740044F194 /* FBSDKLoginKit.framework */,
-				CE368D262237775900478771 /* AppDelegate.swift */,
+				08045FE5225B224700232F76 /* FirebaseInAppMessaging.framework */,
 				08F20D3B224F9A76005E8002 /* GoogleService-Info.plist */,
+				CE368D262237775900478771 /* AppDelegate.swift */,
+				08045FE2225B1CDF00232F76 /* WaitingForOpponentVCViewController.swift */,
 				CE368D282237775900478771 /* ViewController.swift */,
-				0846E1ED223A5C2B00AB490E /* TestingBoard.storyboard */,
 				CE368D2A2237775900478771 /* Main.storyboard */,
 				08293AEC22549CED00F279A3 /* GameModeSelection.swift */,
 				CE368D2F2237775900478771 /* LaunchScreen.storyboard */,
 				CE368D322237775900478771 /* Info.plist */,
+				08045FED225B46C500232F76 /* CreateGameVC.swift */,
+				08045FEF225B472200232F76 /* FindGameVC.swift */,
 				0880BF8D2238BC570044F194 /* FitSpire-Bridging-Header.h */,
-				0880BF932238EE850044F194 /* SecondViewController.swift */,
 				CECA74722238DE5300949205 /* MainMenuVC.swift */,
 				CECA74742238DE6E00949205 /* WalkingVC.swift */,
 				CEEEA4F8225383F20058588A /* SitupVC.swift */,
@@ -295,7 +305,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0846E1EE223A5C2C00AB490E /* TestingBoard.storyboard in Resources */,
 				CE368D312237775900478771 /* LaunchScreen.storyboard in Resources */,
 				08F20D3D224F9A77005E8002 /* GoogleService-Info.plist in Resources */,
 				CE368D2C2237775900478771 /* Main.storyboard in Resources */,
@@ -310,10 +319,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0880BF942238EE850044F194 /* SecondViewController.swift in Sources */,
+				08045FF2225B4AEB00232F76 /* Game.swift in Sources */,
 				CECA74772238DE7D00949205 /* ProfileVC.swift in Sources */,
 				CECA74752238DE6E00949205 /* WalkingVC.swift in Sources */,
 				CE368D292237775900478771 /* ViewController.swift in Sources */,
+				08045FEE225B46C500232F76 /* CreateGameVC.swift in Sources */,
+				08045FE3225B1CDF00232F76 /* WaitingForOpponentVCViewController.swift in Sources */,
 				CE368D272237775900478771 /* AppDelegate.swift in Sources */,
 				08293AEF2254A17300F279A3 /* ChallengerListVC.swift in Sources */,
 				CECA74732238DE5300949205 /* MainMenuVC.swift in Sources */,
@@ -321,6 +332,7 @@
 				08293AED22549CED00F279A3 /* GameModeSelection.swift in Sources */,
 				CECA74792238E11400949205 /* SettingsVC.swift in Sources */,
 				08293AF22254A72400F279A3 /* User.swift in Sources */,
+				08045FF0225B472200232F76 /* FindGameVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -9,10 +9,12 @@
 import UIKit
 import Firebase
 import FirebaseDatabase
+
+var users = [User]()
+var myIndex = 0
 class ChallengerListVC: UITableViewController {
 
     let cellId = "cellId"
-    var users = [User]()
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -27,6 +29,7 @@ class ChallengerListVC: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
+    
     func fetchUser()
     {
         
@@ -36,7 +39,7 @@ class ChallengerListVC: UITableViewController {
                 let user = User()
                 user.username = dictionary["username"]
                 user.facebookId = DataSnapshot.key as AnyObject
-                self.users.append(user)
+                users.append(user)
                 DispatchQueue.main.async{
                     
                     self.tableView.reloadData()
@@ -49,6 +52,12 @@ class ChallengerListVC: UITableViewController {
     @objc func handleCancel()
     {
         dismiss(animated: true, completion: nil)
+    }
+    override func tableView(_ tableView:UITableView, didSelectRowAt indexPath: IndexPath)
+    {
+        myIndex = indexPath.row
+        print(users[myIndex].username!)
+        performSegue(withIdentifier: "goToWaitVC", sender: self)
     }
     
     

@@ -50,6 +50,8 @@ class ViewController: UIViewController {
             
         }
     }
+    
+    
     @objc private func changeStatusOnTermination(notification: NSNotification){
         //do stuff using the userInfo property of the notification object
         self.ref.child("users/\(profileID!)/status").setValue(false)
@@ -143,6 +145,12 @@ class ViewController: UIViewController {
                 }
             })
         }
+    }
+    func getProfileID()-> AnyObject! {
+        return profileID
+    }
+    func getProfileName()-> AnyObject!{
+        return profileName
     }
     //    func btnFBLoginPressed(_ sender: AnyObject) {
 //        let fbLoginManager : FBSDKLoginManager = FBSDKLoginManager()
