@@ -28,6 +28,7 @@
 		08F20D4F224F9BC4005E8002 /* GoogleAppMeasurement.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08F20D47224F9BC3005E8002 /* GoogleAppMeasurement.framework */; };
 		08F20D50224F9BC4005E8002 /* FirebaseCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08F20D48224F9BC3005E8002 /* FirebaseCore.framework */; };
 		08F20D51224F9BC4005E8002 /* FirebaseInstanceID.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08F20D49224F9BC3005E8002 /* FirebaseInstanceID.framework */; };
+		CE279ECF225B0FBE00D483BC /* DeviatedArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE279ECE225B0FBE00D483BC /* DeviatedArray.swift */; };
 		CE368D272237775900478771 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE368D262237775900478771 /* AppDelegate.swift */; };
 		CE368D292237775900478771 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE368D282237775900478771 /* ViewController.swift */; };
 		CE368D2C2237775900478771 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE368D2A2237775900478771 /* Main.storyboard */; };
@@ -101,6 +102,7 @@
 		08F20D49224F9BC3005E8002 /* FirebaseInstanceID.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FirebaseInstanceID.framework; sourceTree = "<group>"; };
 		08F20D52224F9D64005E8002 /* Firebase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Firebase.h; sourceTree = "<group>"; };
 		08F20D53224F9E0D005E8002 /* module.modulemap */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; path = module.modulemap; sourceTree = "<group>"; };
+		CE279ECE225B0FBE00D483BC /* DeviatedArray.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviatedArray.swift; sourceTree = "<group>"; };
 		CE368D232237775900478771 /* FitSpire.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FitSpire.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE368D262237775900478771 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CE368D282237775900478771 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -204,6 +206,7 @@
 				CECA74722238DE5300949205 /* MainMenuVC.swift */,
 				CECA74742238DE6E00949205 /* WalkingVC.swift */,
 				CEEEA4F8225383F20058588A /* SitupVC.swift */,
+				CE279ECE225B0FBE00D483BC /* DeviatedArray.swift */,
 				CECA74762238DE7D00949205 /* ProfileVC.swift */,
 				CECA74782238E11300949205 /* SettingsVC.swift */,
 				08293AEE2254A17300F279A3 /* ChallengerListVC.swift */,
@@ -321,6 +324,7 @@
 				08293AED22549CED00F279A3 /* GameModeSelection.swift in Sources */,
 				CECA74792238E11400949205 /* SettingsVC.swift in Sources */,
 				08293AF22254A72400F279A3 /* User.swift in Sources */,
+				CE279ECF225B0FBE00D483BC /* DeviatedArray.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

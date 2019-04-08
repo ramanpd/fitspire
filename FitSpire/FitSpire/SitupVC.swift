@@ -29,40 +29,52 @@ class SitupVC: UIViewController {
     
     @IBAction func BeginSitupDetection(_ sender: UIButton) {
         BeginButton.removeFromSuperview()
-        if(MotionManager.isAccelerometerAvailable){
+        if(MotionManager.isAccelerometerAvailable && MotionManager.isGyroAvailable){
             MotionManager.accelerometerUpdateInterval = 0.2
+            MotionManager.gyroUpdateInterval = 0.2
             //declare used variables
-            var YZ_BUFFER: [Double] = [0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0] //used to measure peaks ("significance" of middle point)
+            let YZ = DeviatedArray()  //used to measure peaks ("significance" of middle point)
+            let XZ1 = DeviatedArray()
+            
             var iterCount = 0
             var valueCount = 0
             var currentTime:Float = 0
             var timeStamp:Float = 0
-            var scoreAve:Double = 0, scoreTotal:Double = 0, setAve:Double = 0, totalAve:Double = 0
             var currentScore:Double = 0
             var onScreenCount = 0
+            var stnOffsetYZ: Double = 0, stnOffsetXZ1: Double = 0
+            var PRE_REQ = false
             
             let REST_AVERAGE:Double = -0.3258    //15 seconds of rest Average, improved upon later
             var WaitForRest = true
             var R_BUFFER: [Double] = [0,0,0,0,0,0,0,0,0]
             
-            var XY_BUFFER: [Double] = [0.0,0.0,0.0,0.0,0.0,0.0]
             //Needed to track x and y at time of score measurement (AKA 5 iterations previous)
             var X_BUFFER: [Double] = [0.0,0.0,0.0,0.0,0.0]
             var Y_BUFFER: [Double] = [0.0,0.0,0.0,0.0,0.0]
             
+            var x:Double = 0, y:Double = 0, z:Double = 0
             //Following line acts as loop statement, loops every 0.2 seconds
             MotionManager.startAccelerometerUpdates(to: OperationQueue.current!) { (input, error) in
                 if let data = input {
                     self.view.reloadInputViews()
-                    let x = data.acceleration.x
-                    let y = data.acceleration.y
-                    let z = data.acceleration.z
+                    x = data.acceleration.x
+                    y = data.acceleration.y
+                    z = data.acceleration.z
+                   
+                }
+            }
+            MotionManager.startGyroUpdates(to: OperationQueue.current!) { (input, error) in
+                if let data = input {
+                    let gx = data.rotationRate.x
+                    let gy = data.rotationRate.y
+                    let gz = data.rotationRate.z
                     
                     /*
                      Initial input of 9 values (1.8 seconds) to fill up YZ_BUFFER array so that operations can be applied to it.
                      */
                     if(iterCount < 9){
-                        YZ_BUFFER[iterCount] = y-z
+                        YZ.leftshift(value: (gy + gz)/2 + (y-z))
                         R_BUFFER[iterCount] = (x+y+z)/3
                     }
                         /*
@@ -70,8 +82,8 @@ class SitupVC: UIViewController {
                          */
                     else if(WaitForRest){
                         if(abs(self.currentAve(set: R_BUFFER) - REST_AVERAGE) > 0.05){
-                            YZ_BUFFER = self.leftshiftArr(inputArr: YZ_BUFFER, value: y-z)
-                            XY_BUFFER = self.leftshiftArr(inputArr: XY_BUFFER, value: x+z+1) //(x+y+1)-(y-z)
+                            YZ.leftshift(value: (gy + gz)/2 + (y-z))
+                            XZ1.leftshift(value: x+z+1) //(x+y+1)-(y-z)
                             X_BUFFER = self.leftshiftArr(inputArr: X_BUFFER, value: x)
                             Y_BUFFER = self.leftshiftArr(inputArr: Y_BUFFER, value: y)
                             R_BUFFER = self.leftshiftArr(inputArr: R_BUFFER, value: (x+y+z)/3)
@@ -88,30 +100,43 @@ class SitupVC: UIViewController {
                          */
                     else{
                         print("iteration: \(iterCount)\t\tValueCount: \(valueCount)")
-                        YZ_BUFFER = self.leftshiftArr(inputArr: YZ_BUFFER, value: y-z)
+                        YZ.leftshift(value: (gy + gz)/2 + (y-z))
+                        XZ1.leftshift(value: x+z+1)
+                        
                         X_BUFFER = self.leftshiftArr(inputArr: X_BUFFER, value: x)
                         Y_BUFFER = self.leftshiftArr(inputArr: Y_BUFFER, value: y)
                         
-                        currentScore = self.peakScore(range: YZ_BUFFER)
-                        scoreTotal = scoreTotal + currentScore
-                        scoreAve = scoreTotal / Double(valueCount)//replace 10 with wait period length
-                        
-                        if(pow(currentScore - scoreAve, 2) != Double.infinity){
-                            totalAve = totalAve + pow(currentScore - scoreAve, 2)
+                        currentScore = self.peakScore(range: YZ.Array())
+                        if(onScreenCount < 3){
+                            stnOffsetYZ = YZ.stnOffsetCalc(nextValue: currentScore, Iteration: Double(iterCount))
                         }
-                        setAve = totalAve / Double(valueCount)
                         
                         
-                        let stndev = sqrt(setAve)
                         print("Score: \(self.peakScore(range: YZ_BUFFER))\t\tstdDev\(stndev)")
-                        if (currentScore > max(setAve + stndev, 0.1) && currentScore < setAve + stndev*3 && currentTime - timeStamp > 2) {
-//                            let x2 = pow(X_BUFFER[0], 2)
-//                            if((x2 < YZ_BUFFER[4] || x2 < Y_BUFFER[0]) && self.currentAve(set: XZ_BUFFER) < 0.5){
+                        if (currentScore > max(stnOffsetYZ, 0.1) && currentScore < stnOffsetYZ*3) {
+                            let x2 = pow(X_BUFFER[0], 2)
+                            if(x2 < YZ.mid()){
                                 print("Time: \(currentTime)\t\tscore: \(currentScore)")
                                 timeStamp = currentTime
+                                PRE_REQ = true
+                            }
+                        }
+                        if(currentTime - timeStamp > 3.5){
+                            PRE_REQ = false
+                        }
+                        //If peak initial peak detected, proceed to look for follow up peak of x+z+1
+                        //done using the direct value instead of a score as line tends to have lesser slope on peaks
+                        if(PRE_REQ){
+                            currentScore = XZ1.mid()
+                            if(onScreenCount < 4){
+                                stnOffsetXZ1 = YZ.stnOffsetCalc(nextValue: currentScore, Iteration: Double(iterCount))
+                            }
+                            if (currentScore > max(stnOffsetXZ1, 0.1) && currentScore < stnOffsetXZ1*3 && currentTime - timeStamp > 1) {
                                 onScreenCount += 1
                                 self.Counter.text = String(onScreenCount)
-//                            }
+                                PRE_REQ = false
+                                print("\nXZpeak: \(currentScore)\t\tTime: \(currentTime)\t\tthreshold: \(stnOffsetXZ1)\n")
+                            }
                         }
                         valueCount += 1
                     }
@@ -121,7 +146,7 @@ class SitupVC: UIViewController {
             }
         }
         else{
-            print("no accel, using test data")
+            print("no accelerometer or no gyroscope error")
         }
     }
     /*
@@ -135,8 +160,20 @@ class SitupVC: UIViewController {
      */
     
     private func peakScore(range: [Double]) -> Double{
-        let prevScore = range[4] - ((range[0] + range[1] + range[2] + range[3])/4)
-        let postScore = range[4] - ((range[5] + range[6] + range[7] + range[8])/4)
+        let mid = (range.count/2)
+        var i:Int = 0
+        var prevScore: Double = 0, postScore: Double = 0
+        while(i < mid){
+            prevScore = prevScore + range[i]
+            i += 1
+        }
+        prevScore = range[mid] - prevScore/Double(mid)
+        i = mid + 1
+        while(i < range.count){
+            postScore = postScore + range[i]
+            i += 1
+        }
+        postScore = range[mid] - postScore/Double(mid)
         return (prevScore + postScore) / 2
     }
     
