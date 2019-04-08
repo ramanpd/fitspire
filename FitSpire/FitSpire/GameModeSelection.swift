@@ -8,8 +8,10 @@
 
 import UIKit
 
-class GameModeSelection: UIViewController {
+class GameModeSelection: UIViewController{
 
+    @IBAction func challengeAFriendButton(_ sender: Any) {
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
 
