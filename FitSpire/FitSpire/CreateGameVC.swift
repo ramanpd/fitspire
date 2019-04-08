@@ -173,7 +173,7 @@ class CreateGameVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSour
         }
     }
     
-    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         if pickerView.tag == 0 {
             return pickerGeneral1[row]
         } else {
@@ -181,7 +181,7 @@ class CreateGameVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSour
         }
     }
     
-    func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         if pickerView.tag == 0 {
             currentSelection = row
             

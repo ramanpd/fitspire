@@ -231,8 +231,6 @@
                     </view>
                     <connections>
                         <outlet property="createGameBtn" destination="e3C-oV-brI" id="2KQ-zc-nzy"/>
-                        <outlet property="gameTarget" destination="pxn-OT-ubY" id="3Qr-67-92A"/>
-                        <outlet property="gameType" destination="wnh-lq-ktw" id="Ljn-m3-9Em"/>
                         <outlet property="picker_0" destination="wnh-lq-ktw" id="kDf-Kz-S9Q"/>
                         <outlet property="picker_1" destination="pxn-OT-ubY" id="Prd-bI-XOT"/>
                         <outlet property="picker_2" destination="TeQ-P4-YO4" id="A7N-4e-ZjZ"/>
