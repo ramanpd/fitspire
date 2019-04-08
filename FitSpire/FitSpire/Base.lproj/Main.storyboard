@@ -76,7 +76,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3276" y="815"/>
+            <point key="canvasLocation" x="-4012" y="-188"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="cEo-ff-q4l">
@@ -107,7 +107,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Find a game"/>
                                 <connections>
-                                    <segue destination="ahB-GO-pBy" kind="show" id="4wJ-tU-eyz"/>
+                                    <segue destination="sdQ-1O-gSi" kind="show" id="4wJ-tU-eyz"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6wd-Yv-cIP">
@@ -118,6 +118,36 @@
                                     <segue destination="AXD-4E-RD1" kind="show" id="X2I-5A-jQh"/>
                                 </connections>
                             </button>
+                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9xX-RO-tRD">
+                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="barTintColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <items>
+                                    <navigationItem title="FitSpire" id="TYl-cu-krh">
+                                        <barButtonItem key="leftBarButtonItem" image="arrow_left" style="plain" id="VzO-FY-uy2">
+                                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="QqN-4C-gSr">
+                                                <rect key="frame" x="16" y="0.0" width="50" height="44"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" image="arrow_left"/>
+                                                <connections>
+                                                    <segue destination="BYZ-38-t0r" kind="show" id="IY2-GX-JJZ"/>
+                                                </connections>
+                                            </button>
+                                        </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" style="plain" id="dP1-RB-EIP">
+                                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="aDL-Nd-G4G">
+                                                <rect key="frame" x="333" y="8" width="26" height="28"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" image="settings"/>
+                                                <connections>
+                                                    <segue destination="L2g-Sl-hTv" kind="show" id="CcR-lX-OPb"/>
+                                                </connections>
+                                            </button>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="uu9-Ac-dZY"/>
@@ -150,10 +180,11 @@
                             <outlet property="delegate" destination="ahB-GO-pBy" id="Q5F-4Y-iBx"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" id="3sT-w5-SpD"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="q9B-bj-ivl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1527" y="155"/>
+            <point key="canvasLocation" x="-552.79999999999995" y="-1058.3208395802101"/>
         </scene>
         <!--Create GameVC-->
         <scene sceneID="eh8-V9-1MQ">
@@ -183,13 +214,6 @@
                                 <rect key="frame" x="42" y="392" width="178" height="135"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             </pickerView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Select a game" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8eu-QQ-le7">
-                                <rect key="frame" x="133" y="53" width="109" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Select a Target" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RKK-is-Ujn">
                                 <rect key="frame" x="244" y="246" width="115" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -225,6 +249,33 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="a87-BY-2WF">
+                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="barTintColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <items>
+                                    <navigationItem title="Create A Game" id="uya-oz-FMl">
+                                        <barButtonItem key="leftBarButtonItem" image="arrow_left" style="plain" id="acq-iq-JvI">
+                                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="fTL-6W-qa3">
+                                                <rect key="frame" x="16" y="0.0" width="50" height="44"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" image="arrow_left"/>
+                                                <connections>
+                                                    <segue destination="rRd-Gy-PuJ" kind="show" id="Nhz-xf-PpC"/>
+                                                </connections>
+                                            </button>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Select a game" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8eu-QQ-le7">
+                                <rect key="frame" x="133" y="64" width="109" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="vOO-O0-4DR"/>
@@ -244,7 +295,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oCr-Ry-69U" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1492" y="-615.74212893553226"/>
+            <point key="canvasLocation" x="-1492" y="656"/>
         </scene>
         <!--Waiting For OpponentVC View Controller-->
         <scene sceneID="2AC-qX-mmj">
@@ -267,12 +318,32 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </tableView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="FInding an opponent" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8fc-DC-RCS">
-                                <rect key="frame" x="16" y="36" width="343" height="71"/>
+                                <rect key="frame" x="16" y="77" width="343" height="55"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gBf-N8-DOb">
+                                <rect key="frame" x="0.0" y="33" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="barTintColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <items>
+                                    <navigationItem title="FitSpire" id="bah-c0-tWK">
+                                        <barButtonItem key="leftBarButtonItem" image="arrow_left" style="plain" id="rNS-DK-N6c">
+                                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="nmI-PS-oqf">
+                                                <rect key="frame" x="16" y="0.0" width="50" height="44"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" image="arrow_left"/>
+                                                <connections>
+                                                    <segue destination="a3Q-qz-TOI" kind="show" id="XpF-qM-IcY"/>
+                                                </connections>
+                                            </button>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="fYJ-x3-qv0"/>
@@ -280,7 +351,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W1c-KD-Nht" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-569" y="-616"/>
+            <point key="canvasLocation" x="-354.39999999999998" y="653.52323838080963"/>
         </scene>
         <!--Main MenuVC-->
         <scene sceneID="HOE-37-m5i">
@@ -294,12 +365,6 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KUe-Ev-dny">
-                                <rect key="frame" x="152" y="272" width="70" height="70"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
-                                <state key="normal" image="icons8-user-filled-100"/>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4gZ-IH-cXt">
                                 <rect key="frame" x="266" y="275" width="67" height="67"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -322,7 +387,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button" image="walking-1"/>
                                 <connections>
-                                    <segue destination="1fv-oj-cyI" kind="presentation" modalTransitionStyle="crossDissolve" id="9mx-HZ-A3Q"/>
+                                    <segue destination="Uz0-Da-Qz2" kind="show" id="Cvw-K0-fZL"/>
                                 </connections>
                             </button>
                             <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Eqo-g0-hux">
@@ -331,24 +396,14 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="barTintColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <items>
-                                    <navigationItem title="FitSpire" id="HWs-iF-fZS">
+                                    <navigationItem title="Single Player" id="HWs-iF-fZS">
                                         <barButtonItem key="leftBarButtonItem" image="arrow_left" style="plain" id="Pyh-o1-JMw">
                                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="gdE-r8-G4k">
                                                 <rect key="frame" x="16" y="0.0" width="50" height="44"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <state key="normal" image="arrow_left"/>
                                                 <connections>
-                                                    <segue destination="BYZ-38-t0r" kind="show" id="wX0-Fk-zlw"/>
-                                                </connections>
-                                            </button>
-                                        </barButtonItem>
-                                        <barButtonItem key="rightBarButtonItem" style="plain" id="dgB-cM-mrM">
-                                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="8J1-gB-J0J">
-                                                <rect key="frame" x="333" y="8" width="26" height="28"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <state key="normal" image="settings"/>
-                                                <connections>
-                                                    <segue destination="L2g-Sl-hTv" kind="show" id="0bb-vc-iHX"/>
+                                                    <segue destination="rRd-Gy-PuJ" kind="show" id="e5c-TM-fsN"/>
                                                 </connections>
                                             </button>
                                         </barButtonItem>
@@ -370,7 +425,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jtR-zJ-bB7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="0.80000000000000004" y="814.54272863568224"/>
+            <point key="canvasLocation" x="-353" y="-188"/>
         </scene>
         <!--Game Mode Selection-->
         <scene sceneID="tcK-L5-5YM">
@@ -391,7 +446,6 @@
                                 <state key="normal" title="Play a Friend"/>
                                 <connections>
                                     <action selector="challengeAFriendButton:" destination="1fv-oj-cyI" eventType="touchUpInside" id="F96-Gl-0WJ"/>
-                                    <segue destination="3Zh-3F-Z9K" kind="show" id="wyv-R9-FJc"/>
                                 </connections>
                             </button>
                             <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lgk-bL-8zy">
@@ -406,9 +460,6 @@
                                                 <rect key="frame" x="16" y="0.0" width="50" height="44"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <state key="normal" image="arrow_left"/>
-                                                <connections>
-                                                    <segue destination="erx-x6-DMp" kind="show" id="ZpJ-W5-IWl"/>
-                                                </connections>
                                             </button>
                                         </barButtonItem>
                                     </navigationItem>
@@ -419,9 +470,6 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="28"/>
                                 <state key="normal" title="SinglePlayer"/>
-                                <connections>
-                                    <segue destination="Uz0-Da-Qz2" kind="show" id="7pP-9D-bhz"/>
-                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -430,7 +478,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uwO-R7-LV7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="0.80000000000000004" y="-188.45577211394306"/>
+            <point key="canvasLocation" x="3439" y="-201"/>
         </scene>
         <!--Challenger ListVC-->
         <scene sceneID="G72-RT-vWL">
@@ -459,7 +507,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oxs-Ve-qby" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1933.5999999999999" y="-123.68815592203899"/>
+            <point key="canvasLocation" x="2631" y="-201"/>
         </scene>
         <!--SettingsVC-->
         <scene sceneID="lI8-TD-SJF">
@@ -480,7 +528,7 @@
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <state key="normal" image="arrow_left"/>
                                                 <connections>
-                                                    <segue destination="erx-x6-DMp" kind="show" id="vkR-Wn-99A"/>
+                                                    <segue destination="rRd-Gy-PuJ" kind="show" id="KgE-mJ-aYY"/>
                                                 </connections>
                                             </button>
                                         </barButtonItem>
@@ -494,7 +542,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fbY-wc-ImI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-959" y="1719"/>
+            <point key="canvasLocation" x="-3263" y="655"/>
         </scene>
         <!--ProfileVC-->
         <scene sceneID="aLs-O5-QMb">
@@ -625,7 +673,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IbZ-cp-4QK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3553" y="-138"/>
+            <point key="canvasLocation" x="-3262" y="-1058"/>
         </scene>
         <!--WalkingVC-->
         <scene sceneID="yte-lb-3OF">
@@ -677,7 +725,7 @@
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <state key="normal" image="arrow_left"/>
                                                 <connections>
-                                                    <segue destination="1fv-oj-cyI" kind="show" id="Wps-To-FUh"/>
+                                                    <segue destination="erx-x6-DMp" kind="show" id="Tfm-tO-25e"/>
                                                 </connections>
                                             </button>
                                         </barButtonItem>
@@ -697,7 +745,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AzP-qe-rza" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="54" y="-1169"/>
+            <point key="canvasLocation" x="1798" y="-1058"/>
         </scene>
         <!--SitupVC-->
         <scene sceneID="TVr-3L-MOe">
@@ -760,7 +808,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9xY-Zt-z2a" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2738" y="815"/>
+            <point key="canvasLocation" x="1798" y="655"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="xP6-SC-xIi">
@@ -778,7 +826,25 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4BE-XR-Mho" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="994.39999999999998" y="-123.68815592203899"/>
+            <point key="canvasLocation" x="1799" y="-201"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="IE7-C5-QPj">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="sdQ-1O-gSi" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="C5T-wJ-rw4">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="ahB-GO-pBy" kind="relationship" relationship="rootViewController" id="1B5-41-G3I"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cj9-dq-L3j" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1492" y="-1058.3208395802101"/>
         </scene>
     </scenes>
     <resources>
@@ -790,15 +856,14 @@
         <image name="arrow_left" width="28" height="16"/>
         <image name="icons8-pushups-filled-100" width="100" height="100"/>
         <image name="icons8-sit-ups-90" width="90" height="90"/>
-        <image name="icons8-user-filled-100" width="100" height="100"/>
         <image name="info" width="28" height="28"/>
         <image name="noun_Squat_148638Edit" width="695" height="470"/>
         <image name="settings" width="26" height="28"/>
         <image name="walking-1" width="480" height="480"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Wps-To-FUh"/>
-        <segue reference="Kbr-zn-hOT"/>
-        <segue reference="uFA-XZ-FP4"/>
+        <segue reference="Tfm-tO-25e"/>
+        <segue reference="XpF-qM-IcY"/>
+        <segue reference="Nhz-xf-PpC"/>
     </inferredMetricsTieBreakers>
 </document>
