@@ -17,21 +17,21 @@ class CreateGameVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSour
     
     
     @IBOutlet weak var picker_0: UIPickerView!
-    @IBOutlet weak var picker_2: UIPickerView!
+    //@IBOutlet weak var picker_2: UIPickerView!
     @IBOutlet weak var picker_1: UIPickerView!
     @IBOutlet weak var textField_0: UITextField!
     @IBOutlet weak var textField_1: UITextField!
     @IBOutlet weak var textField_2: UITextField!
     // Maintaining the other arrays as single array of arrays for efficient loading
-    var subContentArray = [["Millimeter", "Centimeter", "Meter", "Kilometer", "Foot", "Yard", "Mile"],
-                                   ["Milliliter", "Centiliter", "Liter", "Gallon", "Quart", "Pint", "Fluid ounce"],
-                                   ["Milligram", "Centigram", "Gram", "Kilogram", "Stone", "Pound", "Ounce"]]
+    var subContentArray = [[10, 100, 200, 500, 1000],
+                                   [10, 20, 30, 40, 50],
+                                   [10, 20, 30, 40, 50],[10, 20, 30, 40, 50]]
     
     
     // To keep track of user's current selection from the main content array
-    var pickerGeneral1 = ["Length", "Volume", "Mass"]
+    var pickerGeneral1 = ["Running", "Sit-ups", "Push-ups","Squats"]
     var _currentSelection: Int = 0
-    
+    var targetSelected: Int = 0
     // whenever current selection is modified, we need to reload other pickers as their content depends upon the current selection index only.
     var currentSelection: Int {
         get {
@@ -40,11 +40,11 @@ class CreateGameVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSour
         set {
             _currentSelection = newValue
             picker_1 .reloadAllComponents()
-            picker_2 .reloadAllComponents()
+            //picker_2 .reloadAllComponents()
             
             textField_0.text = pickerGeneral1[_currentSelection]
-            textField_1.text = subContentArray[_currentSelection][0]
-            textField_2.text = subContentArray[_currentSelection][0]
+            textField_1.text = String(subContentArray[_currentSelection][0])
+//            textField_2.text = subContentArray[_currentSelection][0]
         }
     }
     
@@ -96,7 +96,8 @@ class CreateGameVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSour
         self.ref.child("games/\(gameID)/player2Score").setValue(0)
         self.ref.child("games/\(gameID)/gameFinished").setValue(false)
         self.ref.child("games/\(gameID)/gameStarted").setValue(false)
-        self.ref.child("games/\(gameID)/target").setValue(0)
+        self.ref.child("games/\(gameID)/gameType").setValue(pickerGeneral1[currentSelection])
+        self.ref.child("games/\(gameID)/target").setValue(targetSelected)
     }
 //
 //    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
@@ -135,9 +136,9 @@ class CreateGameVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSour
         picker_1.dataSource = self
         picker_1.tag = 1
         
-        picker_2.delegate = self
-        picker_2.dataSource = self
-        picker_2.tag = 2
+//        picker_2.delegate = self
+//        picker_2.dataSource = self
+//        picker_2.tag = 2
 //        gameOptions = ["Running", "Sit-ups", "Push-ups", "Squats"]
 //
 //        targetOptions = []
@@ -177,7 +178,7 @@ class CreateGameVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSour
         if pickerView.tag == 0 {
             return pickerGeneral1[row]
         } else {
-            return subContentArray[currentSelection][row]
+            return String(subContentArray[currentSelection][row])
         }
     }
     
@@ -188,11 +189,9 @@ class CreateGameVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSour
             textField_0.text = pickerGeneral1[row]
             textField_0.resignFirstResponder()
         } else if pickerView.tag == 1 {
-            textField_1.text = subContentArray[currentSelection][row]
+            textField_1.text = String(subContentArray[currentSelection][row])
+            targetSelected = subContentArray[currentSelection][row]
             textField_1.resignFirstResponder()
-        } else if pickerView.tag == 2 {
-            textField_2.text = subContentArray[currentSelection][row]
-            textField_2.resignFirstResponder()
         }
     }
 
