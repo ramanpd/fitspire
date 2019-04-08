@@ -112,7 +112,7 @@ class SitupVC: UIViewController {
                         }
                         
                         
-                        //print("Score: \(self.peakScore(range: YZ_BUFFER))\t\tstdDev\(stndev)")
+                        print("Score: \(self.peakScore(range: YZ.Array()))\t\tstdDev\(stnOffsetYZ)")
                         if (currentScore > max(stnOffsetYZ, 0.1) && currentScore < stnOffsetYZ*3) {
                             let x2 = pow(X_BUFFER[0], 2)
                             if(x2 < YZ.mid()){
