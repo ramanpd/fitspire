@@ -92,6 +92,7 @@ class CreateGameVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSour
         print("abcd")
         //self.ref.child("games/").setValue(gameID)
         self.ref.child("games/\(gameID)/player1ID").setValue(facebookID)
+        self.ref.child("games/\(gameID)/player1Name").setValue(facebookUsername)
         self.ref.child("games/\(gameID)/player1Score").setValue(0)
         self.ref.child("games/\(gameID)/player2Score").setValue(0)
         self.ref.child("games/\(gameID)/gameFinished").setValue(false)

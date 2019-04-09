@@ -22,8 +22,8 @@ class FindGameVC: UITableViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
+        games.removeAll()
+        tableView.reloadData()
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(handleCancel))
         tableView.register(UserCell.self, forCellReuseIdentifier: cellId)
         fetchGame()
@@ -43,6 +43,9 @@ class FindGameVC: UITableViewController{
             if let dictionary = DataSnapshot.value as? [String: AnyObject]{
                 let game = Game()
                 game.player1ID = dictionary["player1ID"]
+                game.gameType = dictionary["gameType"] as! String
+                game.player1Name = dictionary["player1Name"]
+                game.target = dictionary["target"] as! Int
                 game.gameID = DataSnapshot.key as AnyObject
                 games.append(game)
                 DispatchQueue.main.async{
@@ -114,7 +117,11 @@ class FindGameVC: UITableViewController{
         //let cell = UITableViewCell(style: .subtitle, reuseIdentifier: cellId)
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath)
         let game = games[indexPath.row]
-        cell.textLabel?.text = game.gameID as! String
+        var gameTypeText: String = game.gameType
+        var targetText = " Target: " + String(game.target)
+        var challengerText = " Challenger: " + String(describing: game.player1Name)
+        var cellText = gameTypeText + targetText + challengerText
+        cell.textLabel?.text = cellText
         //print("lololololol")
         //print(user.facebookId as! String)
 //        let url = NSURL(string: "https://graph.facebook.com/\(user.facebookId!)/picture?type=large&return_ssl_resources=1")
