@@ -15,7 +15,6 @@ class CreateGameVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSour
         return 1
     }
     
-    
     @IBOutlet weak var picker_0: UIPickerView!
     //@IBOutlet weak var picker_2: UIPickerView!
     @IBOutlet weak var picker_1: UIPickerView!
