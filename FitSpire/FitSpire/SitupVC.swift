@@ -26,6 +26,7 @@ class SitupVC: UIViewController {
         // Do any additional setup after loading the view.
     }
     
+     let shapeLayer = CAShapeLayer()
     
     @IBAction func BeginSitupDetection(_ sender: UIButton) {
         BeginButton.removeFromSuperview()
@@ -132,6 +133,7 @@ class SitupVC: UIViewController {
                                 stnOffsetXZ1 = YZ.stnOffsetCalc(nextValue: currentScore, Iteration: Double(iterCount))
                             }
                             if (currentScore > max(stnOffsetXZ1, 0.1) && currentScore < stnOffsetXZ1*3 && currentTime - timeStamp > 1) {
+                                self.drawCircle()
                                 onScreenCount += 1
                                 self.Counter.text = String(onScreenCount)
                                 PRE_REQ = false
@@ -198,4 +200,38 @@ class SitupVC: UIViewController {
         return outputArr
     }
     
+    private func drawCircle(){
+        let center = view.center
+        
+        let trackLayer = CAShapeLayer()
+        let circularPath = UIBezierPath(arcCenter: center, radius: 100, startAngle: -CGFloat.pi/2, endAngle: 2*CGFloat.pi, clockwise: true)
+        trackLayer.path=circularPath.cgPath
+        trackLayer.strokeColor=UIColor.lightGray.cgColor
+        trackLayer.lineWidth = 10
+        trackLayer.fillColor = UIColor.clear.cgColor
+        trackLayer.lineCap = CAShapeLayerLineCap.round
+        view.layer.addSublayer(trackLayer)
+        
+        shapeLayer.path=circularPath.cgPath
+        shapeLayer.strokeColor=UIColor.yellow.cgColor
+        shapeLayer.lineWidth = 10
+        shapeLayer.fillColor = UIColor.clear.cgColor
+        shapeLayer.strokeEnd = 0
+        shapeLayer.lineCap = CAShapeLayerLineCap.round
+        view.layer.addSublayer(shapeLayer)
+        animateFunction()
+    }
+    
+    fileprivate func animateFunction() {
+        //stroke end means that as soon as you lift your finger from the tap, it initiates
+        let basicAnimation = CABasicAnimation(keyPath: "strokeEnd")
+        basicAnimation.toValue = 1
+        
+        basicAnimation.duration = 0.5
+        basicAnimation.fillMode = CAMediaTimingFillMode.forwards
+        basicAnimation.isRemovedOnCompletion = false
+        
+        shapeLayer.add(basicAnimation, forKey: "basic")
+    }
+
 }

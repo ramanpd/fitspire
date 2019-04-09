@@ -350,7 +350,7 @@
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <segue destination="jiO-ET-uhs" kind="presentation" id="mdJ-UB-713"/>
+                                    <segue destination="dxA-km-uIj" kind="show" id="dCm-ia-ezI"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xOr-40-Abb">
@@ -725,6 +725,59 @@
             </objects>
             <point key="canvasLocation" x="1798" y="-1058"/>
         </scene>
+        <!--Situp_preface-->
+        <scene sceneID="w14-Qq-nVe">
+            <objects>
+                <viewController title="Situp_preface" id="dxA-km-uIj" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="lDy-PA-72S">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="10" translatesAutoresizingMaskIntoConstraints="NO" id="ZV3-Iy-ZCD">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="To begin please rest your arms by your side and wait for the vibration." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="teb-S8-Pdw">
+                                <rect key="frame" x="61" y="87" width="253" height="77"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" alpha="0.85000002384185791" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="afG-ao-UNc">
+                                <rect key="frame" x="144" y="172" width="86" height="56"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.99856561479999995" green="1" blue="0.38955333040000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                                <state key="normal" title="Begin">
+                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                </state>
+                                <connections>
+                                    <segue destination="jiO-ET-uhs" kind="show" id="Vgo-HG-jXt"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="6" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qq2-TM-wLU">
+                                <rect key="frame" x="43" y="420" width="290" height="145"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <string key="text">For each sit-up begin in the starting position described above, and finish with arms outstretched - as shown in the right side of the image.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Situp_Instruc_Splash" translatesAutoresizingMaskIntoConstraints="NO" id="dnT-YU-20f">
+                                <rect key="frame" x="26" y="236" width="323" height="176"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.55775834889999998" green="0.78610314569999995" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <viewLayoutGuide key="safeArea" id="Kdv-4q-i0V"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kgU-js-UYu" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1798" y="663"/>
+        </scene>
         <!--SitupVC-->
         <scene sceneID="TVr-3L-MOe">
             <objects>
@@ -786,7 +839,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9xY-Zt-z2a" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1798" y="655"/>
+            <point key="canvasLocation" x="2630" y="663"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="xP6-SC-xIi">
@@ -831,6 +884,7 @@
         <image name="3" width="2560" height="1920"/>
         <image name="5" width="2560" height="1920"/>
         <image name="Icon-App-60x60" width="60" height="60"/>
+        <image name="Situp_Instruc_Splash" width="1082" height="534"/>
         <image name="arrow_left" width="28" height="16"/>
         <image name="icons8-pushups-filled-100" width="100" height="100"/>
         <image name="icons8-sit-ups-90" width="90" height="90"/>
@@ -840,8 +894,9 @@
         <image name="walking-1" width="480" height="480"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Tfm-tO-25e"/>
+        <segue reference="Vgo-HG-jXt"/>
+        <segue reference="0rT-J6-IHh"/>
         <segue reference="XpF-qM-IcY"/>
-        <segue reference="Nhz-xf-PpC"/>
+        <segue reference="e5c-TM-fsN"/>
     </inferredMetricsTieBreakers>
 </document>
