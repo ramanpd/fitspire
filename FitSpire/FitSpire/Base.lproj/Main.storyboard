@@ -894,9 +894,8 @@
         <image name="walking-1" width="480" height="480"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Vgo-HG-jXt"/>
-        <segue reference="0rT-J6-IHh"/>
+        <segue reference="Tfm-tO-25e"/>
         <segue reference="XpF-qM-IcY"/>
-        <segue reference="e5c-TM-fsN"/>
+        <segue reference="uFA-XZ-FP4"/>
     </inferredMetricsTieBreakers>
 </document>

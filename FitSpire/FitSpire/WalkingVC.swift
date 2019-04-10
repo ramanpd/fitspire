@@ -32,26 +32,51 @@ class WalkingVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource 
     @IBOutlet weak var PercentLabel: UILabel!
     @IBOutlet weak var MeterCounter: UILabel!
     
+    /*
+     Multiplayer Related Variables
+     isSingleplayer to be passed in from previous vc as "false" if multiplayer is chosen.
+     multiplayerDistance should be passed in from previous VC as the distance target for both players.
+     */
+    var isSingleplayer = true
+    var multiplayerDistance = 20
+    var winnerDeclared = false
+    
     var distanceOptions: [Int] = [Int]()
     var distanceSelection = 1
     var percentWalked = 0.00
-    let shapeLayer = CAShapeLayer()
+    
+    let shapeLayerP1 = CAShapeLayer()
+    let shapeLayerP2 = CAShapeLayer()   //Multiplayer
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        distanceOptions = [10, 200, 300, 500]
-        self.DistanceChoice.delegate = self
-        self.DistanceChoice.dataSource = self
+        if(isSingleplayer){
+            distanceOptions = [10, 200, 300, 500]
+            self.DistanceChoice.delegate = self
+            self.DistanceChoice.dataSource = self
+        }
+        else{   //Multiplayer
+            DistanceChoice.removeFromSuperview()
+            MeterCounter.text = "Press GO to begin!"
+            drawCircle(drawingEndPoint: 0.00, radius: 120, circle: shapeLayerP1)
+            drawCircle(drawingEndPoint: 0.00, radius: 90, circle: shapeLayerP2)
+        }
     // Do any additional setup after loading the view.
     }
     
     // MARK: - Actions
     @IBAction func onPress(_ sender: UIButton) {
         if(CMPedometer.isStepCountingAvailable() ){
-            distanceSelection = distanceOptions[DistanceChoice.selectedRow(inComponent: 0)]
+            //If singleplayer -> pick the pickerview selection, otherwise pick the inputted distance
+            if(isSingleplayer){
+                distanceSelection = distanceOptions[DistanceChoice.selectedRow(inComponent: 0)]
+                DistanceChoice.removeFromSuperview()
+            }
+            else{   //Multiplayer
+                distanceSelection = multiplayerDistance
+            }
             
             //hide other labels etc
-            DistanceChoice.removeFromSuperview()
             GoButton.isHidden=true
             beginCounting()
         }else{
@@ -60,8 +85,13 @@ class WalkingVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource 
     }
     
     private func beginCounting(){
+        print("---testing---")
         self.MeterCounter.text = "Meters: 0  Goal: \(distanceSelection)m"
-        drawCircle(drawingEndPoint: 0.00)
+        
+        if(isSingleplayer){
+            drawCircle(drawingEndPoint: 0.00, radius: 120, circle: shapeLayerP1)
+        }
+        
         let savedDistanceGoal = distanceSelection
         let doubleDistance:Double = Double(distanceSelection) + 0.00
         pedometer.startUpdates(from: Date()) {
@@ -73,15 +103,35 @@ class WalkingVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource 
 
                 if((metersWalked/doubleDistance)>=1){
                     self?.MeterCounter.text = "Exercise Complete!"
-                    self?.PercentLabel.text = ""
-                    self?.drawCircle(drawingEndPoint: 5.00)
+                    self?.PercentLabel.text = "100%"
+                    self?.drawCircle(drawingEndPoint: 1.00, radius: 120, circle: (self?.shapeLayerP1)!)
                     self?.pedometer.stopUpdates()
+                    if(!(self?.winnerDeclared)! && self?.isSingleplayer == false){  //Multiplayer
+                        self?.winnerDeclared = true
+                        //send declaration to database
+                        print("player 1 wins")
+                        self?.MeterCounter.text = "You Win!"
+                    }
                 }else{
                     self?.MeterCounter.text = "Meters: \(Int(metersWalked.rounded()))  Goal: \(savedDistanceGoal)m"
                     
-                    self?.drawCircle(drawingEndPoint: metersWalked/doubleDistance)
+                    self?.drawCircle(drawingEndPoint: metersWalked/doubleDistance, radius: 120, circle: (self?.shapeLayerP1)!)
                     let cleanPercentage = Int(((metersWalked/doubleDistance)*100).rounded())
                     self?.PercentLabel.text = "\(cleanPercentage)%"
+                }
+                
+                
+                if(!(self?.isSingleplayer)!){   //Multiplayer
+                    //count up opponests circle
+                    let opponent_progess = 1.0
+                    //opponent_progress to be updated by listener to database
+                    self?.drawCircle(drawingEndPoint: opponent_progess, radius: 90, circle: (self?.shapeLayerP2)!)
+                    if(opponent_progess >= 1 && !(self?.winnerDeclared)!){
+                        self?.winnerDeclared = true
+                        //send declaration to database
+                        print("player 2 wins")
+                        self!.MeterCounter.text = "player 2 wins"
+                    }
                 }
                 
              
@@ -89,21 +139,21 @@ class WalkingVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource 
         }
     }
 
-    fileprivate func DrawInnerCircle(_ circularPath: UIBezierPath, drawingEndPoint:Double) {
-        shapeLayer.path = circularPath.cgPath
-        shapeLayer.strokeColor=UIColor.red.cgColor
-        shapeLayer.lineWidth = 10
-        shapeLayer.lineCap = CAShapeLayerLineCap.round
-        shapeLayer.fillColor = UIColor.clear.cgColor
+    fileprivate func DrawInnerCircle(_ circularPath: UIBezierPath, drawingEndPoint:Double, circle: CAShapeLayer) {
+        circle.path = circularPath.cgPath
+        circle.strokeColor=UIColor.red.cgColor
+        circle.lineWidth = 10
+        circle.lineCap = CAShapeLayerLineCap.round
+        circle.fillColor = UIColor.clear.cgColor
         let standardisedAngle = drawingEndPoint*0.8
-        shapeLayer.strokeEnd = CGFloat(standardisedAngle)
+        circle.strokeEnd = CGFloat(standardisedAngle)
     }
     
-    private func drawCircle(drawingEndPoint:Double){
+    private func drawCircle(drawingEndPoint:Double, radius: CGFloat, circle: CAShapeLayer){
         let center = view.center
         
         let trackLayer = CAShapeLayer()
-        let circularPath = UIBezierPath(arcCenter: center, radius: 100, startAngle: -CGFloat.pi/2, endAngle: 2*CGFloat.pi, clockwise: true)
+        let circularPath = UIBezierPath(arcCenter: center, radius: radius, startAngle: -CGFloat.pi/2, endAngle: 2*CGFloat.pi, clockwise: true)
         trackLayer.path=circularPath.cgPath
         
         trackLayer.strokeColor=UIColor.lightGray.cgColor
@@ -120,8 +170,8 @@ class WalkingVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource 
         trackLayer.lineCap = CAShapeLayerLineCap.round
         view.layer.addSublayer(trackLayer)
         
-        DrawInnerCircle(circularPath, drawingEndPoint: drawingEndPoint2)
-        view.layer.addSublayer(shapeLayer)
+        DrawInnerCircle(circularPath, drawingEndPoint: drawingEndPoint2, circle: circle)
+        view.layer.addSublayer(circle)
     }
     
     //this function is the action when it detects a tap
