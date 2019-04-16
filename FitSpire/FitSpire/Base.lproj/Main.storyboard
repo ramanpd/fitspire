@@ -790,13 +790,6 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m2b-M6-73Q">
-                                <rect key="frame" x="111" y="423" width="180" height="41"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="USf-AZ-NWd">
                                 <rect key="frame" x="111" y="98" width="152" height="98"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -827,6 +820,31 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Opp_Score_box" translatesAutoresizingMaskIntoConstraints="NO" id="5aw-N7-bOO">
+                                <rect key="frame" x="-113" y="411" width="600" height="210"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m2b-M6-73Q">
+                                <rect key="frame" x="97" y="292" width="180" height="41"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ngw-ly-8tD">
+                                <rect key="frame" x="174" y="501" width="28" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <color key="textColor" red="1" green="0.9978853043" blue="0.38572501609999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Opponent's Score" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dYR-HW-2L8">
+                                <rect key="frame" x="53" y="458" width="269" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                <color key="textColor" red="0.99856561479999995" green="1" blue="0.38955333040000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.47843137250000001" green="0.84313725490000002" blue="0.99215686270000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="tintColor" red="0.47843137250000001" green="0.84313725490000002" blue="0.99215686270000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -835,11 +853,14 @@
                     <connections>
                         <outlet property="BeginButton" destination="USf-AZ-NWd" id="gSo-IE-nMp"/>
                         <outlet property="Counter" destination="m2b-M6-73Q" id="8XC-8M-Zv4"/>
+                        <outlet property="OpponentScore" destination="ngw-ly-8tD" id="Zg3-R5-sAX"/>
+                        <outlet property="OpponentText" destination="dYR-HW-2L8" id="zwa-j1-R9e"/>
+                        <outlet property="ScoreBox" destination="5aw-N7-bOO" id="1q3-rS-qM7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9xY-Zt-z2a" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2630" y="663"/>
+            <point key="canvasLocation" x="2629.5999999999999" y="662.51874062968523"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="xP6-SC-xIi">
@@ -884,6 +905,7 @@
         <image name="3" width="2560" height="1920"/>
         <image name="5" width="2560" height="1920"/>
         <image name="Icon-App-60x60" width="60" height="60"/>
+        <image name="Opp_Score_box" width="1044" height="336"/>
         <image name="Situp_Instruc_Splash" width="1082" height="534"/>
         <image name="arrow_left" width="28" height="16"/>
         <image name="icons8-pushups-filled-100" width="100" height="100"/>
@@ -894,7 +916,7 @@
         <image name="walking-1" width="480" height="480"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Tfm-tO-25e"/>
+        <segue reference="0rT-J6-IHh"/>
         <segue reference="XpF-qM-IcY"/>
         <segue reference="uFA-XZ-FP4"/>
     </inferredMetricsTieBreakers>
