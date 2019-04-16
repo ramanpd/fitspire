@@ -16,23 +16,12 @@ class WaitingForOpponentVCViewController: UIViewController {
     var ref: DatabaseReference!
     override func viewDidLoad() {
         super.viewDidLoad()
-//        ref = Database.database().reference()
-//        ref.observe(.childChanged, with: {(DataSnapshot) in
-//            if let value = DataSnapshot?.value["games/"]
-//            )
-//        ref.observeEventType(FEventTypeChildAdded, withBlock: { snapshot in
-//            if let value = snapshot?.value["author"] {
-//                print("\(value)")
-//            }
-//            if let value = snapshot?.value["title"] {
-//                print("\(value)")
-//            }
-//        })
-//        // Do any additional setup after loading the view.
-//    })
-//    // Retrieve new posts as they are added to the database
-//
-//
-//}
+        ref = Database.database().reference()
+        ref.child("games/\(currentCreatedGameID)/gameStarted").observe(.childChanged, with: {(DataSnapshot) in
+            print("Yipeee")
+        })
+        
+
+
 }
 }

@@ -9,7 +9,7 @@
 import UIKit
 import FBSDKLoginKit
 import FirebaseDatabase
-
+var currentCreatedGameID: String = ""
 class CreateGameVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
@@ -88,6 +88,7 @@ class CreateGameVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSour
     func updateDatabase(facebookID:AnyObject, facebookUsername:AnyObject)
     {
         let gameID = String(describing: facebookID)+pickerGeneral1[currentSelection]+String(targetSelected)+getTodayString()
+        currentCreatedGameID = gameID
         print("abcd")
         //self.ref.child("games/").setValue(gameID)
         self.ref.child("games/\(gameID)/player1ID").setValue(facebookID)
