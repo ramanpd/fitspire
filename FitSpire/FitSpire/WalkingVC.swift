@@ -12,11 +12,11 @@ class WalkingVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource 
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
-    
+
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         return distanceOptions.count
     }
-    
+
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return String(distanceOptions[row]) + " m"
     }
@@ -24,14 +24,14 @@ class WalkingVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource 
         distanceSelection = distanceOptions[row]
         print(distanceOptions[row])
     }
-    
+
     private let pedometer = CMPedometer()
     // MARK: - Properties
     @IBOutlet weak var GoButton: UIButton!
     @IBOutlet weak var DistanceChoice: UIPickerView!
     @IBOutlet weak var PercentLabel: UILabel!
     @IBOutlet weak var MeterCounter: UILabel!
-    
+
     /*
      Multiplayer Related Variables
      isSingleplayer to be passed in from previous vc as "false" if multiplayer is chosen.
@@ -40,11 +40,11 @@ class WalkingVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource 
     var isSingleplayer = true
     var multiplayerDistance = 20
     var winnerDeclared = false
-    
+
     var distanceOptions: [Int] = [Int]()
     var distanceSelection = 1
     var percentWalked = 0.00
-    
+
     let shapeLayerP1 = CAShapeLayer()
     let shapeLayerP2 = CAShapeLayer()   //Multiplayer
 
@@ -63,7 +63,7 @@ class WalkingVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource 
         }
     // Do any additional setup after loading the view.
     }
-    
+
     // MARK: - Actions
     @IBAction func onPress(_ sender: UIButton) {
         if(CMPedometer.isStepCountingAvailable() ){
@@ -75,7 +75,7 @@ class WalkingVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource 
             else{   //Multiplayer
                 distanceSelection = multiplayerDistance
             }
-            
+
             //hide other labels etc
             GoButton.isHidden=true
             beginCounting()
@@ -83,21 +83,21 @@ class WalkingVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource 
             MeterCounter.text = "No Pedometer Found"
         }
     }
-    
+
     private func beginCounting(){
         print("---testing---")
         self.MeterCounter.text = "Meters: 0  Goal: \(distanceSelection)m"
-        
+
         if(isSingleplayer){
             drawCircle(drawingEndPoint: 0.00, radius: 120, circle: shapeLayerP1)
         }
-        
+
         let savedDistanceGoal = distanceSelection
         let doubleDistance:Double = Double(distanceSelection) + 0.00
         pedometer.startUpdates(from: Date()) {
             [weak self] pedometerData, error in
             guard let pedometerData = pedometerData, error == nil else { return }
-            
+
             DispatchQueue.main.async {
                 let metersWalked:Double = pedometerData.distance as! Double
 
@@ -114,13 +114,13 @@ class WalkingVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource 
                     }
                 }else{
                     self?.MeterCounter.text = "Meters: \(Int(metersWalked.rounded()))  Goal: \(savedDistanceGoal)m"
-                    
+
                     self?.drawCircle(drawingEndPoint: metersWalked/doubleDistance, radius: 120, circle: (self?.shapeLayerP1)!)
                     let cleanPercentage = Int(((metersWalked/doubleDistance)*100).rounded())
                     self?.PercentLabel.text = "\(cleanPercentage)%"
                 }
-                
-                
+
+
                 if(!(self?.isSingleplayer)!){   //Multiplayer
                     //count up opponests circle
                     let opponent_progess = 1.0
@@ -133,8 +133,8 @@ class WalkingVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource 
                         self!.MeterCounter.text = "player 2 wins"
                     }
                 }
-                
-             
+
+
             }
         }
     }
@@ -148,14 +148,14 @@ class WalkingVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource 
         let standardisedAngle = drawingEndPoint*0.8
         circle.strokeEnd = CGFloat(standardisedAngle)
     }
-    
+
     private func drawCircle(drawingEndPoint:Double, radius: CGFloat, circle: CAShapeLayer){
         let center = view.center
-        
+
         let trackLayer = CAShapeLayer()
         let circularPath = UIBezierPath(arcCenter: center, radius: radius, startAngle: -CGFloat.pi/2, endAngle: 2*CGFloat.pi, clockwise: true)
         trackLayer.path=circularPath.cgPath
-        
+
         trackLayer.strokeColor=UIColor.lightGray.cgColor
         var drawingEndPoint2:Double
         if(drawingEndPoint == 5.00){
@@ -165,15 +165,15 @@ class WalkingVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource 
             drawingEndPoint2 = drawingEndPoint
         }
         trackLayer.lineWidth = 10
-        
+
         trackLayer.fillColor = UIColor.clear.cgColor
         trackLayer.lineCap = CAShapeLayerLineCap.round
         view.layer.addSublayer(trackLayer)
-        
+
         DrawInnerCircle(circularPath, drawingEndPoint: drawingEndPoint2, circle: circle)
         view.layer.addSublayer(circle)
     }
-    
+
     //this function is the action when it detects a tap
 //    fileprivate func animateFunction() {
 //        //stroke end means that as soon as you lift your finger from the tap, it initiates

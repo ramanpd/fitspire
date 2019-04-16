@@ -44,7 +44,7 @@ class FindGameVC: UITableViewController{
                 let game = Game()
                 game.player1ID = dictionary["player1ID"]
                 game.gameType = dictionary["gameType"] as! String
-                game.player1Name = dictionary["player1Name"]
+                game.player1Name = dictionary["player1Name"] as! String
                 game.target = dictionary["target"] as! Int
                 game.gameID = DataSnapshot.key as AnyObject
                 games.append(game)

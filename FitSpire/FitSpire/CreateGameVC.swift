@@ -9,7 +9,7 @@
 import UIKit
 import FBSDKLoginKit
 import FirebaseDatabase
-var currentCreatedGameID: String = ""
+var currentCreatedGameID: String = "Running"
 class CreateGameVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
@@ -30,7 +30,7 @@ class CreateGameVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSour
     // To keep track of user's current selection from the main content array
     var pickerGeneral1 = ["Running", "Sit-ups", "Push-ups","Squats"]
     var _currentSelection: Int = 0
-    var targetSelected: Int = 0
+    var targetSelected: Int = 10
     // whenever current selection is modified, we need to reload other pickers as their content depends upon the current selection index only.
     var currentSelection: Int {
         get {
