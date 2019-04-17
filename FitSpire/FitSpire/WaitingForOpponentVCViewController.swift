@@ -34,7 +34,6 @@ class WaitingForOpponentVCViewController: UIViewController {
 
         }
         
-        print("Holy shit")
         //Process new coordinates
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -42,6 +41,7 @@ class WaitingForOpponentVCViewController: UIViewController {
             let vc = segue.destination as? WalkingVC
             vc?.isSingleplayer = false
             vc?.multiplayerDistance=currentCreateGameTarget
+            
         }
     }
 }
