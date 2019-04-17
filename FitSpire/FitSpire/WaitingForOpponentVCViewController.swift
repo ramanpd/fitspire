@@ -8,6 +8,7 @@
 
 import UIKit
 import FirebaseDatabase
+var currentGame = Game()
 
 class WaitingForOpponentVCViewController: UIViewController {
 
@@ -26,7 +27,21 @@ class WaitingForOpponentVCViewController: UIViewController {
 }
     func foundSnapshot(_ snapshot: DataSnapshot){
         print("Yipeee")
+    
+        if(currentCreatedGameType == "Running"){
+            performSegue(withIdentifier: "Wait2WalkingSegue", sender: self)
+            print("Holy other shit")
+
+        }
         
+        print("Holy shit")
         //Process new coordinates
+    }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.destination is WalkingVC{
+            let vc = segue.destination as? WalkingVC
+            vc?.isSingleplayer = false
+            vc?.multiplayerDistance=currentCreateGameTarget
+        }
     }
 }
