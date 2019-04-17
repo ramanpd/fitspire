@@ -70,9 +70,30 @@ class FindGameVC: UITableViewController{
         getFBUserData()
         playGame()
     }
+/*
+     Function playGame:
+    The goal is to identify what type of game has been selected and then perform a segue to that game screen while also setting its variable
+     "isSinglePlayer" to false
+*/
     func playGame()
     {
-        print("Almost there")
+        if(games[gameIndex].gameType=="Running"){
+            print("\nIdentified game: Running")
+            performSegue(withIdentifier: "MultiWalkingSegue", sender: self)
+            
+        }else if(games[gameIndex].gameType=="Push-ups"){
+            print("\nIdentified game: Push-ups")
+        }else if(games[gameIndex].gameType=="Sit-ups"){
+            print("\n Identified game: Sit-ups")
+        }
+        print("Almost there"+games[gameIndex].gameType)
+    }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.destination is WalkingVC{
+            let vc = segue.destination as? WalkingVC
+            vc?.isSingleplayer=false
+            print("Succesfully changed VARIABLE")
+        }
     }
     func getFBUserData(){
         if((FBSDKAccessToken.current()) != nil){
