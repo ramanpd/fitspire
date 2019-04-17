@@ -181,6 +181,9 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="3sT-w5-SpD"/>
+                    <connections>
+                        <segue destination="Uz0-Da-Qz2" kind="show" identifier="MultiWalkingSegue" id="vcW-hj-gGr"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="q9B-bj-ivl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -916,8 +919,9 @@
         <image name="walking-1" width="480" height="480"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="vcW-hj-gGr"/>
         <segue reference="0rT-J6-IHh"/>
         <segue reference="XpF-qM-IcY"/>
-        <segue reference="Nhz-xf-PpC"/>
+        <segue reference="uFA-XZ-FP4"/>
     </inferredMetricsTieBreakers>
 </document>

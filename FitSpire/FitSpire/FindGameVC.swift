@@ -92,6 +92,7 @@ class FindGameVC: UITableViewController{
         if segue.destination is WalkingVC{
             let vc = segue.destination as? WalkingVC
             vc?.isSingleplayer=false
+            vc?.multiplayerDistance=games[gameIndex].target
             print("Succesfully changed VARIABLE")
         }
     }

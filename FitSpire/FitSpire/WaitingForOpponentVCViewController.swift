@@ -20,8 +20,6 @@ class WaitingForOpponentVCViewController: UIViewController {
         ref.child("games/\(currentCreatedGameID)/gameStarted").observe(.childChanged, with: {(DataSnapshot) in
             print("Yipeee")
         })
-        
-
 
 }
 }
