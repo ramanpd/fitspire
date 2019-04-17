@@ -17,9 +17,16 @@ class WaitingForOpponentVCViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         ref = Database.database().reference()
-        ref.child("games/\(currentCreatedGameID)/gameStarted").observe(.childChanged, with: {(DataSnapshot) in
-            print("Yipeee")
+        print(currentCreatedGameID)
+        ref.child("games").observe(.childAdded, with: {(DataSnapshot) in
+            self.ref.child("games").child(currentCreatedGameID).observe(.childChanged, with: {(DataSnapshot) in
+                self.foundSnapshot(DataSnapshot)
+                })
         })
-
 }
+    func foundSnapshot(_ snapshot: DataSnapshot){
+        print("Yipeee")
+        
+        //Process new coordinates
+    }
 }
