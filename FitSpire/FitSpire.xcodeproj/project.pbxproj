@@ -16,8 +16,6 @@
 		08293AED22549CED00F279A3 /* GameModeSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08293AEC22549CED00F279A3 /* GameModeSelection.swift */; };
 		08293AEF2254A17300F279A3 /* ChallengerListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08293AEE2254A17300F279A3 /* ChallengerListVC.swift */; };
 		08293AF22254A72400F279A3 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08293AF12254A72400F279A3 /* User.swift */; };
-		0846E1FA223E96A200AB490E /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0846E1F7223E95BB00AB490E /* Charts.framework */; };
-		0846E1FB223E96A200AB490E /* Charts.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0846E1F7223E95BB00AB490E /* Charts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0880BF8B2238BB740044F194 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0880BF892238BB730044F194 /* FBSDKCoreKit.framework */; };
 		0880BF8C2238BB740044F194 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0880BF8A2238BB740044F194 /* FBSDKLoginKit.framework */; };
 		08F20D3D224F9A77005E8002 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 08F20D3B224F9A76005E8002 /* GoogleService-Info.plist */; };
@@ -44,26 +42,19 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		0846E1F6223E95BB00AB490E /* PBXContainerItemProxy */ = {
+		0891B3C62265DFCB00B7D234 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 0846E1F1223E95B900AB490E /* Charts.xcodeproj */;
+			containerPortal = 0891B3C12265DFCB00B7D234 /* Charts.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 65AD9E95D9ED4DC0BD73A743;
 			remoteInfo = Charts;
 		};
-		0846E1F8223E95BB00AB490E /* PBXContainerItemProxy */ = {
+		0891B3C82265DFCB00B7D234 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 0846E1F1223E95B900AB490E /* Charts.xcodeproj */;
+			containerPortal = 0891B3C12265DFCB00B7D234 /* Charts.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 1CBBC58C6CE1EBEE9852CE41;
 			remoteInfo = ChartsTests;
-		};
-		0846E1FC223E96A200AB490E /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0846E1F1223E95B900AB490E /* Charts.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = A58A4ED274A941CA248EA921;
-			remoteInfo = Charts;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -74,7 +65,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				0846E1FB223E96A200AB490E /* Charts.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -91,10 +81,10 @@
 		08293AEC22549CED00F279A3 /* GameModeSelection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameModeSelection.swift; sourceTree = "<group>"; };
 		08293AEE2254A17300F279A3 /* ChallengerListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengerListVC.swift; sourceTree = "<group>"; };
 		08293AF12254A72400F279A3 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		0846E1F1223E95B900AB490E /* Charts.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Charts.xcodeproj; path = "../../../../Downloads/Charts-master/Charts.xcodeproj"; sourceTree = "<group>"; };
 		0880BF892238BB730044F194 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
 		0880BF8A2238BB740044F194 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
 		0880BF8D2238BC570044F194 /* FitSpire-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FitSpire-Bridging-Header.h"; sourceTree = "<group>"; };
+		0891B3C12265DFCB00B7D234 /* Charts.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Charts.xcodeproj; path = "../../../../Desktop/Charts-master/Charts.xcodeproj"; sourceTree = "<group>"; };
 		08F20D3B224F9A76005E8002 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		08F20D3E224F9B9A005E8002 /* FirebaseDatabase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FirebaseDatabase.framework; sourceTree = "<group>"; };
 		08F20D3F224F9B9B005E8002 /* leveldb-library.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = "leveldb-library.framework"; sourceTree = "<group>"; };
@@ -128,7 +118,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				08F20D40224F9B9B005E8002 /* FirebaseDatabase.framework in Frameworks */,
-				0846E1FA223E96A200AB490E /* Charts.framework in Frameworks */,
 				08F20D4F224F9BC4005E8002 /* GoogleAppMeasurement.framework in Frameworks */,
 				0880BF8C2238BB740044F194 /* FBSDKLoginKit.framework in Frameworks */,
 				08F20D51224F9BC4005E8002 /* FirebaseInstanceID.framework in Frameworks */,
@@ -156,11 +145,11 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		0846E1F2223E95B900AB490E /* Products */ = {
+		0891B3C22265DFCB00B7D234 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				0846E1F7223E95BB00AB490E /* Charts.framework */,
-				0846E1F9223E95BB00AB490E /* ChartsTests.xctest */,
+				0891B3C72265DFCB00B7D234 /* Charts.framework */,
+				0891B3C92265DFCB00B7D234 /* ChartsTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -184,6 +173,7 @@
 		CE368D252237775900478771 /* FitSpire */ = {
 			isa = PBXGroup;
 			children = (
+				0891B3C12265DFCB00B7D234 /* Charts.xcodeproj */,
 				08293AF02254A70000F279A3 /* Model */,
 				08293AEA22548F3D00F279A3 /* Assets.xcassets */,
 				08F20D53224F9E0D005E8002 /* module.modulemap */,
@@ -198,7 +188,6 @@
 				08F20D43224F9BC1005E8002 /* nanopb.framework */,
 				08F20D3E224F9B9A005E8002 /* FirebaseDatabase.framework */,
 				08F20D3F224F9B9B005E8002 /* leveldb-library.framework */,
-				0846E1F1223E95B900AB490E /* Charts.xcodeproj */,
 				0880BF892238BB730044F194 /* FBSDKCoreKit.framework */,
 				0880BF8A2238BB740044F194 /* FBSDKLoginKit.framework */,
 				08045FE5225B224700232F76 /* FirebaseInAppMessaging.framework */,
@@ -239,7 +228,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				0846E1FD223E96A200AB490E /* PBXTargetDependency */,
 			);
 			name = FitSpire;
 			productName = FitSpire;
@@ -275,8 +263,8 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = 0846E1F2223E95B900AB490E /* Products */;
-					ProjectRef = 0846E1F1223E95B900AB490E /* Charts.xcodeproj */;
+					ProductGroup = 0891B3C22265DFCB00B7D234 /* Products */;
+					ProjectRef = 0891B3C12265DFCB00B7D234 /* Charts.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -287,18 +275,18 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		0846E1F7223E95BB00AB490E /* Charts.framework */ = {
+		0891B3C72265DFCB00B7D234 /* Charts.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
 			path = Charts.framework;
-			remoteRef = 0846E1F6223E95BB00AB490E /* PBXContainerItemProxy */;
+			remoteRef = 0891B3C62265DFCB00B7D234 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		0846E1F9223E95BB00AB490E /* ChartsTests.xctest */ = {
+		0891B3C92265DFCB00B7D234 /* ChartsTests.xctest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
 			path = ChartsTests.xctest;
-			remoteRef = 0846E1F8223E95BB00AB490E /* PBXContainerItemProxy */;
+			remoteRef = 0891B3C82265DFCB00B7D234 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -341,14 +329,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		0846E1FD223E96A200AB490E /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = Charts;
-			targetProxy = 0846E1FC223E96A200AB490E /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		CE368D2A2237775900478771 /* Main.storyboard */ = {

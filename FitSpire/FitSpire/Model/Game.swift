@@ -12,7 +12,7 @@ class Game: NSObject {
     
     var gameID:AnyObject!
     var gameType:String = ""
-    var player1Name:AnyObject!
+    var player1Name:String = ""
     var player1ID:AnyObject!
     var player2ID: AnyObject!
     var player1Score : Int = 0
