@@ -22,11 +22,23 @@ class FindGameVC: UITableViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("Made it to Line 25")
+
         games.removeAll()
+        print("Made it to Line 28")
+
         tableView.reloadData()
+        print("Made it to Line 31")
+
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(handleCancel))
+        print("Made it to Line 34")
+
         tableView.register(UserCell.self, forCellReuseIdentifier: cellId)
+        print("Made it to Line 37")
+
         fetchGame()
+        print("Made it to Line 40r")
+
         
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false

@@ -55,11 +55,14 @@ class WalkingVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource 
             self.DistanceChoice.delegate = self
             self.DistanceChoice.dataSource = self
         }
-        else{   //Multiplayer
+        else if(!isSingleplayer){
+            
+            
+            //Multiplayer
+            
+            
             DistanceChoice.removeFromSuperview()
             MeterCounter.text = "Press GO to begin!"
-            drawCircle(drawingEndPoint: 0.00, radius: 120, circle: shapeLayerP1)
-            drawCircle(drawingEndPoint: 0.00, radius: 90, circle: shapeLayerP2)
         }
     // Do any additional setup after loading the view.
     }
@@ -85,11 +88,13 @@ class WalkingVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource 
     }
 
     private func beginCounting(){
-        print("---testing---")
         self.MeterCounter.text = "Meters: 0  Goal: \(distanceSelection)m"
 
         if(isSingleplayer){
             drawCircle(drawingEndPoint: 0.00, radius: 120, circle: shapeLayerP1)
+        }else{
+            drawCircle(drawingEndPoint: 0.00, radius: 120, circle: shapeLayerP1)
+            drawCircle(drawingEndPoint: 0.00, radius: 90, circle: shapeLayerP2)
         }
 
         let savedDistanceGoal = distanceSelection
