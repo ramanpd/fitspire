@@ -19,10 +19,24 @@ class SitupVC: UIViewController {
     
     @IBOutlet var BeginButton: UIView!
     @IBOutlet weak var Counter: UILabel!
+    @IBOutlet weak var OpponentScore: UILabel!
+    @IBOutlet weak var ScoreBox: UIImageView!
+    @IBOutlet weak var OpponentText: UILabel!
+    
+    /*
+     Multiplayer options: isSingleplayer, multiplayerTarget passed in from segue
+    */
+    var isSingleplayer = false
+    var multiplayerTarget = 10
+    var winnerDeclared = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        if(isSingleplayer){
+            OpponentScore.removeFromSuperview();
+            ScoreBox.removeFromSuperview();
+            OpponentText.removeFromSuperview();
+        }
         // Do any additional setup after loading the view.
     }
     
@@ -67,10 +81,22 @@ class SitupVC: UIViewController {
             }
             MotionManager.startGyroUpdates(to: OperationQueue.current!) { (input, error) in
                 if let data = input {
-                    let gx = data.rotationRate.x
+//                    let gx = data.rotationRate.x
                     let gy = data.rotationRate.y
                     let gz = data.rotationRate.z
                     
+                    if(!self.isSingleplayer){
+                        /*
+                        UPDATE MULTIPLAYER LABEL HERE
+                        This loop runs every 0.2 seconds so a network listener could be used
+                        */
+                        //get Opponent's current score and winnerTarget.
+                        if(onScreenCount >= self.multiplayerTarget && self.winnerDeclared == false){
+                            //you win - send to server
+                            self.winnerDeclared = true;
+                            print("winner!")
+                        }
+                    }
                     /*
                      Initial input of 9 values (1.8 seconds) to fill up YZ_BUFFER array so that operations can be applied to it.
                      */
