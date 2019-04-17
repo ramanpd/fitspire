@@ -8,6 +8,7 @@
 
 import UIKit
 import FirebaseDatabase
+var currentGame = Game()
 
 class WaitingForOpponentVCViewController: UIViewController {
 
@@ -17,9 +18,30 @@ class WaitingForOpponentVCViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         ref = Database.database().reference()
-        ref.child("games/\(currentCreatedGameID)/gameStarted").observe(.childChanged, with: {(DataSnapshot) in
-            print("Yipeee")
+        print(currentCreatedGameID)
+        ref.child("games").observe(.childAdded, with: {(DataSnapshot) in
+            self.ref.child("games").child(currentCreatedGameID).observe(.childChanged, with: {(DataSnapshot) in
+                self.foundSnapshot(DataSnapshot)
+                })
         })
-
 }
+    func foundSnapshot(_ snapshot: DataSnapshot){
+        print("Yipeee")
+    
+        if(currentCreatedGameType == "Running"){
+            performSegue(withIdentifier: "Wait2WalkingSegue", sender: self)
+            print("Holy other shit")
+
+        }
+        
+        //Process new coordinates
+    }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.destination is WalkingVC{
+            let vc = segue.destination as? WalkingVC
+            vc?.isSingleplayer = false
+            vc?.multiplayerDistance=currentCreateGameTarget
+            
+        }
+    }
 }

@@ -10,6 +10,8 @@ import UIKit
 import FBSDKLoginKit
 import FirebaseDatabase
 var currentCreatedGameID: String = "Running"
+var currentCreatedGameType: String = "Running"
+var currentCreateGameTarget: Int = 10
 class CreateGameVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
@@ -21,6 +23,7 @@ class CreateGameVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSour
     @IBOutlet weak var textField_0: UITextField!
     @IBOutlet weak var textField_1: UITextField!
     @IBOutlet weak var textField_2: UITextField!
+
     // Maintaining the other arrays as single array of arrays for efficient loading
     var subContentArray = [[10, 100, 200, 500, 1000],
                                    [10, 20, 30, 40, 50],
@@ -63,6 +66,8 @@ class CreateGameVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSour
         print("good 2")
         getFBUserData()
         print("Good 3")
+        currentCreatedGameType=pickerGeneral1[currentSelection]
+        currentCreateGameTarget=targetSelected
         performSegue(withIdentifier: "GoToWait", sender: self)
     }
     
