@@ -105,18 +105,27 @@ class WalkingVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource 
 
             DispatchQueue.main.async {
                 let metersWalked:Double = pedometerData.distance as! Double
-
+                
+                //PUSH METERSWALKED TO FIREBASE
+                
+                //PULL OPPONENT METERSWALKED FROM FIREBASE
+                let opponent_progress = 0.0  //PULL INTO THIS
+                
+                //UPDATE OPPONENT SCORE
+                
                 if((metersWalked/doubleDistance)>=1){
                     self?.MeterCounter.text = "Exercise Complete!"
                     self?.PercentLabel.text = "100%"
                     self?.drawCircle(drawingEndPoint: 1.00, radius: 120, circle: (self?.shapeLayerP1)!)
                     self?.pedometer.stopUpdates()
+                    /*
                     if(!(self?.winnerDeclared)! && self?.isSingleplayer == false){  //Multiplayer
                         self?.winnerDeclared = true
                         //send declaration to database
                         print("player 1 wins")
                         self?.MeterCounter.text = "You Win!"
-                    }
+                     }*/
+                    
                 }else{
                     self?.MeterCounter.text = "Meters: \(Int(metersWalked.rounded()))  Goal: \(savedDistanceGoal)m"
 
@@ -128,10 +137,9 @@ class WalkingVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource 
 
                 if(!(self?.isSingleplayer)!){   //Multiplayer
                     //count up opponests circle
-                    let opponent_progess = 1.0
                     //opponent_progress to be updated by listener to database
-                    self?.drawCircle(drawingEndPoint: opponent_progess, radius: 90, circle: (self?.shapeLayerP2)!)
-                    if(opponent_progess >= 1 && !(self?.winnerDeclared)!){
+                    self?.drawCircle(drawingEndPoint: opponent_progress, radius: 90, circle: (self?.shapeLayerP2)!)
+                    if(opponent_progress >= 1 && !(self?.winnerDeclared)!){
                         self?.winnerDeclared = true
                         //send declaration to database
                         print("player 2 wins")

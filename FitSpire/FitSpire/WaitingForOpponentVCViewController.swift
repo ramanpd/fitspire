@@ -26,16 +26,11 @@ class WaitingForOpponentVCViewController: UIViewController {
         })
 }
     func foundSnapshot(_ snapshot: DataSnapshot){
-        print("Yipeee")
     
         if(currentCreatedGameType == "Running"){
             performSegue(withIdentifier: "Wait2WalkingSegue", sender: self)
-            print("Holy other shit")
-
         }
-        
-        //Process new coordinates
-    }
+}
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.destination is WalkingVC{
             let vc = segue.destination as? WalkingVC
