@@ -101,7 +101,8 @@ class SitupVC: UIViewController {
                      Initial input of 9 values (1.8 seconds) to fill up YZ_BUFFER array so that operations can be applied to it.
                      */
                     if(iterCount < 9){
-                        YZ.leftshift(value: (gy + gz)/2 + (y-z))
+//                        YZ.leftshift(value: (gy + gz)/2 + (y-z))
+                        YZ.leftshift(value: y-z)
                         R_BUFFER[iterCount] = (x+y+z)/3
                     }
                         /*
@@ -109,7 +110,8 @@ class SitupVC: UIViewController {
                          */
                     else if(WaitForRest){
                         if(abs(self.currentAve(set: R_BUFFER) - REST_AVERAGE) > 0.05){
-                            YZ.leftshift(value: (gy + gz)/2 + (y-z))
+//                            YZ.leftshift(value: (gy + gz)/2 + (y-z))
+                            YZ.leftshift(value: y-z)
                             XZ1.leftshift(value: x+z+1) //(x+y+1)-(y-z)
                             X_BUFFER = self.leftshiftArr(inputArr: X_BUFFER, value: x)
                             Y_BUFFER = self.leftshiftArr(inputArr: Y_BUFFER, value: y)
@@ -127,7 +129,8 @@ class SitupVC: UIViewController {
                          */
                     else{
                         print("iteration: \(iterCount)\t\tValueCount: \(valueCount)")
-                        YZ.leftshift(value: (gy + gz)/2 + (y-z))
+//                        YZ.leftshift(value: (gy + gz)/2 + (y-z))
+                        YZ.leftshift(value: y-z)
                         XZ1.leftshift(value: x+z+1)
                         
                         X_BUFFER = self.leftshiftArr(inputArr: X_BUFFER, value: x)
