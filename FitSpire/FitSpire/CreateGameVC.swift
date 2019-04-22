@@ -61,11 +61,8 @@ class CreateGameVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSour
     
     
     @IBAction func CreateGameButtonPressed(_ sender: UIButton) {
-        print("good 1")
         ref = Database.database().reference()
-        print("good 2")
         getFBUserData()
-        print("Good 3")
         currentCreatedGameType=pickerGeneral1[currentSelection]
         currentCreateGameTarget=targetSelected
         performSegue(withIdentifier: "GoToWait", sender: self)
@@ -149,7 +146,6 @@ class CreateGameVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSour
 //    var gameOptions: [String] = [String]()
 //    var targetOptions: [Int] = [Int]()
     override func viewDidLoad() {
-        print("here first")
         super.viewDidLoad()
         currentSelection = 0;
         

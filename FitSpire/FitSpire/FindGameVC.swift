@@ -1,10 +1,10 @@
-//
-//  FindGameVC.swift
-//  FitSpire
-//
-//  Created by Raman Prasad on 08/04/19.
-//  Copyright © 2019 Connor Clancy. All rights reserved.
-//
+////
+////  FindGameVC.swift
+////  FitSpire
+////
+////  Created by Raman Prasad on 08/04/19.
+////  Copyright © 2019 Connor Clancy. All rights reserved.
+////
 
 import UIKit
 import Firebase
@@ -16,59 +16,44 @@ class FindGameVC: UITableViewController{
     let cellId = "cellId"
     var dict : [String : AnyObject]!
     var ref: DatabaseReference!
+
     var profileName: AnyObject?
     var profileID: AnyObject?
     var gameID: String = ""
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("Made it to Line 25")
-
         games.removeAll()
-        print("Made it to Line 28")
-
         tableView.reloadData()
-        print("Made it to Line 31")
-
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(handleCancel))
-        print("Made it to Line 34")
-
         tableView.register(UserCell.self, forCellReuseIdentifier: cellId)
-        print("Made it to Line 37")
-
         fetchGame()
-        print("Made it to Line 40r")
 
-        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
-        
+
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
-    
+
     func fetchGame()
     {
-        
-        
         Database.database().reference().child("games").observe(.childAdded, with: {(DataSnapshot) in print(DataSnapshot)
             if let dictionary = DataSnapshot.value as? [String: AnyObject]{
                 let game = Game()
-                game.player1ID = dictionary["player1ID"]
-                game.gameType = dictionary["gameType"] as! String
-                game.player1Name = dictionary["player1Name"] as! String
+                game.player1ID = dictionary["player1ID"] as! String
+                game.gameType = dictionary["gameType"]! as! String
+                game.player1Name = dictionary["player1Name"]! as! String
                 game.target = dictionary["target"] as! Int
                 game.gameID = DataSnapshot.key as AnyObject
                 games.append(game)
                 DispatchQueue.main.async{
-                    
                     self.tableView.reloadData()
                 }
-                print(game.player1ID!)
             }
         }, withCancel: nil)
     }
-    
+
     @objc func handleCancel()
     {
         dismiss(animated: true, completion: nil)
@@ -92,7 +77,7 @@ class FindGameVC: UITableViewController{
         if(games[gameIndex].gameType=="Running"){
             print("\nIdentified game: Running")
             performSegue(withIdentifier: "MultiWalkingSegue", sender: self)
-            
+
         }else if(games[gameIndex].gameType=="Push-ups"){
             print("\nIdentified game: Push-ups")
         }else if(games[gameIndex].gameType=="Sit-ups"){
@@ -126,27 +111,19 @@ class FindGameVC: UITableViewController{
     }
     func updateDatabase(facebookID:AnyObject, facebookUsername:AnyObject)
     {
-        
+
         self.ref.child("games/\(gameID)/player2ID").setValue(facebookID)
         self.ref.child("games/\(gameID)/gameStarted").setValue(true)
         self.ref.child("games/\(gameID)/player2Score").setValue(0)
     }
     
-    
-    // MARK: - Table view data source
-    
-    //    override func numberOfSections(in tableView: UITableView) -> Int {
-    //        // #warning Incomplete implementation, return the number of sections
-    //        return 0
-    //    }
-    //
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        
+
         return games.count
     }
-    
-    
+
+
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         //let cell = UITableViewCell(style: .subtitle, reuseIdentifier: cellId)
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath)
@@ -156,84 +133,17 @@ class FindGameVC: UITableViewController{
         var challengerText = " Challenger: " + String(describing: game.player1Name)
         var cellText = gameTypeText + targetText + challengerText
         cell.textLabel?.text = cellText
-        //print("lololololol")
-        //print(user.facebookId as! String)
-//        let url = NSURL(string: "https://graph.facebook.com/\(user.facebookId!)/picture?type=large&return_ssl_resources=1")
-        //        let url = URL(string: "https://graph.facebook.com/\(user.facebookId!)/picture?type=large&return_ssl_resources=1")
-        //        let session = URLSession.shared
-        //        let task = session.dataTask(with: url!, MTLNewLibraryCompletionHandler{
-        //            (data,response, error) in
-        //            if error != nil{
-        //                print(error)
-        //                return
-        //            }
-        //            DispatchQueue.main.async {
-        //                cell.imageView?.image = UIImage(data: data!)
-        //            }
-        //
-        //        }).resume()
-        
-//        cell.imageView?.image = UIImage(data: NSData(contentsOf: url! as URL)! as Data)
-        // Configure the cell...
-        
         return cell
     }
-    
-    
-    /*
-     // Override to support conditional editing of the table view.
-     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-     // Return false if you do not want the specified item to be editable.
-     return true
-     }
-     */
-    
-    /*
-     // Override to support editing the table view.
-     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-     if editingStyle == .delete {
-     // Delete the row from the data source
-     tableView.deleteRows(at: [indexPath], with: .fade)
-     } else if editingStyle == .insert {
-     // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-     }
-     }
-     */
-    
-    /*
-     // Override to support rearranging the table view.
-     override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-     
-     }
-     */
-    
-    /*
-     // Override to support conditional rearranging of the table view.
-     override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-     // Return false if you do not want the item to be re-orderable.
-     return true
-     }
-     */
-    
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destination.
-     // Pass the selected object to the new view controller.
-     }
-     */
-    
-}
+
 class GameCell: UITableViewCell
 {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?){
         super.init(style: .subtitle, reuseIdentifier: reuseIdentifier)
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 }
-
+}
