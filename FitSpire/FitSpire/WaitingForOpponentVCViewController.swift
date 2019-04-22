@@ -36,6 +36,7 @@ class WaitingForOpponentVCViewController: UIViewController {
             let vc = segue.destination as? WalkingVC
             vc?.isSingleplayer = false
             vc?.multiplayerDistance=currentCreateGameTarget
+            vc?.currentPlayer=1
             
         }
     }

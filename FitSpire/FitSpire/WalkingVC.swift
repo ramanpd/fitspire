@@ -8,6 +8,9 @@
 
 import UIKit
 import CoreMotion
+import Firebase
+import FirebaseDatabase
+
 class WalkingVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
@@ -40,7 +43,10 @@ class WalkingVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource 
     var isSingleplayer = true
     var multiplayerDistance = 20
     var winnerDeclared = false
-
+    var currentPlayer = 0
+    var currentCreatedGameID: AnyObject?
+    var ref: DatabaseReference!
+    var opponentScore:Int = 0
     var distanceOptions: [Int] = [Int]()
     var distanceSelection = 1
     var percentWalked = 0.00
@@ -56,11 +62,6 @@ class WalkingVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource 
             self.DistanceChoice.dataSource = self
         }
         else if(!isSingleplayer){
-            
-            
-            //Multiplayer
-            
-            
             DistanceChoice.removeFromSuperview()
             MeterCounter.text = "Press GO to begin!"
         }
@@ -107,9 +108,42 @@ class WalkingVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource 
                 let metersWalked:Double = pedometerData.distance as! Double
                 
                 //PUSH METERSWALKED TO FIREBASE
+                self!.ref = Database.database().reference()
+
+                if(self!.currentCreatedGameID==nil){
+                    print("WE GOT EM")
+                }
+                if(self!.currentPlayer==1){
+                    //push meters walked to player1Score
+                    //self.ref.child("games/\(gameID)/player2ID").setValue(facebookID)
+                    print(self!.currentCreatedGameID)
+                    print("HERE IS THE GAME ID ^^^^^^^")
+                    self!.ref.child("games/\(self!.currentCreatedGameID!)/player1Score").setValue(metersWalked)
+                }else if(self!.currentPlayer==2){
+                    print(self!.currentCreatedGameID)
+                    print("HERE IS THE GAME ID ^^^^^^^")
+                    self!.ref.child("games/\(self!.currentCreatedGameID!)/player2Score").setValue(metersWalked)
+                }else{
+                    print("CurrentPlayer not found")
+                }
                 
                 //PULL OPPONENT METERSWALKED FROM FIREBASE
-                let opponent_progress = 0.0  //PULL INTO THIS
+                if(self!.currentPlayer==1){
+                    Database.database().reference().child("games/\(self!.currentCreatedGameID!)/player2Score").observeSingleEvent(of: .value, with: {DataSnapshot in
+                         let dictionary = DataSnapshot.value as? [String: AnyObject]
+                        self!.opponentScore = dictionary!["player2Score"] as! Int
+                    })
+                }else if(self!.currentPlayer==2){
+                    //pull player 1
+                    Database.database().reference().child("games/\(self!.currentCreatedGameID!)").observeSingleEvent(of: .value, with: {DataSnapshot in
+                        let dictionary = DataSnapshot.value as? [String: AnyObject]
+                        self!.opponentScore = dictionary!["player1Score"] as! Int
+                       
+                    })
+                }
+                
+                
+                let opponent_progress = Double((self?.opponentScore)!)
                 
                 //UPDATE OPPONENT SCORE
                 
@@ -146,8 +180,6 @@ class WalkingVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource 
                         self!.MeterCounter.text = "player 2 wins"
                     }
                 }
-
-
             }
         }
     }
@@ -162,7 +194,7 @@ class WalkingVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource 
         circle.strokeEnd = CGFloat(standardisedAngle)
     }
 
-    private func drawCircle(drawingEndPoint:Double, radius: CGFloat, circle: CAShapeLayer){
+    func drawCircle(drawingEndPoint:Double, radius: CGFloat, circle: CAShapeLayer){
         let center = view.center
 
         let trackLayer = CAShapeLayer()
@@ -186,17 +218,4 @@ class WalkingVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource 
         DrawInnerCircle(circularPath, drawingEndPoint: drawingEndPoint2, circle: circle)
         view.layer.addSublayer(circle)
     }
-
-    //this function is the action when it detects a tap
-//    fileprivate func animateFunction() {
-//        //stroke end means that as soon as you lift your finger from the tap, it initiates
-//        let basicAnimation = CABasicAnimation(keyPath: "strokeEnd")
-//        basicAnimation.toValue = 1
-//
-//        basicAnimation.duration = 2
-//        basicAnimation.fillMode = CAMediaTimingFillMode.forwards
-//        basicAnimation.isRemovedOnCompletion = false
-//
-//        shapeLayer.add(basicAnimation, forKey: "basic")
-//    }
 }
