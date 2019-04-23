@@ -48,7 +48,7 @@ class WalkingVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource 
     var currentPlayer = 0
     var currentCreatedGameID: AnyObject?
     var ref: DatabaseReference!
-    var opponentScore:Int = 0
+    var opponentScore:Double = 0
     var distanceOptions: [Int] = [Int]()
     var distanceSelection = 1
     var percentWalked = 0.00
@@ -120,14 +120,14 @@ class WalkingVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource 
                     //self.ref.child("games/\(gameID)/player2ID").setValue(facebookID)
                     print(self!.currentCreatedGameID!)
                     print("HERE IS THE GAME ID ^^^^^^^")
-                    self!.ref.child("games/\(self!.currentCreatedGameID!)/player1Score").setValue(metersWalked)
+                    self!.ref.child("games/\(self!.currentCreatedGameID!)/player1Score").setValue(metersWalked.rounded())
                     self!.Player1ScoreLabel.text = "\(metersWalked)"
                     print("COMPLETED UPDATE^^")
 
                 }else if(self!.currentPlayer==2){
                     print(self!.currentCreatedGameID!)
                     print("HERE IS THE GAME ID ^^^^^^^")
-                    self!.ref.child("games/\(self!.currentCreatedGameID!)/player2Score").setValue(metersWalked)
+                    self!.ref.child("games/\(self!.currentCreatedGameID!)/player2Score").setValue(metersWalked.rounded())
                     self!.Player2ScoreLabel.text = "\(metersWalked)"
                     print("COMPLETED UPDATE^^")
 
@@ -138,23 +138,36 @@ class WalkingVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource 
                 
                 //PULL OPPONENT METERSWALKED FROM FIREBASE
                 if(self!.currentPlayer==1){
+                    print("pulled opponents score start")
                     Database.database().reference().child("games/\(self!.currentCreatedGameID!)").observeSingleEvent(of: .value, with: {DataSnapshot in
-                         let dictionary = DataSnapshot.value as? [String: AnyObject]
-                        self!.opponentScore = dictionary!["player2Score"] as! Int
-                        self!.Player2ScoreLabel.text = "\(self!.opponentScore)"
+                        if let dictionary = DataSnapshot.value as? [String: AnyObject]{
+                            print("pulled if let")
+                            self!.opponentScore = dictionary["player2Score"] as! Double
+                            self!.Player2ScoreLabel.text = "\(self!.opponentScore)"
+                        }
+                        else{
+                             self!.opponentScore = self!.opponentScore
+                        }
+                        print("pulled opponents score end")
 
                     })
                 }else if(self!.currentPlayer==2){
                     //pull player 1
+                    print("pulled opponents score start")
                     Database.database().reference().child("games/\(self!.currentCreatedGameID!)").observeSingleEvent(of: .value, with: {DataSnapshot in
-                        let dictionary = DataSnapshot.value as? [String: AnyObject]
-                        self!.opponentScore = dictionary!["player1Score"] as! Int
-                        self!.Player1ScoreLabel.text = "\(self!.opponentScore)"
-
+                        if let dictionary = DataSnapshot.value as? [String: AnyObject]{
+                            print("pulled if let")
+                            self!.opponentScore = dictionary["player1Score"] as! Double
+                            self!.Player1ScoreLabel.text = "\(self!.opponentScore)"
+                        }
+                        else{
+                            self!.opponentScore = self!.opponentScore
+                        }
+                        print("pulled opponents score end")
                     })
                 }
                 
-                
+                print("James and Raman suck nipples")
                 let opponent_progress = Double((self?.opponentScore)!)
                 
                 //UPDATE OPPONENT SCORE
@@ -184,7 +197,7 @@ class WalkingVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource 
                 if(!(self?.isSingleplayer)!){   //Multiplayer
                     //count up opponests circle
                     //opponent_progress to be updated by listener to database
-                    self?.drawCircle(drawingEndPoint: opponent_progress, radius: 90, circle: (self?.shapeLayerP2)!)
+                    self?.drawCircle(drawingEndPoint: opponent_progress/doubleDistance, radius: 90, circle: (self?.shapeLayerP2)!)
                     if(opponent_progress >= 1 && !(self?.winnerDeclared)!){
                         self?.winnerDeclared = true
                         //send declaration to database
