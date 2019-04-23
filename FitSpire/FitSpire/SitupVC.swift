@@ -49,7 +49,6 @@ class SitupVC: UIViewController {
             MotionManager.gyroUpdateInterval = 0.2
             //declare used variables
             let YZ = DeviatedArray()  //used to measure peaks ("significance" of middle point)
-            let XZ1 = DeviatedArray()
             
             var iterCount = 0
             var valueCount = 0
@@ -57,8 +56,7 @@ class SitupVC: UIViewController {
             var timeStamp:Float = 0
             var currentScore:Double = 0
             var onScreenCount = 0
-            var stnOffsetYZ: Double = 0, stnOffsetXZ1: Double = 0
-            var PRE_REQ = false
+            var stnOffsetYZ: Double = 0
             
             let REST_AVERAGE:Double = -0.3258    //15 seconds of rest Average, improved upon later
             var WaitForRest = true
@@ -67,6 +65,8 @@ class SitupVC: UIViewController {
             //Needed to track x and y at time of score measurement (AKA 5 iterations previous)
             var X_BUFFER: [Double] = [0.0,0.0,0.0,0.0,0.0]
             var Y_BUFFER: [Double] = [0.0,0.0,0.0,0.0,0.0]
+            
+            var GX_GY_CHECK_BUFFER : [Double] = [0,0,0,0,0,0,0,0,0,0]
             
             var x:Double = 0, y:Double = 0, z:Double = 0
             //Following line acts as loop statement, loops every 0.2 seconds
@@ -81,7 +81,7 @@ class SitupVC: UIViewController {
             }
             MotionManager.startGyroUpdates(to: OperationQueue.current!) { (input, error) in
                 if let data = input {
-//                    let gx = data.rotationRate.x
+                    let gx = data.rotationRate.x
                     let gy = data.rotationRate.y
                     let gz = data.rotationRate.z
                     
@@ -101,8 +101,7 @@ class SitupVC: UIViewController {
                      Initial input of 9 values (1.8 seconds) to fill up YZ_BUFFER array so that operations can be applied to it.
                      */
                     if(iterCount < 9){
-//                        YZ.leftshift(value: (gy + gz)/2 + (y-z))
-                        YZ.leftshift(value: y-z)
+                        YZ.leftshift(value: (gy + gz)/2 + (y-z))
                         R_BUFFER[iterCount] = (x+y+z)/3
                     }
                         /*
@@ -110,9 +109,7 @@ class SitupVC: UIViewController {
                          */
                     else if(WaitForRest){
                         if(abs(self.currentAve(set: R_BUFFER) - REST_AVERAGE) > 0.05){
-//                            YZ.leftshift(value: (gy + gz)/2 + (y-z))
-                            YZ.leftshift(value: y-z)
-                            XZ1.leftshift(value: x+z+1) //(x+y+1)-(y-z)
+                            YZ.leftshift(value: (gy + gz)/2 + (y-z))
                             X_BUFFER = self.leftshiftArr(inputArr: X_BUFFER, value: x)
                             Y_BUFFER = self.leftshiftArr(inputArr: Y_BUFFER, value: y)
                             R_BUFFER = self.leftshiftArr(inputArr: R_BUFFER, value: (x+y+z)/3)
@@ -129,9 +126,8 @@ class SitupVC: UIViewController {
                          */
                     else{
                         print("iteration: \(iterCount)\t\tValueCount: \(valueCount)")
-//                        YZ.leftshift(value: (gy + gz)/2 + (y-z))
-                        YZ.leftshift(value: y-z)
-                        XZ1.leftshift(value: x+z+1)
+                        YZ.leftshift(value: (gy + gz)/2 + (y-z))
+                        GX_GY_CHECK_BUFFER = self.leftshiftArr(inputArr: GX_GY_CHECK_BUFFER, value: max(gx, gy))
                         
                         X_BUFFER = self.leftshiftArr(inputArr: X_BUFFER, value: x)
                         Y_BUFFER = self.leftshiftArr(inputArr: Y_BUFFER, value: y)
@@ -141,32 +137,19 @@ class SitupVC: UIViewController {
                             stnOffsetYZ = YZ.stnOffsetCalc(nextValue: currentScore, Iteration: Double(iterCount))
                         }
                         
+                        let currentMax = self.arrayMax(inputArr: GX_GY_CHECK_BUFFER)
+//                        print("GXGY MAX \(currentMax)")
                         
-                        //print("Score: \(self.peakScore(range: YZ.Array()))\t\tstdDev\(stnOffsetYZ)")
-                        if (currentScore > max(stnOffsetYZ, 0.1) && currentScore < stnOffsetYZ*3) {
+//                        print("Score: \(self.peakScore(range: YZ.Array()))\t\tstdDev\(stnOffsetYZ)")
+                        if (currentScore > max(stnOffsetYZ, 0.1) && currentScore < stnOffsetYZ*3  && currentTime - timeStamp > 2) {
                             let x2 = pow(X_BUFFER[0], 2)
-                            if(x2 < YZ.mid()){
-                                print("Time: \(currentTime)\t\tscore: \(currentScore)")
-                                timeStamp = currentTime
-                                PRE_REQ = true
-                            }
-                        }
-                        if(currentTime - timeStamp > 3.5){
-                            PRE_REQ = false
-                        }
-                        //If peak initial peak detected, proceed to look for follow up peak of x+z+1
-                        //done using the direct value instead of a score as line tends to have lesser slope on peaks
-                        if(PRE_REQ){
-                            currentScore = XZ1.mid()
-                            if(onScreenCount < 4){
-                                stnOffsetXZ1 = YZ.stnOffsetCalc(nextValue: currentScore, Iteration: Double(iterCount))
-                            }
-                            if (currentScore > max(stnOffsetXZ1, 0.1) && currentScore < stnOffsetXZ1*3 && currentTime - timeStamp > 1) {
+                            
+                            if(x2 < YZ.mid()  && currentMax < 3){
                                 self.drawCircle()
                                 onScreenCount += 1
                                 self.Counter.text = String(onScreenCount)
-                                PRE_REQ = false
-                                print("\nXZpeak: \(currentScore)\t\tTime: \(currentTime)\t\tthreshold: \(stnOffsetXZ1)\n")
+                                print("Time: \(currentTime)\t\tscore: \(currentScore)")
+                                timeStamp = currentTime
                             }
                         }
                         valueCount += 1
@@ -227,6 +210,18 @@ class SitupVC: UIViewController {
         }
         outputArr[outputArr.count-1] = value
         return outputArr
+    }
+    
+    private func arrayMax(inputArr: [Double]) -> Double{
+        var i = 0
+        var m : Double = -10
+        while(i < inputArr.count){
+            if(inputArr[i] > m){
+                m = inputArr[i]
+            }
+            i += 1
+        }
+        return m
     }
     
     private func drawCircle(){
