@@ -118,15 +118,19 @@ class WalkingVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource 
                 if(self!.currentPlayer==1){
                     //push meters walked to player1Score
                     //self.ref.child("games/\(gameID)/player2ID").setValue(facebookID)
-                    print(self!.currentCreatedGameID)
+                    print(self!.currentCreatedGameID!)
                     print("HERE IS THE GAME ID ^^^^^^^")
                     self!.ref.child("games/\(self!.currentCreatedGameID!)/player1Score").setValue(metersWalked)
-                    self!.Player1ScoreLabel.text = metersWalked as! String
+                    self!.Player1ScoreLabel.text = "\(metersWalked)"
+                    print("COMPLETED UPDATE^^")
+
                 }else if(self!.currentPlayer==2){
-                    print(self!.currentCreatedGameID)
+                    print(self!.currentCreatedGameID!)
                     print("HERE IS THE GAME ID ^^^^^^^")
                     self!.ref.child("games/\(self!.currentCreatedGameID!)/player2Score").setValue(metersWalked)
-                    self!.Player2ScoreLabel.text = metersWalked as! String
+                    self!.Player2ScoreLabel.text = "\(metersWalked)"
+                    print("COMPLETED UPDATE^^")
+
 
                 }else{
                     print("CurrentPlayer not found")
@@ -137,7 +141,7 @@ class WalkingVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource 
                     Database.database().reference().child("games/\(self!.currentCreatedGameID!)/player2Score").observeSingleEvent(of: .value, with: {DataSnapshot in
                          let dictionary = DataSnapshot.value as? [String: AnyObject]
                         self!.opponentScore = dictionary!["player2Score"] as! Int
-                        self!.Player2ScoreLabel.text = self?.opponentScore as! String
+                        self!.Player2ScoreLabel.text = "\(self!.opponentScore)"
 
                     })
                 }else if(self!.currentPlayer==2){
@@ -145,7 +149,7 @@ class WalkingVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource 
                     Database.database().reference().child("games/\(self!.currentCreatedGameID!)").observeSingleEvent(of: .value, with: {DataSnapshot in
                         let dictionary = DataSnapshot.value as? [String: AnyObject]
                         self!.opponentScore = dictionary!["player1Score"] as! Int
-                        self!.Player1ScoreLabel.text = self?.opponentScore as! String
+                        self!.Player1ScoreLabel.text = "\(self!.opponentScore)"
 
                     })
                 }
