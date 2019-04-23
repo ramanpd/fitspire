@@ -121,14 +121,14 @@ class WalkingVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource 
                     print(self!.currentCreatedGameID!)
                     print("HERE IS THE GAME ID ^^^^^^^")
                     self!.ref.child("games/\(self!.currentCreatedGameID!)/player1Score").setValue(metersWalked.rounded())
-                    self!.Player1ScoreLabel.text = "\(metersWalked)"
+                    self!.Player1ScoreLabel.text = "You: \(metersWalked.rounded())m"
                     print("COMPLETED UPDATE^^")
 
                 }else if(self!.currentPlayer==2){
                     print(self!.currentCreatedGameID!)
                     print("HERE IS THE GAME ID ^^^^^^^")
                     self!.ref.child("games/\(self!.currentCreatedGameID!)/player2Score").setValue(metersWalked.rounded())
-                    self!.Player2ScoreLabel.text = "\(metersWalked)"
+                    self!.Player2ScoreLabel.text = "You: \(metersWalked.rounded())m"
                     print("COMPLETED UPDATE^^")
 
 
@@ -142,8 +142,19 @@ class WalkingVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource 
                     Database.database().reference().child("games/\(self!.currentCreatedGameID!)").observeSingleEvent(of: .value, with: {DataSnapshot in
                         if let dictionary = DataSnapshot.value as? [String: AnyObject]{
                             print("pulled if let")
+                            let finishStatus = dictionary["gameFinished"] as! Bool
                             self!.opponentScore = dictionary["player2Score"] as! Double
-                            self!.Player2ScoreLabel.text = "\(self!.opponentScore)"
+                            self!.Player1ScoreLabel.text = "opponent: \(self!.opponentScore)m"
+                            if(finishStatus == true){
+                                //Segue to loss screen
+                            }
+                            else{
+                                if(self!.opponentScore >= 1){
+                                    self!.ref.child("games/\(self!.currentCreatedGameID!)/gameFinished").setValue(true)
+                                    print("winner winner chicken dinner - player 2")
+                                    //segue to win screen
+                                }
+                            }
                         }
                         else{
                              self!.opponentScore = self!.opponentScore
@@ -157,8 +168,19 @@ class WalkingVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource 
                     Database.database().reference().child("games/\(self!.currentCreatedGameID!)").observeSingleEvent(of: .value, with: {DataSnapshot in
                         if let dictionary = DataSnapshot.value as? [String: AnyObject]{
                             print("pulled if let")
+                            let finishStatus = dictionary["gameFinished"] as! Bool
                             self!.opponentScore = dictionary["player1Score"] as! Double
-                            self!.Player1ScoreLabel.text = "\(self!.opponentScore)"
+                            self!.Player1ScoreLabel.text = "opponent: \(self!.opponentScore)m"
+                            if(finishStatus == true){
+                                //Segue to loss screen
+                            }
+                            else{
+                                if(self!.opponentScore >= 1){
+                                    self!.ref.child("games/\(self!.currentCreatedGameID!)/gameFinished").setValue(true)
+                                    print("winner winner chicken dinner - player 1")
+                                    //segue to win screen
+                                }
+                            }
                         }
                         else{
                             self!.opponentScore = self!.opponentScore
@@ -198,12 +220,10 @@ class WalkingVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource 
                     //count up opponests circle
                     //opponent_progress to be updated by listener to database
                     self?.drawCircle(drawingEndPoint: opponent_progress/doubleDistance, radius: 90, circle: (self?.shapeLayerP2)!)
-                    if(opponent_progress >= 1 && !(self?.winnerDeclared)!){
-                        self?.winnerDeclared = true
+                    //self?.winnerDeclared = true
                         //send declaration to database
-                        print("player 2 wins")
-                        self!.MeterCounter.text = "player 2 wins"
-                    }
+                      //  print("player 2 wins")
+                      //  self!.MeterCounter.text = "player 2 wins"
                 }
             }
         }
