@@ -755,6 +755,20 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eXt-Qm-DFQ">
+                                <rect key="frame" x="282" y="601" width="42" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Crd-9c-Iay">
+                                <rect key="frame" x="32" y="601" width="42" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.46202266219999999" green="0.83828371759999998" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="YvZ-CK-dat"/>
@@ -764,6 +778,8 @@
                         <outlet property="GoButton" destination="Dsz-0R-sGE" id="ZlB-Q1-KOB"/>
                         <outlet property="MeterCounter" destination="Iv8-B9-iPT" id="SFG-xL-JEu"/>
                         <outlet property="PercentLabel" destination="vVH-39-m3V" id="xkR-nZ-Gnb"/>
+                        <outlet property="Player1ScoreLabel" destination="Crd-9c-Iay" id="5oF-fo-hOY"/>
+                        <outlet property="Player2ScoreLabel" destination="eXt-Qm-DFQ" id="c4H-EV-bno"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AzP-qe-rza" userLabel="First Responder" sceneMemberID="firstResponder"/>

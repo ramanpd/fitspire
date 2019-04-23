@@ -37,6 +37,7 @@ class WaitingForOpponentVCViewController: UIViewController {
             vc?.isSingleplayer = false
             vc?.multiplayerDistance=currentCreateGameTarget
             vc?.currentPlayer=1
+            vc?.currentCreatedGameID=currentCreatedGameID as AnyObject
             
         }
     }
