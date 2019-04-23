@@ -34,7 +34,9 @@ class WalkingVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource 
     @IBOutlet weak var DistanceChoice: UIPickerView!
     @IBOutlet weak var PercentLabel: UILabel!
     @IBOutlet weak var MeterCounter: UILabel!
-
+    @IBOutlet weak var Player1ScoreLabel: UILabel!
+    @IBOutlet weak var Player2ScoreLabel: UILabel!
+    
     /*
      Multiplayer Related Variables
      isSingleplayer to be passed in from previous vc as "false" if multiplayer is chosen.
@@ -119,10 +121,13 @@ class WalkingVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource 
                     print(self!.currentCreatedGameID)
                     print("HERE IS THE GAME ID ^^^^^^^")
                     self!.ref.child("games/\(self!.currentCreatedGameID!)/player1Score").setValue(metersWalked)
+                    self!.Player1ScoreLabel.text = metersWalked as! String
                 }else if(self!.currentPlayer==2){
                     print(self!.currentCreatedGameID)
                     print("HERE IS THE GAME ID ^^^^^^^")
                     self!.ref.child("games/\(self!.currentCreatedGameID!)/player2Score").setValue(metersWalked)
+                    self!.Player2ScoreLabel.text = metersWalked as! String
+
                 }else{
                     print("CurrentPlayer not found")
                 }
@@ -132,13 +137,16 @@ class WalkingVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource 
                     Database.database().reference().child("games/\(self!.currentCreatedGameID!)/player2Score").observeSingleEvent(of: .value, with: {DataSnapshot in
                          let dictionary = DataSnapshot.value as? [String: AnyObject]
                         self!.opponentScore = dictionary!["player2Score"] as! Int
+                        self!.Player2ScoreLabel.text = self?.opponentScore as! String
+
                     })
                 }else if(self!.currentPlayer==2){
                     //pull player 1
                     Database.database().reference().child("games/\(self!.currentCreatedGameID!)").observeSingleEvent(of: .value, with: {DataSnapshot in
                         let dictionary = DataSnapshot.value as? [String: AnyObject]
                         self!.opponentScore = dictionary!["player1Score"] as! Int
-                       
+                        self!.Player1ScoreLabel.text = self?.opponentScore as! String
+
                     })
                 }
                 
