@@ -138,7 +138,7 @@ class WalkingVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource 
                 
                 //PULL OPPONENT METERSWALKED FROM FIREBASE
                 if(self!.currentPlayer==1){
-                    Database.database().reference().child("games/\(self!.currentCreatedGameID!)/player2Score").observeSingleEvent(of: .value, with: {DataSnapshot in
+                    Database.database().reference().child("games/\(self!.currentCreatedGameID!)").observeSingleEvent(of: .value, with: {DataSnapshot in
                          let dictionary = DataSnapshot.value as? [String: AnyObject]
                         self!.opponentScore = dictionary!["player2Score"] as! Int
                         self!.Player2ScoreLabel.text = "\(self!.opponentScore)"
