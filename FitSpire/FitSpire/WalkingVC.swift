@@ -37,6 +37,7 @@ class WalkingVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource 
     @IBOutlet weak var Player1ScoreLabel: UILabel!
     @IBOutlet weak var Player2ScoreLabel: UILabel!
     
+    
     /*
      Multiplayer Related Variables
      isSingleplayer to be passed in from previous vc as "false" if multiplayer is chosen.
@@ -49,9 +50,11 @@ class WalkingVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource 
     var currentCreatedGameID: AnyObject?
     var ref: DatabaseReference!
     var opponentScore:Double = 0
+    var opponentName:String = ""
     var distanceOptions: [Int] = [Int]()
     var distanceSelection = 1
     var percentWalked = 0.00
+    var metersWalked:Double = 0
 
     let shapeLayerP1 = CAShapeLayer()
     let shapeLayerP2 = CAShapeLayer()   //Multiplayer
@@ -107,7 +110,7 @@ class WalkingVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource 
             guard let pedometerData = pedometerData, error == nil else { return }
 
             DispatchQueue.main.async {
-                let metersWalked:Double = pedometerData.distance as! Double
+                self!.metersWalked = pedometerData.distance as! Double
                 
                 //PUSH METERSWALKED TO FIREBASE
                 self!.ref = Database.database().reference()
@@ -120,17 +123,26 @@ class WalkingVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource 
                     //self.ref.child("games/\(gameID)/player2ID").setValue(facebookID)
                     print(self!.currentCreatedGameID!)
                     print("HERE IS THE GAME ID ^^^^^^^")
-                    self!.ref.child("games/\(self!.currentCreatedGameID!)/player1Score").setValue(metersWalked.rounded())
-                    self!.Player1ScoreLabel.text = "You: \(metersWalked.rounded())m"
+                    self!.ref.child("games/\(self!.currentCreatedGameID!)/player1Score").setValue(self!.metersWalked.rounded())
+                    self!.Player1ScoreLabel.text = "You: \(self!.metersWalked.rounded())m"
                     print("COMPLETED UPDATE^^")
+                    if(self!.metersWalked/doubleDistance >= 1){
+                        self!.ref.child("games/\(self!.currentCreatedGameID!)/gameFinished").setValue(true)
+                        print("winner winner chicken dinner - player 1")
+                        self!.performSegue(withIdentifier: "WinSegue", sender: self)
+                    }
 
                 }else if(self!.currentPlayer==2){
                     print(self!.currentCreatedGameID!)
                     print("HERE IS THE GAME ID ^^^^^^^")
-                    self!.ref.child("games/\(self!.currentCreatedGameID!)/player2Score").setValue(metersWalked.rounded())
-                    self!.Player2ScoreLabel.text = "You: \(metersWalked.rounded())m"
+                    self!.ref.child("games/\(self!.currentCreatedGameID!)/player2Score").setValue(self!.metersWalked.rounded())
+                    self!.Player2ScoreLabel.text = "You: \(self!.metersWalked.rounded())m"
                     print("COMPLETED UPDATE^^")
-
+                    if(self!.metersWalked/doubleDistance >= 1){
+                        self!.ref.child("games/\(self!.currentCreatedGameID!)/gameFinished").setValue(true)
+                        print("winner winner chicken dinner - player 2")
+                        self!.performSegue(withIdentifier: "WinSegue", sender: self)
+                    }
 
                 }else{
                     print("CurrentPlayer not found")
@@ -138,22 +150,17 @@ class WalkingVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource 
                 
                 //PULL OPPONENT METERSWALKED FROM FIREBASE
                 if(self!.currentPlayer==1){
+                    //pull payer 2
                     print("pulled opponents score start")
                     Database.database().reference().child("games/\(self!.currentCreatedGameID!)").observeSingleEvent(of: .value, with: {DataSnapshot in
                         if let dictionary = DataSnapshot.value as? [String: AnyObject]{
                             print("pulled if let")
                             let finishStatus = dictionary["gameFinished"] as! Bool
                             self!.opponentScore = dictionary["player2Score"] as! Double
+                            self!.opponentName = dictionary["player1ID"] as! String
                             self!.Player1ScoreLabel.text = "opponent: \(self!.opponentScore)m"
                             if(finishStatus == true){
-                                //Segue to loss screen
-                            }
-                            else{
-                                if(self!.opponentScore >= 1){
-                                    self!.ref.child("games/\(self!.currentCreatedGameID!)/gameFinished").setValue(true)
-                                    print("winner winner chicken dinner - player 2")
-                                    //segue to win screen
-                                }
+                                self!.performSegue(withIdentifier: "LoseSgue", sender: self)
                             }
                         }
                         else{
@@ -170,16 +177,10 @@ class WalkingVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource 
                             print("pulled if let")
                             let finishStatus = dictionary["gameFinished"] as! Bool
                             self!.opponentScore = dictionary["player1Score"] as! Double
+                            self!.opponentName = dictionary["player1ID"] as! String
                             self!.Player1ScoreLabel.text = "opponent: \(self!.opponentScore)m"
                             if(finishStatus == true){
-                                //Segue to loss screen
-                            }
-                            else{
-                                if(self!.opponentScore >= 1){
-                                    self!.ref.child("games/\(self!.currentCreatedGameID!)/gameFinished").setValue(true)
-                                    print("winner winner chicken dinner - player 1")
-                                    //segue to win screen
-                                }
+                                self!.performSegue(withIdentifier: "LoseSgue", sender: self)
                             }
                         }
                         else{
@@ -189,43 +190,44 @@ class WalkingVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource 
                     })
                 }
                 
-                print("James and Raman suck nipples")
                 let opponent_progress = Double((self?.opponentScore)!)
                 
-                //UPDATE OPPONENT SCORE
+                //Current user's update
                 
-                if((metersWalked/doubleDistance)>=1){
+                if((self!.metersWalked/doubleDistance)>=1){
                     self?.MeterCounter.text = "Exercise Complete!"
                     self?.PercentLabel.text = "100%"
                     self?.drawCircle(drawingEndPoint: 1.00, radius: 120, circle: (self?.shapeLayerP1)!)
                     self?.pedometer.stopUpdates()
-                    /*
-                    if(!(self?.winnerDeclared)! && self?.isSingleplayer == false){  //Multiplayer
-                        self?.winnerDeclared = true
-                        //send declaration to database
-                        print("player 1 wins")
-                        self?.MeterCounter.text = "You Win!"
-                     }*/
                     
                 }else{
-                    self?.MeterCounter.text = "Meters: \(Int(metersWalked.rounded()))  Goal: \(savedDistanceGoal)m"
-
-                    self?.drawCircle(drawingEndPoint: metersWalked/doubleDistance, radius: 120, circle: (self?.shapeLayerP1)!)
-                    let cleanPercentage = Int(((metersWalked/doubleDistance)*100).rounded())
+                    self?.MeterCounter.text = "Meters: \(Int(self!.metersWalked.rounded()))  Goal: \(savedDistanceGoal)m"
+                    self?.drawCircle(drawingEndPoint: self!.metersWalked/doubleDistance, radius: 120, circle: (self?.shapeLayerP1)!)
+                    let cleanPercentage = Int(((self!.metersWalked/doubleDistance)*100).rounded())
                     self?.PercentLabel.text = "\(cleanPercentage)%"
                 }
 
-
+                //Update opponent's progress circle
                 if(!(self?.isSingleplayer)!){   //Multiplayer
-                    //count up opponests circle
-                    //opponent_progress to be updated by listener to database
                     self?.drawCircle(drawingEndPoint: opponent_progress/doubleDistance, radius: 90, circle: (self?.shapeLayerP2)!)
-                    //self?.winnerDeclared = true
-                        //send declaration to database
-                      //  print("player 2 wins")
-                      //  self!.MeterCounter.text = "player 2 wins"
                 }
             }
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == "WinSegue") {
+            let winvc = segue.destination as! WinScreenVC
+            winvc.opponentName = opponentName
+            winvc.target = distanceSelection
+            winvc.playerScore = Double(distanceSelection)
+            winvc.opponentScore = opponentScore
+            
+        }
+        else if (segue.identifier == "LoseSegue") {
+            let losevc = segue.destination as! LossScreenVC
+            losevc.target = distanceSelection
+            losevc.lossScore = metersWalked
         }
     }
 
