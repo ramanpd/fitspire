@@ -189,7 +189,6 @@ class WalkingVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource 
                     })
                 }
                 
-                print("James and Raman suck nipples")
                 let opponent_progress = Double((self?.opponentScore)!)
                 
                 //UPDATE OPPONENT SCORE
@@ -231,7 +230,12 @@ class WalkingVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource 
 
     fileprivate func DrawInnerCircle(_ circularPath: UIBezierPath, drawingEndPoint:Double, circle: CAShapeLayer) {
         circle.path = circularPath.cgPath
-        circle.strokeColor=UIColor.red.cgColor
+        if(currentPlayer==1){
+            circle.strokeColor=UIColor.blue.cgColor
+        }else{
+            circle.strokeColor=UIColor.red.cgColor
+
+        }
         circle.lineWidth = 10
         circle.lineCap = CAShapeLayerLineCap.round
         circle.fillColor = UIColor.clear.cgColor
