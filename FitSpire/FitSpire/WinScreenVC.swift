@@ -29,8 +29,8 @@ class WinScreenVC: UIViewController {
         super.viewDidLoad()
 
         TitleText.text = TitleText.text! + "\n" + opponentName
-        Targetlabel.text = Targetlabel.text! + "\t\t\t\t\(target)"
-        WinScoreLabel.text = WinScoreLabel.text! + "\t\t\(playerScore)"
+        Targetlabel.text = Targetlabel.text! + "\t\t\t\t\(target!)"
+        WinScoreLabel.text = WinScoreLabel.text! + "\t\t\(playerScore!)"
         OpponentScoreLabel.text = OpponentScoreLabel.text! + "\t\(opponentScore.rounded())"
         TimeLabel.text = TimeLabel.text! + "\t\t\t\t\(time)"
         

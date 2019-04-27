@@ -128,8 +128,9 @@ class WalkingVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource 
                     print("COMPLETED UPDATE^^")
                     if(self!.metersWalked/doubleDistance >= 1){
                         self!.ref.child("games/\(self!.currentCreatedGameID!)/gameFinished").setValue(true)
-                        print("winner winner chicken dinner - player 1")
+                        self?.pedometer.stopUpdates()
                         self!.performSegue(withIdentifier: "WinSegue", sender: self)
+                        print("winner winner chicken dinner - player 1")
                     }
 
                 }else if(self!.currentPlayer==2){
@@ -140,8 +141,9 @@ class WalkingVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource 
                     print("COMPLETED UPDATE^^")
                     if(self!.metersWalked/doubleDistance >= 1){
                         self!.ref.child("games/\(self!.currentCreatedGameID!)/gameFinished").setValue(true)
-                        print("winner winner chicken dinner - player 2")
+                        self?.pedometer.stopUpdates()
                         self!.performSegue(withIdentifier: "WinSegue", sender: self)
+                        print("winner winner chicken dinner - player 2")
                     }
 
                 }else{
@@ -159,8 +161,9 @@ class WalkingVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource 
                             self!.opponentScore = dictionary["player2Score"] as! Double
                             self!.opponentName = dictionary["player1ID"] as! String
                             self!.Player1ScoreLabel.text = "opponent: \(self!.opponentScore)m"
-                            if(finishStatus == true){
-                                self!.performSegue(withIdentifier: "LoseSgue", sender: self)
+                            if(finishStatus == true && self!.metersWalked/doubleDistance < 1){
+                                self?.pedometer.stopUpdates()
+                                self!.performSegue(withIdentifier: "LoseSegue", sender: self)
                             }
                         }
                         else{
@@ -179,8 +182,9 @@ class WalkingVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource 
                             self!.opponentScore = dictionary["player1Score"] as! Double
                             self!.opponentName = dictionary["player1ID"] as! String
                             self!.Player1ScoreLabel.text = "opponent: \(self!.opponentScore)m"
-                            if(finishStatus == true){
-                                self!.performSegue(withIdentifier: "LoseSgue", sender: self)
+                            if(finishStatus == true && self!.metersWalked/doubleDistance < 1){
+                                self?.pedometer.stopUpdates()
+                                self!.performSegue(withIdentifier: "LoseSegue", sender: self)
                             }
                         }
                         else{
@@ -222,6 +226,9 @@ class WalkingVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource 
             winvc.target = distanceSelection
             winvc.playerScore = Double(distanceSelection)
             winvc.opponentScore = opponentScore
+            print("opp name:\(opponentName)")
+            print("target:\(distanceSelection)")
+            print("opp score:\(opponentScore)")
             
         }
         else if (segue.identifier == "LoseSegue") {
