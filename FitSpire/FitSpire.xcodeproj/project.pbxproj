@@ -18,7 +18,7 @@
 		08293AF22254A72400F279A3 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08293AF12254A72400F279A3 /* User.swift */; };
 		0880BF8B2238BB740044F194 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0880BF892238BB730044F194 /* FBSDKCoreKit.framework */; };
 		0880BF8C2238BB740044F194 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0880BF8A2238BB740044F194 /* FBSDKLoginKit.framework */; };
-		0892656F2274606200C51ED1 /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0892656B2274604F00C51ED1 /* Charts.framework */; };
+		08926997227465EB00C51ED1 /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 089269942274658F00C51ED1 /* Charts.framework */; };
 		08F20D3D224F9A77005E8002 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 08F20D3B224F9A76005E8002 /* GoogleService-Info.plist */; };
 		08F20D40224F9B9B005E8002 /* FirebaseDatabase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08F20D3E224F9B9A005E8002 /* FirebaseDatabase.framework */; };
 		08F20D41224F9B9B005E8002 /* leveldb-library.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08F20D3F224F9B9B005E8002 /* leveldb-library.framework */; };
@@ -45,34 +45,21 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		0892656A2274604F00C51ED1 /* PBXContainerItemProxy */ = {
+		089269932274658F00C51ED1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 089265652274604E00C51ED1 /* Charts.xcodeproj */;
+			containerPortal = 0892698E2274658E00C51ED1 /* Charts.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 65AD9E95D9ED4DC0BD73A743;
 			remoteInfo = Charts;
 		};
-		0892656C2274604F00C51ED1 /* PBXContainerItemProxy */ = {
+		089269952274658F00C51ED1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 089265652274604E00C51ED1 /* Charts.xcodeproj */;
+			containerPortal = 0892698E2274658E00C51ED1 /* Charts.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 1CBBC58C6CE1EBEE9852CE41;
 			remoteInfo = ChartsTests;
 		};
 /* End PBXContainerItemProxy section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		0846E1FE223E96A300AB490E /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		08045FE2225B1CDF00232F76 /* WaitingForOpponentVCViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaitingForOpponentVCViewController.swift; sourceTree = "<group>"; };
@@ -87,7 +74,7 @@
 		0880BF892238BB730044F194 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
 		0880BF8A2238BB740044F194 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
 		0880BF8D2238BC570044F194 /* FitSpire-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FitSpire-Bridging-Header.h"; sourceTree = "<group>"; };
-		089265652274604E00C51ED1 /* Charts.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Charts.xcodeproj; path = "../../../../Desktop/Charts-master/Charts.xcodeproj"; sourceTree = "<group>"; };
+		0892698E2274658E00C51ED1 /* Charts.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Charts.xcodeproj; path = "Charts-master/Charts.xcodeproj"; sourceTree = SOURCE_ROOT; };
 		08F20D3B224F9A76005E8002 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		08F20D3E224F9B9A005E8002 /* FirebaseDatabase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FirebaseDatabase.framework; sourceTree = "<group>"; };
 		08F20D3F224F9B9B005E8002 /* leveldb-library.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = "leveldb-library.framework"; sourceTree = "<group>"; };
@@ -131,10 +118,10 @@
 				08F20D4D224F9BC4005E8002 /* FIRAnalyticsConnector.framework in Frameworks */,
 				08F20D4A224F9BC4005E8002 /* FirebaseCoreDiagnostics.framework in Frameworks */,
 				08F20D50224F9BC4005E8002 /* FirebaseCore.framework in Frameworks */,
+				08926997227465EB00C51ED1 /* Charts.framework in Frameworks */,
 				0880BF8B2238BB740044F194 /* FBSDKCoreKit.framework in Frameworks */,
 				08F20D4C224F9BC4005E8002 /* GoogleUtilities.framework in Frameworks */,
 				08045FE6225B224800232F76 /* FirebaseInAppMessaging.framework in Frameworks */,
-				0892656F2274606200C51ED1 /* Charts.framework in Frameworks */,
 				08F20D41224F9B9B005E8002 /* leveldb-library.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -151,20 +138,20 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		089265662274604E00C51ED1 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				0892656B2274604F00C51ED1 /* Charts.framework */,
-				0892656D2274604F00C51ED1 /* ChartsTests.xctest */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		0892656E2274606200C51ED1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		0892698F2274658E00C51ED1 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				089269942274658F00C51ED1 /* Charts.framework */,
+				089269962274658F00C51ED1 /* ChartsTests.xctest */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		CE368D1A2237775900478771 = {
@@ -187,7 +174,7 @@
 		CE368D252237775900478771 /* FitSpire */ = {
 			isa = PBXGroup;
 			children = (
-				089265652274604E00C51ED1 /* Charts.xcodeproj */,
+				0892698E2274658E00C51ED1 /* Charts.xcodeproj */,
 				08293AF02254A70000F279A3 /* Model */,
 				08293AEA22548F3D00F279A3 /* Assets.xcassets */,
 				08F20D53224F9E0D005E8002 /* module.modulemap */,
@@ -239,7 +226,6 @@
 				CE368D1F2237775900478771 /* Sources */,
 				CE368D202237775900478771 /* Frameworks */,
 				CE368D212237775900478771 /* Resources */,
-				0846E1FE223E96A300AB490E /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -279,8 +265,8 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = 089265662274604E00C51ED1 /* Products */;
-					ProjectRef = 089265652274604E00C51ED1 /* Charts.xcodeproj */;
+					ProductGroup = 0892698F2274658E00C51ED1 /* Products */;
+					ProjectRef = 0892698E2274658E00C51ED1 /* Charts.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -291,18 +277,18 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		0892656B2274604F00C51ED1 /* Charts.framework */ = {
+		089269942274658F00C51ED1 /* Charts.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
 			path = Charts.framework;
-			remoteRef = 0892656A2274604F00C51ED1 /* PBXContainerItemProxy */;
+			remoteRef = 089269932274658F00C51ED1 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		0892656D2274604F00C51ED1 /* ChartsTests.xctest */ = {
+		089269962274658F00C51ED1 /* ChartsTests.xctest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
 			path = ChartsTests.xctest;
-			remoteRef = 0892656C2274604F00C51ED1 /* PBXContainerItemProxy */;
+			remoteRef = 089269952274658F00C51ED1 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -487,7 +473,6 @@
 		CE368D362237775900478771 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -514,7 +499,6 @@
 		CE368D372237775900478771 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
