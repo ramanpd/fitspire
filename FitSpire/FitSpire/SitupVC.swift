@@ -10,6 +10,8 @@ import UIKit
 import CoreMotion
 import AVFoundation
 import AudioToolbox
+import Firebase
+import FirebaseDatabase
 
 class SitupVC: UIViewController {
     
@@ -26,9 +28,17 @@ class SitupVC: UIViewController {
     /*
      Multiplayer options: isSingleplayer, multiplayerTarget passed in from segue
     */
-    var isSingleplayer = false
-    var multiplayerTarget = 10
+    var isSingleplayer:Bool!
+    var multiplayerTarget:Int!
+    var ref: DatabaseReference!
     var winnerDeclared = false
+    
+    var currentPlayer = 0
+    var currentCreatedGameID: AnyObject?
+    var opponentScore = 0
+    var opponentName = ""
+    var onScreenCount = 0
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,7 +65,6 @@ class SitupVC: UIViewController {
             var currentTime:Float = 0
             var timeStamp:Float = 0
             var currentScore:Double = 0
-            var onScreenCount = 0
             var stnOffsetYZ: Double = 0
             
             let REST_AVERAGE:Double = -0.3258    //15 seconds of rest Average, improved upon later
@@ -87,14 +96,87 @@ class SitupVC: UIViewController {
                     
                     if(!self.isSingleplayer){
                         /*
-                        UPDATE MULTIPLAYER LABEL HERE
-                        This loop runs every 0.2 seconds so a network listener could be used
+                        UPDATE MULTIPLAYER VALUES
+                        This loop runs every 0.2 seconds so the network is updated here
                         */
-                        //get Opponent's current score and winnerTarget.
-                        if(onScreenCount >= self.multiplayerTarget && self.winnerDeclared == false){
-                            //you win - send to server
-                            self.winnerDeclared = true;
-                            print("winner!")
+                        //PUSH SCORE TO FIREBASE AND DETERMINE WIN-STATE
+                        self.ref = Database.database().reference()
+                        
+                        if(self.currentPlayer==1){
+                            print(self.currentCreatedGameID!)
+                            print("HERE IS THE GAME ID ^^^^^^^")
+                            self.ref.child("games/\(self.currentCreatedGameID!)/player1Score").setValue(self.onScreenCount)
+                            //self.Player1ScoreLabel.text = "You: \(self!.onScreenCount) sit-ups"
+                            print("COMPLETED UPDATE^^")
+                            if(self.onScreenCount >= self.multiplayerTarget){
+                                self.ref.child("games/\(self.currentCreatedGameID!)/gameFinished").setValue(true)
+                                self.MotionManager.stopGyroUpdates()
+                                self.MotionManager.stopAccelerometerUpdates()
+                                self.performSegue(withIdentifier: "WinSegue", sender: self)
+                                print("winner winner chicken dinner - player 1")
+                            }
+                        }
+                        else if(self.currentPlayer==2){
+                            print(self.currentCreatedGameID!)
+                            print("HERE IS THE GAME ID ^^^^^^^")
+                            self.ref.child("games/\(self.currentCreatedGameID!)/player2Score").setValue(self.onScreenCount)
+                            //self.Player2ScoreLabel.text = "You: \(self!.onScreenCount) sit-ups"
+                            print("COMPLETED UPDATE^^")
+                            if(self.onScreenCount >= self.multiplayerTarget){
+                                self.ref.child("games/\(self.currentCreatedGameID!)/gameFinished").setValue(true)
+                                self.MotionManager.stopGyroUpdates()
+                                self.MotionManager.stopAccelerometerUpdates()
+                                self.performSegue(withIdentifier: "WinSegue", sender: self)
+                                print("winner winner chicken dinner - player 2")
+                            }
+                        }
+                        else{
+                            print("CurrentPlayer not found")
+                        }
+                    
+                    //PULL OPPONENT SCORE FROM FIREBASE
+                        if(self.currentPlayer==1){
+                            //pull payer 2
+                            print("pulled opponents score start")
+                            Database.database().reference().child("games/\(self.currentCreatedGameID!)").observeSingleEvent(of: .value, with: {DataSnapshot in
+                                if let dictionary = DataSnapshot.value as? [String: AnyObject]{
+                                    print("pulled if let")
+                                    let finishStatus = dictionary["gameFinished"] as! Bool
+                                    self.opponentScore = dictionary["player2Score"] as! Int
+                                    self.opponentName = dictionary["player1ID"] as! String
+//                                  self.Player1ScoreLabel.text = "opponent: \(self.opponentScore)m"
+                                    if(finishStatus == true && self.onScreenCount < self.multiplayerTarget){
+                                        self.MotionManager.stopGyroUpdates(); self.MotionManager.stopAccelerometerUpdates()
+                                        self.performSegue(withIdentifier: "LoseSegue", sender: self)
+                                    }
+                                }
+                                else{
+                                    //self.opponentScore = self.opponentScore
+                                }
+                                print("pulled opponents score end")
+                            
+                            })
+                        }
+                        else if(self.currentPlayer == 2){
+                            //pull payer 2
+                            print("pulled opponents score start")
+                            Database.database().reference().child("games/\(self.currentCreatedGameID!)").observeSingleEvent(of: .value, with: {DataSnapshot in
+                                if let dictionary = DataSnapshot.value as? [String: AnyObject]{
+                                    print("pulled if let")
+                                    let finishStatus = dictionary["gameFinished"] as! Bool
+                                    self.opponentScore = dictionary["player1Score"] as! Int
+                                    self.opponentName = dictionary["player2ID"] as! String
+//                                self.Player1ScoreLabel.text = "opponent: \(self.opponentScore)m"
+                                    if(finishStatus == true && self.onScreenCount < self.multiplayerTarget){
+                                        self.MotionManager.stopGyroUpdates(); self.MotionManager.stopAccelerometerUpdates()
+                                        self.performSegue(withIdentifier: "LoseSegue", sender: self)
+                                    }
+                                }
+                                else{
+                                    //self.opponentScore = self.opponentScore
+                                }
+                                print("pulled opponents score end")
+                            })
                         }
                     }
                     /*
@@ -133,7 +215,7 @@ class SitupVC: UIViewController {
                         Y_BUFFER = self.leftshiftArr(inputArr: Y_BUFFER, value: y)
                         
                         currentScore = self.peakScore(range: YZ.Array())
-                        if(onScreenCount < 3){
+                        if(self.onScreenCount < 3){
                             stnOffsetYZ = YZ.stnOffsetCalc(nextValue: currentScore, Iteration: Double(iterCount))
                         }
                         
@@ -146,8 +228,8 @@ class SitupVC: UIViewController {
                             
                             if(x2 < YZ.mid()  && currentMax < 3){
                                 self.drawCircle()
-                                onScreenCount += 1
-                                self.Counter.text = String(onScreenCount)
+                                self.onScreenCount += 1
+                                self.Counter.text = String(self.onScreenCount)
                                 print("Time: \(currentTime)\t\tscore: \(currentScore)")
                                 timeStamp = currentTime
                             }
@@ -163,16 +245,26 @@ class SitupVC: UIViewController {
             print("no accelerometer or no gyroscope error")
         }
     }
-    /*
+
      // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destination.
-     // Pass the selected object to the new view controller.
-     }
-     */
-    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == "WinSegue") {
+            let winvc = segue.destination as! WinScreenVC
+            winvc.opponentName = opponentName
+            winvc.target = multiplayerTarget
+            winvc.playerScore = Double(onScreenCount)
+            winvc.opponentScore = Double(opponentScore)
+            
+            
+        }
+        else if (segue.identifier == "LoseSegue") {
+            let losevc = segue.destination as! LossScreenVC
+            losevc.target = multiplayerTarget
+            losevc.lossScore = Double(onScreenCount)
+        }
+    }
+
+    //MARK: - Methods
     private func peakScore(range: [Double]) -> Double{
         let mid = (range.count/2)
         var i:Int = 0
