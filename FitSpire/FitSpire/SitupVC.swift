@@ -28,7 +28,7 @@ class SitupVC: UIViewController {
     /*
      Multiplayer options: isSingleplayer, multiplayerTarget passed in from segue
     */
-    var isSingleplayer:Bool!
+    var isSingleplayer = true
     var multiplayerTarget:Int!
     var ref: DatabaseReference!
     var winnerDeclared = false
