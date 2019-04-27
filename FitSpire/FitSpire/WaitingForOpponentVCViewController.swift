@@ -30,8 +30,9 @@ class WaitingForOpponentVCViewController: UIViewController {
         
         tableView.reloadData()
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(handleCancel))
-        tableView.register(UserCell.self, forCellReuseIdentifier: cellId)
+        
         fetchPlayersOnline()
+        tableView.register(UserCell.self, forCellReuseIdentifier: cellId)
         ref.child("games").observe(.childAdded, with: {(DataSnapshot) in
             self.ref.child("games").child(currentCreatedGameID).observe(.childChanged, with: {(DataSnapshot) in
                 self.foundSnapshot(DataSnapshot)
@@ -57,15 +58,17 @@ class WaitingForOpponentVCViewController: UIViewController {
     }
     func fetchPlayersOnline()
     {
-        Database.database().reference().child("users").observe(.value, with: {(DataSnapshot) in print(DataSnapshot)
+        Database.database().reference().child("users").observe(.childAdded, with: {(DataSnapshot) in print(DataSnapshot)
             if let dictionary = DataSnapshot.value as? [String: AnyObject]{
                 let player = User()
                 player.username = dictionary["username"]
-                player.status = dictionary["status"] as! Bool
+                player.status = dictionary["status"] as? Int
+                print("ROLORLOL")
+                print(player.username)
                 player.facebookId = DataSnapshot.key as AnyObject
-                if player.status == true{
-                    self.playersOnline.append(player)
-                }
+                
+                self.playersOnline.append(player)
+                print(self.playersOnline.count)
                 DispatchQueue.main.async{
                     self.tableView.reloadData()
                 }
@@ -76,15 +79,6 @@ class WaitingForOpponentVCViewController: UIViewController {
     @objc func handleCancel()
     {
         dismiss(animated: true, completion: nil)
-    }
-    func tableView(_ tableView:UITableView, didSelectRowAt indexPath: IndexPath)
-    {
-        gameIndex = indexPath.row
-        print(games[gameIndex].gameID!)
-        gameID = games[gameIndex].gameID as! String
-        ref = Database.database().reference()
-        getFBUserData()
-        playGame()
     }
     /*
      Function playGame:
@@ -105,29 +99,6 @@ class WaitingForOpponentVCViewController: UIViewController {
         print("Almost there"+games[gameIndex].gameType)
     }
 
-    func getFBUserData(){
-        if((FBSDKAccessToken.current()) != nil){
-            FBSDKGraphRequest(graphPath: "me", parameters: ["fields": "id, name, first_name, last_name, picture.type(large), email"]).start(completionHandler: { (connection, result, error) -> Void in
-                if (error == nil){
-                    self.dict = result as? [String : AnyObject]
-                    print("Here")
-                    self.profileName = self.dict?["name"]
-                    self.profileID=self.dict?["id"]
-                    print("tree")
-                    self.updateDatabase(facebookID: self.profileID!, facebookUsername:self.profileName!)
-                    //var profilePicture = self.dict?["picture"]
-                    //var pictureURL = profilePicture?["url"]
-                }
-            })
-        }
-    }
-    func updateDatabase(facebookID:AnyObject, facebookUsername:AnyObject)
-    {
-        
-        self.ref.child("games/\(gameID)/player2ID").setValue(facebookID)
-        self.ref.child("games/\(gameID)/gameStarted").setValue(true)
-        self.ref.child("games/\(gameID)/player2Score").setValue(0)
-    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
@@ -141,7 +112,7 @@ class WaitingForOpponentVCViewController: UIViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath)
         let playerOnline = playersOnline[indexPath.row]
         let cellText = playerOnline.username
-        cell.textLabel?.text = cellText as! String
+        cell.textLabel?.text = cellText as? String
         return cell
     }
 }
