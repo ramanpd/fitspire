@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -484,6 +484,7 @@
                         <viewLayoutGuide key="safeArea" id="fYJ-x3-qv0"/>
                     </view>
                     <connections>
+                        <outlet property="tableView" destination="k11-rK-ynG" id="Yn5-kw-ciX"/>
                         <segue destination="Uz0-Da-Qz2" kind="showDetail" identifier="Wait2WalkingSegue" id="GA2-VQ-sNo"/>
                     </connections>
                 </viewController>
@@ -1440,11 +1441,11 @@
         <image name="walking-1" width="480" height="480"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Odh-cJ-8zs"/>
-        <segue reference="mam-8e-Km4"/>
-        <segue reference="Cvw-K0-fZL"/>
-        <segue reference="0rT-J6-IHh"/>
-        <segue reference="M11-L5-S2P"/>
-        <segue reference="zbD-mM-nhm"/>
+        <segue reference="2Cd-ME-nyo"/>
+        <segue reference="TqA-Ga-zVe"/>
+        <segue reference="GA2-VQ-sNo"/>
+        <segue reference="Tfm-tO-25e"/>
+        <segue reference="XpF-qM-IcY"/>
+        <segue reference="e5c-TM-fsN"/>
     </inferredMetricsTieBreakers>
 </document>

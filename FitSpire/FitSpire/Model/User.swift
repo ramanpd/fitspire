@@ -12,4 +12,5 @@ class User: NSObject {
     var username:AnyObject!
     var facebookId:AnyObject!
     var photo: UIImage!
+    var status: Bool!
 }
