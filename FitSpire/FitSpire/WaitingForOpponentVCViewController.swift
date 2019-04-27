@@ -32,7 +32,7 @@ class WaitingForOpponentVCViewController: UIViewController {
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(handleCancel))
         
         fetchPlayersOnline()
-        tableView.register(UserCell.self, forCellReuseIdentifier: cellId)
+        tableView.register(PlayersOnlineCell.self, forCellReuseIdentifier: cellId)
         ref.child("games").observe(.childAdded, with: {(DataSnapshot) in
             self.ref.child("games").child(currentCreatedGameID).observe(.childChanged, with: {(DataSnapshot) in
                 self.foundSnapshot(DataSnapshot)
@@ -109,10 +109,21 @@ class WaitingForOpponentVCViewController: UIViewController {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         //let cell = UITableViewCell(style: .subtitle, reuseIdentifier: cellId)
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! PlayersOnlineCell
         let playerOnline = playersOnline[indexPath.row]
         let cellText = playerOnline.username
         cell.textLabel?.text = cellText as? String
         return cell
+    }
+    class PlayersOnlineCell: UITableViewCell {
+        
+        override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+            super.init(style: style, reuseIdentifier: reuseIdentifier)
+        }
+        
+        required init?(coder aDecoder: NSCoder) {
+            fatalError("init(coder:) has not been implemented")
+        }
+        
     }
 }
