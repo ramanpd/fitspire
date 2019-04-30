@@ -94,6 +94,14 @@ class FindGameVC: UITableViewController{
             vc?.currentCreatedGameID = games[gameIndex].gameID
             print("Succesfully changed VARIABLE")
         }
+        if segue.destination is SitupVC{
+            let sitvc = segue.destination as! SitupVC
+            sitvc.isSingleplayer = false
+            sitvc.multiplayerTarget = games[gameIndex].target
+            sitvc.currentPlayer = 2
+            sitvc.currentCreatedGameID = games[gameIndex].gameID
+            
+        }
     }
     func getFBUserData(){
         if((FBSDKAccessToken.current()) != nil){
@@ -130,10 +138,10 @@ class FindGameVC: UITableViewController{
         //let cell = UITableViewCell(style: .subtitle, reuseIdentifier: cellId)
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath)
         let game = games[indexPath.row]
-        var gameTypeText: String = game.gameType
-        var targetText = " Target: " + String(game.target)
-        var challengerText = " Challenger: " + String(describing: game.player1Name)
-        var cellText = gameTypeText + targetText + challengerText
+        let gameTypeText: String = game.gameType
+        let targetText = " Target: " + String(game.target)
+        let challengerText = " Challenger: " + String(describing: game.player1Name)
+        let cellText = gameTypeText + targetText + challengerText
         cell.textLabel?.text = cellText
         return cell
     }
