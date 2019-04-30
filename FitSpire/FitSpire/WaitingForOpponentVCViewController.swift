@@ -79,7 +79,13 @@ class WaitingForOpponentVCViewController: UIViewController, UITableViewDelegate,
             vc?.multiplayerDistance=currentCreateGameTarget
             vc?.currentPlayer=1
             vc?.currentCreatedGameID=currentCreatedGameID as AnyObject
-            
+        }
+        if segue.destination is SitupVC{
+            let sitvc = segue.destination as! SitupVC
+            sitvc.isSingleplayer = false
+            sitvc.multiplayerTarget = currentCreateGameTarget
+            sitvc.currentPlayer = 1
+            sitvc.currentCreatedGameID = currentCreatedGameID as AnyObject
         }
     }
     func fetchPlayersOnline()
