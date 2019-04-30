@@ -11,7 +11,8 @@
 import UIKit
 import FBSDKLoginKit
 import FirebaseDatabase
-
+var PLAYER_PROFILENAME: AnyObject?
+var PLAYER_ID: AnyObject?
 class ViewController: UIViewController {
     
     var dict : [String : AnyObject]!
@@ -138,6 +139,8 @@ class ViewController: UIViewController {
                     self.profileID=self.dict?["id"]
                     print("holahola")
                     print(self.profileName!)
+                    PLAYER_PROFILENAME = self.profileName
+                    PLAYER_ID  = self.profileID
                     print(self.profileID!)
                     self.updateDatabase(facebookID: self.profileID!, facebookUsername:self.profileName!)
                     //var profilePicture = self.dict?["picture"]

@@ -10,11 +10,30 @@ import UIKit
 import FirebaseDatabase
 var currentGame = Game()
 
-class WaitingForOpponentVCViewController: UIViewController {
+class WaitingForOpponentVCViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+//        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath )
+//        cell.textLabel?.text = self.items[indexPath.row]
+//        return cell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        let playerOnline = playersOnline[indexPath.row]
+        let cellText = playerOnline.username
+        cell.textLabel?.text = cellText as? String
+        //cell.textLabel?.text = "JAMIE FOOKING LANNISTER"
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        //return self.items.count;
+        return playersOnline.count
+    }
+    
 
     @IBOutlet weak var OpponentImage: UIImageView!
     @IBOutlet weak var OpponentName: UILabel!
+    
     @IBOutlet weak var tableView: UITableView!
+    
     var ref: DatabaseReference!
     var playersOnline = [User]()
     let cellId = "cellId"
@@ -23,28 +42,36 @@ class WaitingForOpponentVCViewController: UIViewController {
     var profileName: AnyObject?
     var profileID: AnyObject?
     var gameID: String = ""
+    var items: [String] = ["We", "Heart", "Swift"]
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         ref = Database.database().reference()
         print(currentCreatedGameID)
         
         tableView.reloadData()
+        
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(handleCancel))
+        //setupTable()
         fetchPlayersOnline()
-        tableView.register(PlayersOnlineCell.self, forCellReuseIdentifier: cellId)
+        
+        self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         ref.child("games").observe(.childAdded, with: {(DataSnapshot) in
             self.ref.child("games").child(currentCreatedGameID).observe(.childChanged, with: {(DataSnapshot) in
                 self.foundSnapshot(DataSnapshot)
                 })
         })
-        
-}
+    }
+//    func setupTable()
+//    {
+//        tableView.register(PlayersOnlineCell.self, forCellReuseIdentifier: cellId)
+//    }
     func foundSnapshot(_ snapshot: DataSnapshot){
     
         if(currentCreatedGameType == "Running"){
             performSegue(withIdentifier: "Wait2WalkingSegue", sender: self)
         }
-}
+    }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.destination is WalkingVC{
             let vc = segue.destination as? WalkingVC
@@ -57,15 +84,23 @@ class WaitingForOpponentVCViewController: UIViewController {
     }
     func fetchPlayersOnline()
     {
-        Database.database().reference().child("users").observe(.value, with: {(DataSnapshot) in print(DataSnapshot)
+        Database.database().reference().child("users").observe(.childAdded, with: {(DataSnapshot) in print(DataSnapshot)
             if let dictionary = DataSnapshot.value as? [String: AnyObject]{
                 let player = User()
                 player.username = dictionary["username"]
-                player.status = dictionary["status"] as! Bool
+                player.status = dictionary["status"] as? Int
+                print("ROLORLOL")
+                print(player.username)
                 player.facebookId = DataSnapshot.key as AnyObject
-                if player.status == true{
-                    self.playersOnline.append(player)
+                if player.status == 1{
+
+                    print(PLAYER_PROFILENAME!)
+                    print("goal")
+                    if( String(describing: player.username) != String(describing: PLAYER_PROFILENAME)){
+                    self.playersOnline.append(player)}
                 }
+            
+                print(self.playersOnline.count)
                 DispatchQueue.main.async{
                     self.tableView.reloadData()
                 }
@@ -76,15 +111,6 @@ class WaitingForOpponentVCViewController: UIViewController {
     @objc func handleCancel()
     {
         dismiss(animated: true, completion: nil)
-    }
-    func tableView(_ tableView:UITableView, didSelectRowAt indexPath: IndexPath)
-    {
-        gameIndex = indexPath.row
-        print(games[gameIndex].gameID!)
-        gameID = games[gameIndex].gameID as! String
-        ref = Database.database().reference()
-        getFBUserData()
-        playGame()
     }
     /*
      Function playGame:
@@ -105,54 +131,33 @@ class WaitingForOpponentVCViewController: UIViewController {
         print("Almost there"+games[gameIndex].gameType)
     }
 
-    func getFBUserData(){
-        if((FBSDKAccessToken.current()) != nil){
-            FBSDKGraphRequest(graphPath: "me", parameters: ["fields": "id, name, first_name, last_name, picture.type(large), email"]).start(completionHandler: { (connection, result, error) -> Void in
-                if (error == nil){
-                    self.dict = result as? [String : AnyObject]
-                    print("Here")
-                    self.profileName = self.dict?["name"]
-                    self.profileID=self.dict?["id"]
-                    print("tree")
-                    self.updateDatabase(facebookID: self.profileID!, facebookUsername:self.profileName!)
-                    //var profilePicture = self.dict?["picture"]
-                    //var pictureURL = profilePicture?["url"]
-                }
-            })
-        }
-    }
-    func updateDatabase(facebookID:AnyObject, facebookUsername:AnyObject)
-    {
-        
-        self.ref.child("games/\(gameID)/player2ID").setValue(facebookID)
-        self.ref.child("games/\(gameID)/gameStarted").setValue(true)
-        self.ref.child("games/\(gameID)/player2Score").setValue(0)
-    }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        
-        return playersOnline.count
-    }
-    
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        //let cell = UITableViewCell(style: .subtitle, reuseIdentifier: cellId)
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! PlayersOnlineCell
-        let playerOnline = playersOnline[indexPath.row]
-        let cellText = playerOnline.username
-        cell.textLabel?.text = cellText as! String
-        return cell
-    }
-    class PlayersOnlineCell: UITableViewCell {
-        
-        override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-            super.init(style: style, reuseIdentifier: reuseIdentifier)
-        }
-        
-        required init?(coder aDecoder: NSCoder) {
-            fatalError("init(coder:) has not been implemented")
-        }
-        
-    }
+//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//        // #warning Incomplete implementation, return the number of rows
+//        print("ENters stage 1")
+//        return playersOnline.count
+//    }
+//
+//
+//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+//      //  let cell = UITableViewCell(style: .subtitle, reuseIdentifier: cellId)
+//       let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! PlayersOnlineCell
+//        let playerOnline = playersOnline[indexPath.row]
+//        let cellText = playerOnline.username
+//        cell.textLabel?.text = cellText as? String
+//        cell.textLabel?.text = "JAMIE FOOKING LANNISTER"
+//        return cell
+//    }
+//    class PlayersOnlineCell: UITableViewCell {
+//
+//        override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+//            super.init(style: style, reuseIdentifier: reuseIdentifier)
+//        }
+//
+//        required init?(coder aDecoder: NSCoder) {
+//            fatalError("init(coder:) has not been implemented")
+//        }
+//
+//    }
+
 }
