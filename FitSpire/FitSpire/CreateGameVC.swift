@@ -67,6 +67,14 @@ class CreateGameVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSour
         currentCreateGameTarget=targetSelected
         performSegue(withIdentifier: "GoToWait", sender: self)
     }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.destination is WaitingForOpponentVCViewController{
+            let vc = segue.destination as? WaitingForOpponentVCViewController
+            vc?.profileName = self.profileName
+            vc?.profileID = self.profileID
+            
+        }
+    }
     
 //    func numberOfComponents(in pickerView: UIPickerView) -> Int {
 //        return 1
@@ -78,6 +86,8 @@ class CreateGameVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSour
                     self.dict = result as? [String : AnyObject]
                     print("Here")
                     self.profileName = self.dict?["name"]
+                    print("Testing copying profilename")
+                    print(self.profileName as! String)
                     self.profileID=self.dict?["id"]
                     print("tree")
                     self.updateDatabase(facebookID: self.profileID!, facebookUsername:self.profileName!)

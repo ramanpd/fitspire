@@ -93,7 +93,12 @@ class WaitingForOpponentVCViewController: UIViewController, UITableViewDelegate,
                 print(player.username)
                 player.facebookId = DataSnapshot.key as AnyObject
                 if player.status == 1{
+
+                    print(PLAYER_PROFILENAME!)
+                    print("goal")
+                    if( String(describing: player.username) != String(describing: PLAYER_PROFILENAME)){
                     self.playersOnline.append(player)}
+                }
             
                 print(self.playersOnline.count)
                 DispatchQueue.main.async{
