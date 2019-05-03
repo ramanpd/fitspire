@@ -103,31 +103,24 @@ class SitupVC: UIViewController {
                         self.ref = Database.database().reference()
                         
                         if(self.currentPlayer==1){
-                            print(self.currentCreatedGameID!)
-                            print("HERE IS THE GAME ID ^^^^^^^")
                             self.ref.child("games/\(self.currentCreatedGameID!)/player1Score").setValue(self.onScreenCount)
-                            //self.Player1ScoreLabel.text = "You: \(self!.onScreenCount) sit-ups"
+                          
                             print("COMPLETED UPDATE^^")
                             if(self.onScreenCount >= self.multiplayerTarget){
                                 self.ref.child("games/\(self.currentCreatedGameID!)/gameFinished").setValue(true)
                                 self.MotionManager.stopGyroUpdates()
                                 self.MotionManager.stopAccelerometerUpdates()
                                 self.performSegue(withIdentifier: "WinSegue", sender: self)
-                                print("winner winner chicken dinner - player 1")
                             }
                         }
                         else if(self.currentPlayer==2){
                             print(self.currentCreatedGameID!)
-                            print("HERE IS THE GAME ID ^^^^^^^")
                             self.ref.child("games/\(self.currentCreatedGameID!)/player2Score").setValue(self.onScreenCount)
-                            //self.Player2ScoreLabel.text = "You: \(self!.onScreenCount) sit-ups"
-                            print("COMPLETED UPDATE^^")
                             if(self.onScreenCount >= self.multiplayerTarget){
                                 self.ref.child("games/\(self.currentCreatedGameID!)/gameFinished").setValue(true)
                                 self.MotionManager.stopGyroUpdates()
                                 self.MotionManager.stopAccelerometerUpdates()
                                 self.performSegue(withIdentifier: "WinSegue", sender: self)
-                                print("winner winner chicken dinner - player 2")
                             }
                         }
                         else{

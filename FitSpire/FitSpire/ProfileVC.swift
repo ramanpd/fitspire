@@ -8,7 +8,9 @@
 
 import UIKit
 import FBSDKLoginKit
-import Charts 
+import Charts
+import Firebase
+import FirebaseDatabase
 
 
 class ProfileVC: UIViewController {
@@ -25,8 +27,11 @@ class ProfileVC: UIViewController {
 
     var months: [String]!
     var noOfGamesPlayedMonthwise: [Int]!
+    var ref: DatabaseReference!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        ref = Database.database().reference()
 
         months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
         let noOfGamesPlayedMonthwise = [30,1,24,53,66,77,4,3,2,1,6,8]
@@ -36,8 +41,8 @@ class ProfileVC: UIViewController {
         // Do any additional setup after loading the view.
         scrollView.contentSize = CGSize(width: self.view.frame.width, height: self.view.frame.height+100)
         self.getFBUserData()
-        let exercises = ["Walking", "Running", "Push-ups", "Sit-ups"]
-        let numberOfGamesPlayedInEachCategory = [20.0, 4.0, 6.0, 3.0]
+        let exercises = ["Walking", "Squats", "Push-ups", "Sit-ups"]
+        let numberOfGamesPlayedInEachCategory = [20.0,5.0,5.0,8.0]
 
         setChart(dataPoints: exercises, values: numberOfGamesPlayedInEachCategory )
 
@@ -99,6 +104,7 @@ class ProfileVC: UIViewController {
                     var profilePicture = self.dict?["picture"]
                     var pictureURL = profilePicture?["url"]
                     self.nameTextField.text = profileName as? String
+                    self.nameTextField.isUserInteractionEnabled = false
                     let url = NSURL(string: "https://graph.facebook.com/\(profileId!)/picture?type=large&return_ssl_resources=1")
                     self.profilePicImageView.image = UIImage(data: NSData(contentsOf: url! as URL)! as Data)
                     print(self.dict)
@@ -111,17 +117,4 @@ class ProfileVC: UIViewController {
             })
         }
     }
-
-
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

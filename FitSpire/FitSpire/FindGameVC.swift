@@ -29,11 +29,6 @@ class FindGameVC: UITableViewController{
         tableView.register(UserCell.self, forCellReuseIdentifier: cellId)
         fetchGame()
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
 
     func fetchGame()
@@ -113,15 +108,12 @@ class FindGameVC: UITableViewController{
                     self.profileID=self.dict?["id"]
                     print("tree")
                     self.updateDatabase(facebookID: self.profileID!, facebookUsername:self.profileName!)
-                    //var profilePicture = self.dict?["picture"]
-                    //var pictureURL = profilePicture?["url"]
                 }
             })
         }
     }
     func updateDatabase(facebookID:AnyObject, facebookUsername:AnyObject)
     {
-
         self.ref.child("games/\(gameID)/player2ID").setValue(facebookID)
         self.ref.child("games/\(gameID)/gameStarted").setValue(true)
         self.ref.child("games/\(gameID)/player2Score").setValue(0)

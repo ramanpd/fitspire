@@ -37,6 +37,8 @@
 		CE368D292237775900478771 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE368D282237775900478771 /* ViewController.swift */; };
 		CE368D2C2237775900478771 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE368D2A2237775900478771 /* Main.storyboard */; };
 		CE368D312237775900478771 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE368D2F2237775900478771 /* LaunchScreen.storyboard */; };
+		CE5FC12A2279934B006F34DE /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 089269942274658F00C51ED1 /* Charts.framework */; };
+		CE5FC12B2279934B006F34DE /* Charts.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 089269942274658F00C51ED1 /* Charts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		CECA74732238DE5300949205 /* MainMenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECA74722238DE5300949205 /* MainMenuVC.swift */; };
 		CECA74752238DE6E00949205 /* WalkingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECA74742238DE6E00949205 /* WalkingVC.swift */; };
 		CECA74772238DE7D00949205 /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECA74762238DE7D00949205 /* ProfileVC.swift */; };
@@ -59,7 +61,28 @@
 			remoteGlobalIDString = 1CBBC58C6CE1EBEE9852CE41;
 			remoteInfo = ChartsTests;
 		};
+		CE5FC12C2279934B006F34DE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0892698E2274658E00C51ED1 /* Charts.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = A58A4ED274A941CA248EA921;
+			remoteInfo = Charts;
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		CE5FC12E2279934B006F34DE /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				CE5FC12B2279934B006F34DE /* Charts.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		08045FE2225B1CDF00232F76 /* WaitingForOpponentVCViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaitingForOpponentVCViewController.swift; sourceTree = "<group>"; };
@@ -121,6 +144,7 @@
 				08926997227465EB00C51ED1 /* Charts.framework in Frameworks */,
 				0880BF8B2238BB740044F194 /* FBSDKCoreKit.framework in Frameworks */,
 				08F20D4C224F9BC4005E8002 /* GoogleUtilities.framework in Frameworks */,
+				CE5FC12A2279934B006F34DE /* Charts.framework in Frameworks */,
 				08045FE6225B224800232F76 /* FirebaseInAppMessaging.framework in Frameworks */,
 				08F20D41224F9B9B005E8002 /* leveldb-library.framework in Frameworks */,
 			);
@@ -226,10 +250,12 @@
 				CE368D1F2237775900478771 /* Sources */,
 				CE368D202237775900478771 /* Frameworks */,
 				CE368D212237775900478771 /* Resources */,
+				CE5FC12E2279934B006F34DE /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				CE5FC12D2279934B006F34DE /* PBXTargetDependency */,
 			);
 			name = FitSpire;
 			productName = FitSpire;
@@ -334,6 +360,14 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		CE5FC12D2279934B006F34DE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Charts;
+			targetProxy = CE5FC12C2279934B006F34DE /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
 		CE368D2A2237775900478771 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
@@ -391,6 +425,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				EXCLUDED_SOURCE_FILE_NAMES = "";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -452,6 +487,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				EXCLUDED_SOURCE_FILE_NAMES = "";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -473,6 +509,7 @@
 		CE368D362237775900478771 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -499,6 +536,7 @@
 		CE368D372237775900478771 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;

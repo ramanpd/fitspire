@@ -13,13 +13,20 @@ import FBSDKLoginKit
 import FirebaseDatabase
 var PLAYER_PROFILENAME: AnyObject?
 var PLAYER_ID: AnyObject?
+var TOTAL_GAMES: Int?
+var TOTAL_LOSSES: Int?
+var TOTAL_PUSHUP_GAMES: Int?
+var TOTAL_SITUP_GAMES: Int?
+var TOTAL_SQUATS_GAMES: Int?
+var TOTAL_WALKING_GAMES: Int?
+var TOTAL_WINS: Int?
 class ViewController: UIViewController {
     
     var dict : [String : AnyObject]!
     var ref: DatabaseReference!
     var profileName: AnyObject?
     var profileID: AnyObject?
-    
+    var users = [User]()
     //MARKS: Properties
     @IBOutlet weak var continueBtn: UIButton!
     
@@ -50,6 +57,7 @@ class ViewController: UIViewController {
             print(dict)
             
         }
+        //fetchPlayerGameRecord()
     }
     
     
@@ -112,17 +120,93 @@ class ViewController: UIViewController {
             print("logout failure")
         }
     }
-    
+    func fetchPlayerGameRecord()
+    {
+        print("FETtttttttchinnnggggggg")
+        print(self.profileID)
+        print(PLAYER_ID)
+
+        Database.database().reference().child("users/\(self.profileID!)").observe(.value, with: {(DataSnapshot) in print(DataSnapshot)
+            if let dictionary = DataSnapshot.value as? [String: AnyObject]{
+
+                TOTAL_GAMES = dictionary["totalGames"] as! Int
+                if(TOTAL_GAMES==nil){
+                    print("Found totalGamesPlayed to be nil when pulling from Firebase")
+                }
+                TOTAL_LOSSES = dictionary["totalLosses"] as! Int
+                TOTAL_PUSHUP_GAMES = dictionary["totalPushupsGames"] as! Int
+                TOTAL_SITUP_GAMES = dictionary["totalSitupsGames"] as! Int
+                TOTAL_SQUATS_GAMES = dictionary["totalSquatsGames"] as! Int
+                TOTAL_WALKING_GAMES = dictionary["totalWalkingGames"] as! Int
+                TOTAL_WINS = dictionary["totalWins"] as! Int
+
+
+                print(self.profileName)
+                print(TOTAL_GAMES!)
+                print(TOTAL_LOSSES!)
+                print(TOTAL_PUSHUP_GAMES!)
+                print(TOTAL_SITUP_GAMES!)
+                print(TOTAL_SQUATS_GAMES!)
+                print(TOTAL_WALKING_GAMES!)
+                print(TOTAL_WINS!)
+            }
+        }, withCancel: nil)
+        print("Feeeeeeeeeeeettttccchhhhhhh eeeeennnnddddddd")
+
+    }
+    func getUsers()
+    {
+        print("-------- Database Command-------------")
+        Database.database().reference().child("users").observe(.childAdded, with: {(DataSnapshot) in print(DataSnapshot)
+            if let dictionary = DataSnapshot.value as? [String: AnyObject]{
+                let user = User()
+                print("profileID: \(self.profileID!)")
+                user.facebookId = dictionary["id"]
+                print(dictionary["id"])
+                user.username = dictionary["username"]
+                print(user.username)
+                self.users.append(user)
+                print("lololololololol")
+                print(user.facebookId)
+                
+            }
+        }, withCancel: nil)
+    }
     func updateDatabase(facebookID:AnyObject, facebookUsername:AnyObject)
     {
-         print("-------- Database Command-------------")
-        //self.ref.child("fitspire-a5dc1/User/").setValue("James is an asshole!!")
+            getUsers()
+        var playerExists = false
+        for user in self.users{
+            if String(describing: user.facebookId) == String(describing: PLAYER_ID)
+            {
+                playerExists = true
+            }
+        }
+            if(!playerExists){
+                print("PLAYER DID NOT EXIST")
+                self.ref.child("users/\(facebookID)/username").setValue(facebookUsername)
+                self.ref.child("users/\(facebookID)/status").setValue(true)
+                
+                self.ref.child("users/\(facebookID)/totalGames").setValue(0)
+                self.ref.child("users/\(facebookID)/totalWins").setValue(0)
+                self.ref.child("users/\(facebookID)/totalLosses").setValue(0)
+                
+                self.ref.child("users/\(facebookID)/totalWalkingGames").setValue(0)
+                self.ref.child("users/\(facebookID)/totalSitupsGames").setValue(0)
+                self.ref.child("users/\(facebookID)/totalPushupsGames").setValue(0)
+                self.ref.child("users/\(facebookID)/totalSquatsGames").setValue(0)
+            }
+        else
+            {
+                self.ref.child("users/\(facebookID)/username").setValue(facebookUsername)
+                self.ref.child("users/\(facebookID)/status").setValue(true)
+                
+        }
+            print("Feeeeeeeeeeeettttccchhhhhhh eeeeennnnddddddd")
+
+        
         print("checking id")
-        //self.ref.child("users").child(facebookID).setValue(["name":self.dict?["name"]])
-        //self.ref.child("users").child(facebookID).setValue(["name":self.dict?["name"]])
-        self.ref.child("users/\(facebookID)/username").setValue(facebookUsername)
-        self.ref.child("users/\(facebookID)/status").setValue(true)
-        //self.ref.child("fitspire-a5dc1/users/\(String(describing: facebookID))/profilePicture/").setValue(self.dict?["profile"])
+    
         print("---------------- Databse Command End --------------------")
     }
     
@@ -136,15 +220,21 @@ class ViewController: UIViewController {
                     
                     
                     self.profileName = self.dict?["name"]
-                    self.profileID=self.dict?["id"]
-                    print("holahola")
-                    print(self.profileName!)
+                    self.profileID = self.dict?["id"]
+                    
+                    print("REEEEEEEEeEEeeeeeeeeeeee")
+                    print(self.profileID)
+                    
+
                     PLAYER_PROFILENAME = self.profileName
                     PLAYER_ID  = self.profileID
-                    print(self.profileID!)
+                    print("CHECKOUT VALUE BELOW")
+
+                    print(self.profileID)
+                    print(PLAYER_ID)
+
                     self.updateDatabase(facebookID: self.profileID!, facebookUsername:self.profileName!)
-                    //var profilePicture = self.dict?["picture"]
-                    //var pictureURL = profilePicture?["url"]
+                    self.fetchPlayerGameRecord()
                 }
             })
         }
